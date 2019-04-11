@@ -1,0 +1,295 @@
+2019-04-05 04:00:25: -----------Request----------->
+POST https://sitlnxapigway1.sitprod1env.local:7443/auth/oauth/v2/token
+User-Agent: python-requests/2.21.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+content-type: application/x-www-form-urlencoded
+Content-Length: 121
+
+client_id=l7b399dd15b5d5410e94d8081bb022dd31&client_secret=ad03cddf18304d528013ae29bdcb4b75&grant_type=client_credentials
+
+2019-04-05 04:00:25: <-----------Response-----------
+Status code:200
+
+Pragma: no-cache
+Cache-Control: no-store
+Content-Encoding: gzip
+Content-Type: application/json;charset=UTF-8
+Content-Length: 126
+Date: Fri, 05 Apr 2019 05:00:25 GMT
+Server: CA-API-Gateway/9.0
+
+{
+    "access_token": "d1186c2c-096d-4465-84a4-5691ca9218af",
+    "token_type": "Bearer",
+    "expires_in": 7200,
+    "scope": "oob"
+}
+
+2019-04-05 04:00:28: -----------Request----------->
+POST https://sitlnxapigway1.sitprod1env.local:7443/sit/ma/card/enquiry
+User-Agent: python-requests/2.21.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Authorization: Bearer d1186c2c-096d-4465-84a4-5691ca9218af
+Content-Length: 119
+
+{
+    "source": "PTVWebsite",
+    "Card": [
+        {
+            "mykiCardNumber": "308425030416901"
+        }
+    ]
+}
+
+2019-04-05 04:00:28: <-----------Response-----------
+Status code:200
+
+Cache-Control: private, max-age=0
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Content-Encoding: gzip
+Content-Type: application/json;charset=UTF-8
+Content-Length: 445
+Date: Fri, 05 Apr 2019 05:00:28 GMT
+Server: CA-API-Gateway/9.0
+
+{
+    "Response": {
+        "code": "1",
+        "message": "Success",
+        "Result": {
+            "Card": {
+                "mykiCardNumber": "308425030416901",
+                "depositAmount": "0",
+                "lastCardTxnDate": "2019-04-05T13:30:44.00+11:00",
+                "purchaseDate": "2019-04-04",
+                "mykiCardStatus": "Active",
+                "mykiCardExpiryDate": "2023-04-04",
+                "passengerCode": "1",
+                "cardType": "Anonymous",
+                "Product": {
+                    "duration": "7",
+                    "productCode": "2",
+                    "productExpiry": "2019-04-12T03:00:00.00+10:00",
+                    "zoneMax": "2",
+                    "transactionAmount": "44",
+                    "lastUtilizationDate": "2019-04-12T03:00:00.00+10:00",
+                    "productStatus": "1",
+                    "zoneMin": "1",
+                    "productSerialNo": "2",
+                    "firstUtilizationDate": "2019-04-05T13:30:43.00+11:00"
+                },
+                "Actionlist": [
+                    {
+                        "transactionAmount": "20",
+                        "actionlistType": "myki Money",
+                        "actionlistTimestamp": "2019-04-05T11:26:53.00+11:00"
+                    },
+                    {
+                        "transactionAmount": "20",
+                        "actionlistType": "myki Money",
+                        "actionlistTimestamp": "2019-04-05T00:00:00.00+11:00"
+                    },
+                    {
+                        "transactionAmount": "20",
+                        "actionlistType": "myki Money",
+                        "actionlistTimestamp": "2019-04-05T00:00:00.00+11:00"
+                    }
+                ],
+                "hotlistReason": "",
+                "mykiBalance": "122.2"
+            }
+        }
+    }
+}
+
+2019-04-05 04:00:33: -----------Request----------->
+POST https://sitlnxapigway1.sitprod1env.local:7443/sit/ma/card/topup/mykimoney
+User-Agent: python-requests/2.21.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Authorization: Bearer d1186c2c-096d-4465-84a4-5691ca9218af
+Content-Length: 489
+
+{
+    "source": "PTVWebsite",
+    "Card": {
+        "mykiCardNumber": "308425030416901",
+        "mykiCardStatus": "Active",
+        "mykiCardExpiryDate": "2023-04-04"
+    },
+    "Order": {
+        "orderReferenceNumber": "AUT201904051600284",
+        "orderSequenceNumber": 1,
+        "amount": 20
+    },
+    "Contact": {
+        "preferredReminder": "Email",
+        "email": "peter.xie@nttdata.com",
+        "notification": true,
+        "reminderValue": "peter.xie@nttdata.com"
+    }
+}
+
+2019-04-05 04:00:33: <-----------Response-----------
+Status code:200
+
+Content-Encoding: gzip
+Content-Type: application/json;charset=UTF-8
+Content-Length: 125
+Date: Fri, 05 Apr 2019 05:00:33 GMT
+Server: CA-API-Gateway/9.0
+
+{
+    "Response": {
+        "code": "1",
+        "message": "Success",
+        "Result": [
+            {
+                "name": "srNumber",
+                "value": "217365_117"
+            }
+        ]
+    }
+}
+
+2019-04-05 04:00:34: -----------Request----------->
+POST https://sitlnxapigway1.sitprod1env.local:7443/sit/ma/card/enquiry
+User-Agent: python-requests/2.21.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Authorization: Bearer d1186c2c-096d-4465-84a4-5691ca9218af
+Content-Length: 119
+
+{
+    "source": "PTVWebsite",
+    "Card": [
+        {
+            "mykiCardNumber": "308425030450025"
+        }
+    ]
+}
+
+2019-04-05 04:00:34: <-----------Response-----------
+Status code:200
+
+Cache-Control: private, max-age=0
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Content-Encoding: gzip
+Content-Type: application/json;charset=UTF-8
+Content-Length: 456
+Date: Fri, 05 Apr 2019 05:00:34 GMT
+Server: CA-API-Gateway/9.0
+
+{
+    "Response": {
+        "code": "1",
+        "message": "Success",
+        "Result": {
+            "Card": {
+                "mykiCardNumber": "308425030450025",
+                "depositAmount": "0",
+                "lastCardTxnDate": "2019-04-05T13:30:32.00+11:00",
+                "purchaseDate": "2019-03-18",
+                "mykiCardStatus": "Active",
+                "mykiCardExpiryDate": "2023-03-19",
+                "passengerCode": "1",
+                "cardType": "Anonymous",
+                "Product": {
+                    "duration": "35",
+                    "productCode": "2",
+                    "productExpiry": "2019-04-24T03:00:00.00+10:00",
+                    "zoneMax": "2",
+                    "transactionAmount": "185.5",
+                    "lastUtilizationDate": "2019-04-24T03:00:00.00+10:00",
+                    "productStatus": "1",
+                    "zoneMin": "1",
+                    "productSerialNo": "2",
+                    "firstUtilizationDate": "2019-03-20T11:04:56.00+11:00"
+                },
+                "Actionlist": {
+                    "transactionAmount": "44",
+                    "actionlistType": "myki Pass",
+                    "Product": {
+                        "duration": "7",
+                        "productCode": "2",
+                        "zoneMax": "2",
+                        "zoneMin": "1"
+                    },
+                    "actionlistTimestamp": "2019-04-05T00:00:00.00+11:00"
+                },
+                "hotlistReason": "",
+                "mykiBalance": "152.22"
+            }
+        }
+    }
+}
+
+2019-04-05 04:00:39: -----------Request----------->
+POST https://sitlnxapigway1.sitprod1env.local:7443/sit/ma/card/topup/mykiPass
+User-Agent: python-requests/2.21.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Authorization: Bearer d1186c2c-096d-4465-84a4-5691ca9218af
+Content-Length: 646
+
+{
+    "source": "PTVWebsite",
+    "Card": {
+        "mykiCardNumber": "308425030450025",
+        "mykiCardStatus": "Active",
+        "mykiCardExpiryDate": "2023-03-19"
+    },
+    "Order": {
+        "orderReferenceNumber": "AUT2019040516003450",
+        "orderSequenceNumber": 1,
+        "amount": 44.0,
+        "GSTAmount": 4.0,
+        "Product": {
+            "physicalZoneMin": 1,
+            "physicalZoneMax": 2,
+            "duration": "7"
+        }
+    },
+    "Contact": {
+        "preferredReminder": "Email",
+        "email": "peter.xie@nttdata.com",
+        "notification": true,
+        "reminderValue": "peter.xie@nttdata.com"
+    }
+}
+
+2019-04-05 04:00:39: <-----------Response-----------
+Status code:200
+
+Content-Encoding: gzip
+Content-Type: application/json;charset=UTF-8
+Content-Length: 125
+Date: Fri, 05 Apr 2019 05:00:39 GMT
+Server: CA-API-Gateway/9.0
+
+{
+    "Response": {
+        "code": "1",
+        "message": "Success",
+        "Result": [
+            {
+                "name": "srNumber",
+                "value": "217366_117"
+            }
+        ]
+    }
+}
+
