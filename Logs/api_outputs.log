@@ -1,0 +1,96 @@
+2019-04-13 01:13:54: -----------Request----------->
+GET http://httpbin.org/basic-auth/user1/password1
+User-Agent: python-requests/2.21.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Authorization: Basic dXNlcjE6cGFzc3dvcmQx
+
+None
+
+2019-04-13 01:13:54: <-----------Response-----------
+Status code:200
+
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Content-Encoding: gzip
+Content-Type: application/json
+Date: Sat, 13 Apr 2019 03:13:54 GMT
+Server: nginx
+Content-Length: 61
+Connection: keep-alive
+
+{
+    "authenticated": true,
+    "user": "user1"
+}
+
+2019-04-13 01:13:55: -----------Request----------->
+POST http://httpbin.org/post
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 39
+
+{
+    "key1": 1,
+    "key2": "value2"
+}
+
+2019-04-13 01:13:55: <-----------Response-----------
+Status code:200
+
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Content-Encoding: gzip
+Content-Type: application/json
+Date: Sat, 13 Apr 2019 03:13:55 GMT
+Server: nginx
+Content-Length: 276
+Connection: keep-alive
+
+{
+    "args": {},
+    "data": "{\n    \"key1\": 1,\n    \"key2\": \"value2\"\n}",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "39",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests"
+    },
+    "json": {
+        "key1": 1,
+        "key2": "value2"
+    },
+    "origin": "203.166.4.146, 203.166.4.146",
+    "url": "https://httpbin.org/post"
+}
+
+2019-04-13 01:13:55: -----------Request----------->
+GET http://127.0.0.1:5000/json
+User-Agent: python-requests/2.21.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+None
+
+2019-04-13 01:13:55: <-----------Response-----------
+Status code:200
+
+Content-Type: text/html; charset=utf-8
+Content-Length: 40
+Server: Werkzeug/0.15.1 Python/3.7.1
+Date: Sat, 13 Apr 2019 03:13:55 GMT
+
+{
+    "code": 1,
+    "message": "Hello, World!"
+}
+

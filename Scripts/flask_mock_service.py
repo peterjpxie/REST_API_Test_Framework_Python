@@ -3,13 +3,7 @@ Install:
 pip install flask
 
 Run with python CLI:
-python flask_try.py
-
-Run with environment settings: 
-# Note: app.run() function will be ignore in this mode.
-- Powershell
-$env:FLASK_APP = "flask_try.py"
-flask run
+python flask_mock_service.py
 
 Notes:
 - Method is default as GET
@@ -28,7 +22,7 @@ def hello_world():
 
 @app.route('/json')
 def test_json():
-    return '{"status code": 200, "response": "Hello, World!" }'
+    return '{"code": 1, "message": "Hello, World!" }'
 
 # Request headers
 # http://flask.pocoo.org/docs/1.0/api/#flask.Request

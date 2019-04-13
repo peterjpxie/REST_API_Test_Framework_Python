@@ -1,9 +1,5 @@
-2019-04-05 04:00:25 INFO line-251: Calling test_func.
-2019-04-05 04:00:25 INFO line-265: Calling test_card_enquiry.
-2019-04-05 04:00:25 INFO line-275: Calling test_topup_money.
-2019-04-05 04:00:25 INFO line-201: Calling myki_card_enquiry 308425030416901
-2019-04-05 04:00:25 INFO line-180: Calling get_bearer_token.
-2019-04-05 04:00:25 INFO line-190: Got bearer_access_token:d1186c2c-096d-4465-84a4-5691ca9218af
-2019-04-05 04:00:33 INFO line-338: Calling test_topup_pass.
-2019-04-05 04:00:33 INFO line-201: Calling myki_card_enquiry 308425030450025
-2019-04-05 04:00:39 INFO line-425: Calling test_autoload_smart.
+2019-04-13 01:13:54 [INFO   ][ln-116]: Calling test_get_auth_httpbin.
+2019-04-13 01:13:54 [INFO   ][ln-124]: Test test_get_auth_httpbin passed.
+2019-04-13 01:13:55 [INFO   ][ln-141]: Test test_post_headers_body passed.
+2019-04-13 01:13:55 [INFO   ][ln-150]: Calling test_mock_service.
+2019-04-13 01:13:55 [INFO   ][ln-155]: Test test_mock_service passed.
