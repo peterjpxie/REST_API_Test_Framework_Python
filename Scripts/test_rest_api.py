@@ -119,27 +119,10 @@ class TestAPI:
     Test Restful HTTP API examples. 
     ''' 
     def setup_class(cls):
-        log.debug('To load test data.')
-
-    def test_get_auth_httpbin(self):        
-        log.info('Calling %s.' % inspect.stack()[0][3])       
-        username = 'user1'
-        password = 'password1'
-        
-        url = f'http://httpbin.org/basic-auth/{username}/{password}'        
-        resp = self.get(url, auth = (username,password))
-        assert resp != None
-        assert resp["authenticated"] == True
-        log.info('Test %s passed.' % inspect.stack()[0][3])
-        
-        ''' json response
-        {
-        "authenticated": true, 
-        "user": "user1"
-        }
-        '''        
-        
-    def test_post_headers_body(self):
+        log.debug('To load test data.')    
+    
+    # post with headers, json body
+    def test_post_headers_body_json(self):
         payload = {'key1': 1, 'key2': 'value2'}
         # No need to specify common headers as it is taken cared of by common self.post() function.
         # headers = {'Content-Type': 'application/json' } 
@@ -153,6 +136,34 @@ class TestAPI:
             "key2": "value2"
         }
         '''   
+
+    # post with normal data
+    def test_post_normal_body(self):
+        payload = {'key1': 1, 'key2': 'value2'} 
+        resp = self.post('http://httpbin.org/post', data = payload, amend_headers=False)      
+        assert resp != None
+        log.info('Test %s passed.' % inspect.stack()[0][3])
+        ''' Request HTTP body:
+        key1=1&key2=value2
+        '''    
+        
+    # get with authentication
+    def test_get_auth_httpbin(self):        
+        log.info('Calling %s.' % inspect.stack()[0][3])       
+        username = 'user1'
+        password = 'password1'
+        
+        url = f'http://httpbin.org/basic-auth/{username}/{password}'        
+        resp = self.get(url, auth = (username,password))
+        assert resp != None
+        assert resp["authenticated"] == True
+        log.info('Test %s passed.' % inspect.stack()[0][3])        
+        ''' json response
+        {
+        "authenticated": true, 
+        "user": "user1"
+        }
+        '''    
     
     # start mock service first: python flask_mock_service.py
     def test_mock_service(self):
@@ -168,8 +179,6 @@ class TestAPI:
         "message": "Hello, World!"
         }
         '''
-        
-    # To add: get with params or normal data
         
     def post(self,url,data,headers={},verify=False,amend_headers=True):
         '''

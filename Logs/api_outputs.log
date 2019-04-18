@@ -1,31 +1,4 @@
-2019-04-13 01:13:54: -----------Request----------->
-GET http://httpbin.org/basic-auth/user1/password1
-User-Agent: python-requests/2.21.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-Authorization: Basic dXNlcjE6cGFzc3dvcmQx
-
-None
-
-2019-04-13 01:13:54: <-----------Response-----------
-Status code:200
-
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
-Content-Type: application/json
-Date: Sat, 13 Apr 2019 03:13:54 GMT
-Server: nginx
-Content-Length: 61
-Connection: keep-alive
-
-{
-    "authenticated": true,
-    "user": "user1"
-}
-
-2019-04-13 01:13:55: -----------Request----------->
+2019-04-18 01:55:23: -----------Request----------->
 POST http://httpbin.org/post
 User-Agent: Python Requests
 Accept-Encoding: gzip, deflate
@@ -39,15 +12,19 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2019-04-13 01:13:55: <-----------Response-----------
+2019-04-18 01:55:23: <-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Sat, 13 Apr 2019 03:13:55 GMT
+Date: Thu, 18 Apr 2019 03:55:23 GMT
+Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
 Content-Length: 276
 Connection: keep-alive
 
@@ -68,11 +45,87 @@ Connection: keep-alive
         "key1": 1,
         "key2": "value2"
     },
-    "origin": "203.166.4.146, 203.166.4.146",
+    "origin": "49.255.194.157, 49.255.194.157",
     "url": "https://httpbin.org/post"
 }
 
-2019-04-13 01:13:55: -----------Request----------->
+2019-04-18 01:55:24: -----------Request----------->
+POST http://httpbin.org/post
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 18
+
+key1=1&key2=value2
+
+2019-04-18 01:55:24: <-----------Response-----------
+Status code:200
+
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Content-Encoding: gzip
+Content-Type: application/json
+Date: Thu, 18 Apr 2019 03:55:24 GMT
+Referrer-Policy: no-referrer-when-downgrade
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Content-Length: 258
+Connection: keep-alive
+
+{
+    "args": {},
+    "data": "key1=1&key2=value2",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "18",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests"
+    },
+    "json": null,
+    "origin": "49.255.194.157, 49.255.194.157",
+    "url": "https://httpbin.org/post"
+}
+
+2019-04-18 01:55:24: -----------Request----------->
+GET http://httpbin.org/basic-auth/user1/password1
+User-Agent: python-requests/2.21.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Authorization: Basic dXNlcjE6cGFzc3dvcmQx
+
+None
+
+2019-04-18 01:55:24: <-----------Response-----------
+Status code:200
+
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Content-Encoding: gzip
+Content-Type: application/json
+Date: Thu, 18 Apr 2019 03:55:24 GMT
+Referrer-Policy: no-referrer-when-downgrade
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Content-Length: 61
+Connection: keep-alive
+
+{
+    "authenticated": true,
+    "user": "user1"
+}
+
+2019-04-18 01:55:24: -----------Request----------->
 GET http://127.0.0.1:5000/json
 User-Agent: python-requests/2.21.0
 Accept-Encoding: gzip, deflate
@@ -81,13 +134,13 @@ Connection: keep-alive
 
 None
 
-2019-04-13 01:13:55: <-----------Response-----------
+2019-04-18 01:55:24: <-----------Response-----------
 Status code:200
 
 Content-Type: text/html; charset=utf-8
 Content-Length: 40
 Server: Werkzeug/0.15.1 Python/3.7.1
-Date: Sat, 13 Apr 2019 03:13:55 GMT
+Date: Thu, 18 Apr 2019 03:55:24 GMT
 
 {
     "code": 1,
