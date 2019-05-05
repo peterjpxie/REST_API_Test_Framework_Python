@@ -17,5 +17,6 @@
 pip install -U pytest requests pytest-html ipdb
 
 ## Run:
+cd Scripts
 
 pytest
