@@ -1,6 +1,4 @@
-2019-04-18 01:55:23 [INFO   ][ln-133]: Test test_post_headers_body_json passed.
-2019-04-18 01:55:24 [INFO   ][ln-145]: Test test_post_normal_body passed.
-2019-04-18 01:55:24 [INFO   ][ln-154]: Calling test_get_auth_httpbin.
-2019-04-18 01:55:24 [INFO   ][ln-162]: Test test_get_auth_httpbin passed.
-2019-04-18 01:55:24 [INFO   ][ln-173]: Calling test_mock_service.
-2019-04-18 01:55:24 [INFO   ][ln-178]: Test test_mock_service passed.
+2019-06-17 06:53:33 [INFO   ][ln-133]: Test test_post_headers_body_json passed.
+2019-06-17 06:53:34 [INFO   ][ln-145]: Test test_post_normal_body passed.
+2019-06-17 06:53:34 [INFO   ][ln-152]: Calling test_get_auth_httpbin.
+2019-06-17 06:53:35 [INFO   ][ln-160]: Test test_get_auth_httpbin passed.

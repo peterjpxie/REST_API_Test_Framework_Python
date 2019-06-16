@@ -1,4 +1,4 @@
-'''
+"""
 Description:
 Restful API testing framework example
 
@@ -16,7 +16,7 @@ pip install -U pytest requests pytest-html ipdb
 Run:
 pytest
 
-'''
+"""
 from time import sleep
 from datetime import datetime
 import logging
@@ -46,12 +46,12 @@ LOG_LEVEL = logging.INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
 # root_path is parent folder of Scripts folder (one level up)
 root_path = os.path.dirname( os.path.dirname(os.path.realpath(__file__)) )
 
-
 # %(levelname)7s to align 7 bytes to right, %(levelname)-7s to left.
 common_formatter = logging.Formatter('%(asctime)s [%(levelname)-7s][ln-%(lineno)-3d]: %(message)s', datefmt='%Y-%m-%d %I:%M:%S')
+
 # Note: To create multiple log files, must use different logger name.
 def setup_logger(log_file, level=logging.INFO, name='', formatter=common_formatter):
-    '''Function setup as many loggers as you want'''
+    """Function setup as many loggers as you want."""
     handler = logging.FileHandler(log_file,mode='w') # default mode is append
     # Or use a rotating file handler
     # handler = RotatingFileHandler(log_file,maxBytes=1024, backupCount=5)          
@@ -73,10 +73,10 @@ log_api = setup_logger(api_outputs_filename, LOG_LEVEL,'log_api',formatter = api
 # pretty print Restful request to API log
 # argument is request object 
 def pretty_print_request(request):
-    '''
+    """
     Pay attention at the formatting used in this function because it is programmed to be pretty printed and may differ from the actual request.
-    '''
-    log_api.critical('{}\n{}\n{}\n\n{}\n'.format(
+    """
+    log_api.critical('{}\n{}\n\n{}\n\n{}\n'.format(
         '-----------Request----------->',
         request.method + ' ' + request.url,
         '\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
@@ -97,7 +97,7 @@ def pretty_print_response(response):
 # argument is request object
 # display body in json format explicitly with expected indent. Actually most of the time it is not very necessary because body is formatted in pretty print way.    
 def pretty_print_request_json(request):
-    log_api.critical('{}\n{}\n{}\n\n{}\n'.format(
+    log_api.critical('{}\n{}\n\n{}\n\n{}\n'.format(
         '-----------Request----------->',
         request.method + ' ' + request.url,
         '\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
@@ -115,9 +115,9 @@ def pretty_print_response_json(response):
         ))
 
 class TestAPI:
-    '''
+    """
     Test Restful HTTP API examples. 
-    ''' 
+    """ 
     def setup_class(cls):
         log.debug('To load test data.')    
     
@@ -131,11 +131,11 @@ class TestAPI:
         resp = self.post('http://httpbin.org/post', data = json.dumps(payload,indent=4))      
         assert resp != None
         log.info('Test %s passed.' % inspect.stack()[0][3])
-        ''' Request HTTP body:
+        """ Request HTTP body:
         {   "key1": 1, 
             "key2": "value2"
         }
-        '''   
+        """   
 
     # post with normal data
     def test_post_normal_body(self):
@@ -143,9 +143,9 @@ class TestAPI:
         resp = self.post('http://httpbin.org/post', data = payload, amend_headers=False)      
         assert resp != None
         log.info('Test %s passed.' % inspect.stack()[0][3])
-        ''' Request HTTP body:
+        """ Request HTTP body:
         key1=1&key2=value2
-        '''    
+        """    
         
     # get with authentication
     def test_get_auth_httpbin(self):        
@@ -158,30 +158,32 @@ class TestAPI:
         assert resp != None
         assert resp["authenticated"] == True
         log.info('Test %s passed.' % inspect.stack()[0][3])        
-        ''' json response
+        """ json response
         {
         "authenticated": true, 
         "user": "user1"
         }
-        '''    
+        """    
     
-    # start mock service first: python flask_mock_service.py
-    def test_mock_service(self):
+    # To run this test using Flask mocking service,
+    # First, rename this method from disabled_test_mock_service to test_mock_service. 
+    # Second, start mock service: python flask_mock_service.py
+    def disabled_test_mock_service(self):
         log.info('Calling %s.' % inspect.stack()[0][3])               
         url = f'http://127.0.0.1:5000/json'        
         resp = self.get(url)
         assert resp != None
         assert resp["code"] == 1
         log.info('Test %s passed.' % inspect.stack()[0][3])        
-        ''' json response
+        """ json response
         {
         "code": 1,
         "message": "Hello, World!"
         }
-        '''
+        """
         
     def post(self,url,data,headers={},verify=False,amend_headers=True):
-        '''
+        """
         common request post function with below features, which you only need to take care of url and body data:
             - append common headers
             - print request and response in API log file
@@ -189,7 +191,7 @@ class TestAPI:
             - arguments are the same as requests.post, except amend_headers.
         
         verify: False - Disable SSL certificate verification 
-        '''
+        """
         
         # append common headers if none
         headers_new = headers
@@ -216,14 +218,14 @@ class TestAPI:
         return resp.json()
 
     def get(self,url,auth = None,verify=False):
-        '''
+        """
         common request get function with below features, which you only need to take care of url:
             - print request and response in API log file
             - Take care of request exception and non-200 response codes and return None, so you only need to care normal json response.
             - arguments are the same as requests.get
         
         verify: False - Disable SSL certificate verification 
-        '''
+        """
         try:
             if auth == None:
                 resp = requests.get(url, verify = verify)
