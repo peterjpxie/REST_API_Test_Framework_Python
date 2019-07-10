@@ -128,7 +128,8 @@ class TestAPI:
         # headers = {'Content-Type': 'application/json' } 
         
         # convert dict to json by json.dumps() for body data. It is risky to use str(payload) to convert because json format must use double quotes ("")
-        resp = self.post('http://httpbin.org/post', data = json.dumps(payload,indent=4))      
+        url = 'http://httpbin.org/post'
+        resp = self.post(url, data = json.dumps(payload,indent=4))      
         assert resp != None
         log.info('Test %s passed.' % inspect.stack()[0][3])
         """ Request HTTP body:
@@ -140,7 +141,8 @@ class TestAPI:
     # post with normal data
     def test_post_normal_body(self):
         payload = {'key1': 1, 'key2': 'value2'} 
-        resp = self.post('http://httpbin.org/post', data = payload, amend_headers=False)      
+        url = 'http://httpbin.org/post'
+        resp = self.post(url, data = payload, amend_headers=False)      
         assert resp != None
         log.info('Test %s passed.' % inspect.stack()[0][3])
         """ Request HTTP body:
