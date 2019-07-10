@@ -167,7 +167,8 @@ class TestAPI:
     
     # To run this test using Flask mocking service,
     # First, rename this method from disabled_test_mock_service to test_mock_service. 
-    # Second, start mock service: python flask_mock_service.py
+    # Second, start mock service first: python flask_mock_service.py
+    # Then, run the tests, i.e. pytest.
     def disabled_test_mock_service(self):
         log.info('Calling %s.' % inspect.stack()[0][3])               
         url = f'http://127.0.0.1:5000/json'        

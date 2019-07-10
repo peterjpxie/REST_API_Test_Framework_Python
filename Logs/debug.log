@@ -1,4 +1,4 @@
-2019-06-17 06:53:33 [INFO   ][ln-133]: Test test_post_headers_body_json passed.
-2019-06-17 06:53:34 [INFO   ][ln-145]: Test test_post_normal_body passed.
-2019-06-17 06:53:34 [INFO   ][ln-152]: Calling test_get_auth_httpbin.
-2019-06-17 06:53:35 [INFO   ][ln-160]: Test test_get_auth_httpbin passed.
+2019-07-10 03:26:51 [INFO   ][ln-133]: Test test_post_headers_body_json passed.
+2019-07-10 03:26:52 [INFO   ][ln-145]: Test test_post_normal_body passed.
+2019-07-10 03:26:52 [INFO   ][ln-152]: Calling test_get_auth_httpbin.
+2019-07-10 03:26:53 [INFO   ][ln-160]: Test test_get_auth_httpbin passed.
