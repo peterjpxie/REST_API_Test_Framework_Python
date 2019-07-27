@@ -14,6 +14,7 @@ import os
 import ipdb
 from flask import Flask, request, send_file, render_template
 import json
+from time import sleep
 app = Flask(__name__)
 
 @app.route('/')
@@ -22,6 +23,7 @@ def hello_world():
 
 @app.route('/json')
 def test_json():
+    # sleep(2) # simulate network delay.
     return '{"code": 1, "message": "Hello, World!" }'
 
 # Request headers
