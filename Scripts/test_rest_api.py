@@ -29,13 +29,6 @@ import ast
 import inspect
 import random
 
-# Global bearer access_token, empty by default while the bearer API has never been called.
-bearer_access_token = ''
-
-
-# *** OpCo Web automation parameters ***
-# explicit wait time after loading a new page to check page match.
-TIMEWAIT_PAGE_LOAD = 5
 LOG_LEVEL = logging.INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
 
 # Assume project structure as below:
