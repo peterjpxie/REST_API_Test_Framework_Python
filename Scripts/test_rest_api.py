@@ -69,7 +69,7 @@ def pretty_print_request(request):
     """
     Pay attention at the formatting used in this function because it is programmed to be pretty printed and may differ from the actual request.
     """
-    log_api.critical('{}\n{}\n\n{}\n\n{}\n'.format(
+    log_api.info('{}\n{}\n\n{}\n\n{}\n'.format(
         '-----------Request----------->',
         request.method + ' ' + request.url,
         '\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
@@ -79,7 +79,7 @@ def pretty_print_request(request):
 # pretty print Restful request to API log
 # argument is response object         
 def pretty_print_response(response):
-    log_api.critical('{}\n{}\n\n{}\n\n{}\n'.format(
+    log_api.info('{}\n{}\n\n{}\n\n{}\n'.format(
         '<-----------Response-----------',
         'Status code:' + str(response.status_code),
         '\n'.join('{}: {}'.format(k, v) for k, v in response.headers.items()),
@@ -90,7 +90,7 @@ def pretty_print_response(response):
 # argument is request object
 # display body in json format explicitly with expected indent. Actually most of the time it is not very necessary because body is formatted in pretty print way.    
 def pretty_print_request_json(request):
-    log_api.critical('{}\n{}\n\n{}\n\n{}\n'.format(
+    log_api.info('{}\n{}\n\n{}\n\n{}\n'.format(
         '-----------Request----------->',
         request.method + ' ' + request.url,
         '\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
@@ -100,7 +100,7 @@ def pretty_print_request_json(request):
 # argument is response object 
 # display body in json format explicitly with expected indent. Actually most of the time it is not very necessary because body is formatted in pretty print way.    
 def pretty_print_response_json(response):
-    log_api.critical('{}\n{}\n\n{}\n\n{}\n'.format(
+    log_api.info('{}\n{}\n\n{}\n\n{}\n'.format(
         '<-----------Response-----------',
         'Status code:' + str(response.status_code),
         '\n'.join('{}: {}'.format(k, v) for k, v in response.headers.items()),
