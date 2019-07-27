@@ -1,130 +1,23 @@
-2019-07-10 03:26:51: -----------Request----------->
-POST http://httpbin.org/post
-
-User-Agent: Python Requests
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-Content-Type: application/json
-Content-Length: 39
-
-{
-    "key1": 1,
-    "key2": "value2"
-}
-
-2019-07-10 03:26:51: <-----------Response-----------
-Status code:200
-
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
-Content-Type: application/json
-Date: Wed, 10 Jul 2019 05:25:41 GMT
-Referrer-Policy: no-referrer-when-downgrade
-Server: nginx
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Content-Length: 277
-Connection: keep-alive
-
-{
-    "args": {},
-    "data": "{\n    \"key1\": 1,\n    \"key2\": \"value2\"\n}",
-    "files": {},
-    "form": {},
-    "headers": {
-        "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate",
-        "Content-Length": "39",
-        "Content-Type": "application/json",
-        "Host": "httpbin.org",
-        "User-Agent": "Python Requests"
-    },
-    "json": {
-        "key1": 1,
-        "key2": "value2"
-    },
-    "origin": "103.115.210.48, 103.115.210.48",
-    "url": "https://httpbin.org/post"
-}
-
-2019-07-10 03:26:52: -----------Request----------->
-POST http://httpbin.org/post
-
-User-Agent: Python Requests
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-Content-Type: application/json
-Content-Length: 18
-
-key1=1&key2=value2
-
-2019-07-10 03:26:52: <-----------Response-----------
-Status code:200
-
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
-Content-Type: application/json
-Date: Wed, 10 Jul 2019 05:25:42 GMT
-Referrer-Policy: no-referrer-when-downgrade
-Server: nginx
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Content-Length: 257
-Connection: keep-alive
-
-{
-    "args": {},
-    "data": "key1=1&key2=value2",
-    "files": {},
-    "form": {},
-    "headers": {
-        "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate",
-        "Content-Length": "18",
-        "Content-Type": "application/json",
-        "Host": "httpbin.org",
-        "User-Agent": "Python Requests"
-    },
-    "json": null,
-    "origin": "103.115.210.48, 103.115.210.48",
-    "url": "https://httpbin.org/post"
-}
-
-2019-07-10 03:26:53: -----------Request----------->
-GET http://httpbin.org/basic-auth/user1/password1
+2019-07-27 04:41:57: -----------Request----------->
+GET http://127.0.0.1:5000/json
 
 User-Agent: python-requests/2.22.0
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
-Authorization: Basic dXNlcjE6cGFzc3dvcmQx
 
 None
 
-2019-07-10 03:26:53: <-----------Response-----------
+2019-07-27 04:41:57: <-----------Response-----------
 Status code:200
 
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
-Content-Type: application/json
-Date: Wed, 10 Jul 2019 05:25:43 GMT
-Referrer-Policy: no-referrer-when-downgrade
-Server: nginx
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Content-Length: 61
-Connection: keep-alive
+Content-Type: text/html; charset=utf-8
+Content-Length: 40
+Server: Werkzeug/0.15.1 Python/3.7.3
+Date: Sat, 27 Jul 2019 08:41:57 GMT
 
 {
-    "authenticated": true,
-    "user": "user1"
+    "code": 1,
+    "message": "Hello, World!"
 }
 
