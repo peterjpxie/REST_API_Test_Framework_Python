@@ -26,6 +26,10 @@ import ast
 import inspect
 import random
 import asyncio
+import sys
+
+if sys.version_info < (3,7):
+    raise Exception("Requires Python 3.7 or above.")
 
 # Change log level to error to improve client performance.
 LOG_LEVEL = logging.INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
@@ -113,6 +117,23 @@ class TestAPI:
     def __init__(self):
         log.debug('To load test data.')  
         self.lock = asyncio.Lock()
+        self.queue_tpr = asyncio.Queue()
+        # request per seconds
+        self.rps_min = 0
+        self.rps_mean = 0
+        self.rps_max = 0
+        self.total_requests = 0 
+        self.total_time = 0 
+        
+        # time per request
+        self.tpr_min = 0
+        self.tpr_mean = 0
+        self.tpr_max = 0
+        
+        # failures
+        self.total_failed_requests = 0      
+        
+        
     
     # post with headers, json body
     async def test_post_headers_body_json(self):
@@ -151,7 +172,7 @@ class TestAPI:
     
     # To run this test using Flask mocking service,
     # start mock service first: python flask_mock_service.py
-    # Then, run the tests.
+    # Then run the tests.
     async def test_mock_service(self):    
         log.info('Calling %s.' % inspect.stack()[0][3])               
         url = f'http://127.0.0.1:5000/json'        

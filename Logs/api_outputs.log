@@ -1,4 +1,4 @@
-2019-07-27 04:50:54: -----------Request----------->
+2019-07-27 05:28:46: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -13,20 +13,20 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2019-07-27 04:50:54: <-----------Response-----------
+2019-07-27 05:28:46: <-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Sat, 27 Jul 2019 08:49:31 GMT
+Date: Sat, 27 Jul 2019 09:27:24 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 X-XSS-Protection: 1; mode=block
-Content-Length: 275
+Content-Length: 277
 Connection: keep-alive
 
 {
@@ -46,11 +46,11 @@ Connection: keep-alive
         "key1": 1,
         "key2": "value2"
     },
-    "origin": "112.64.68.228, 112.64.68.228",
+    "origin": "223.104.212.102, 223.104.212.102",
     "url": "https://httpbin.org/post"
 }
 
-2019-07-27 04:50:55: -----------Request----------->
+2019-07-27 05:28:47: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -62,20 +62,20 @@ Content-Length: 18
 
 key1=1&key2=value2
 
-2019-07-27 04:50:55: <-----------Response-----------
+2019-07-27 05:28:47: <-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Sat, 27 Jul 2019 08:49:32 GMT
+Date: Sat, 27 Jul 2019 09:27:25 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 X-XSS-Protection: 1; mode=block
-Content-Length: 256
+Content-Length: 255
 Connection: keep-alive
 
 {
@@ -92,11 +92,11 @@ Connection: keep-alive
         "User-Agent": "Python Requests"
     },
     "json": null,
-    "origin": "112.64.68.228, 112.64.68.228",
+    "origin": "223.104.212.102, 223.104.212.102",
     "url": "https://httpbin.org/post"
 }
 
-2019-07-27 04:50:57: -----------Request----------->
+2019-07-27 05:28:48: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
 User-Agent: python-requests/2.22.0
@@ -107,14 +107,14 @@ Authorization: Basic dXNlcjE6cGFzc3dvcmQx
 
 None
 
-2019-07-27 04:50:57: <-----------Response-----------
+2019-07-27 05:28:48: <-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Sat, 27 Jul 2019 08:49:34 GMT
+Date: Sat, 27 Jul 2019 09:27:26 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
 X-Content-Type-Options: nosniff
@@ -126,28 +126,5 @@ Connection: keep-alive
 {
     "authenticated": true,
     "user": "user1"
-}
-
-2019-07-27 04:50:57: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-27 04:50:57: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Sat, 27 Jul 2019 08:50:57 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
 }
 

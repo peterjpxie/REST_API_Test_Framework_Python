@@ -1,0 +1,92 @@
+root@ip-172-26-1-210:~# ab -c 10 -t 10 https://www.google.com/
+This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.google.com (be patient)
+Finished 1316 requests
+
+
+Server Software:        gws
+Server Hostname:        www.google.com
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+
+Document Path:          /
+Document Length:        11399 bytes
+
+Concurrency Level:      10
+Time taken for tests:   10.000 seconds
+Complete requests:      1316
+Failed requests:        1300
+   (Connect: 0, Receive: 0, Length: 1300, Exceptions: 0)
+Total transferred:      16040567 bytes
+HTML transferred:       15060719 bytes
+Requests per second:    131.59 [#/sec] (mean)
+Time per request:       75.991 [ms] (mean)
+Time per request:       7.599 [ms] (mean, across all concurrent requests)
+Transfer rate:          1566.40 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       26   31   2.5     32      37
+Processing:    36   44   8.6     43     177
+Waiting:       35   42   8.6     41     175
+Total:         63   76   9.2     75     211
+
+Percentage of the requests served within a certain time (ms)
+  50%     75
+  66%     76
+  75%     78
+  80%     79
+  90%     81
+  95%     82
+  98%     85
+  99%     94
+ 100%    211 (longest request)
+root@ip-172-26-1-210:~# ab -c 1 -t 10 https://www.google.com/
+This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.google.com (be patient)
+Finished 125 requests
+
+
+Server Software:        gws
+Server Hostname:        www.google.com
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+
+Document Path:          /
+Document Length:        11442 bytes
+
+Concurrency Level:      1
+Time taken for tests:   10.027 seconds
+Complete requests:      125
+Failed requests:        124
+   (Connect: 0, Receive: 0, Length: 124, Exceptions: 0)
+Total transferred:      1521856 bytes
+HTML transferred:       1428856 bytes
+Requests per second:    12.47 [#/sec] (mean)
+Time per request:       80.220 [ms] (mean)
+Time per request:       80.220 [ms] (mean, across all concurrent requests)
+Transfer rate:          148.21 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       27   32   3.7     32      63
+Processing:    42   48   3.8     47      68
+Waiting:       40   46   3.7     45      65
+Total:         69   80   5.8     79     108
+
+Percentage of the requests served within a certain time (ms)
+  50%     79
+  66%     81
+  75%     83
+  80%     84
+  90%     86
+  95%     89
+  98%     93
+  99%    101
+ 100%    108 (longest request)

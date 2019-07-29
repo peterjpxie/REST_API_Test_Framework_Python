@@ -235,7 +235,7 @@ function filter_table(elem) {
 }
 </script>
     <h1>report.html</h1>
-    <p>Report generated on 27-Jul-2019 at 16:50:57 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v1.21.1</p>
+    <p>Report generated on 27-Jul-2019 at 17:28:48 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v1.21.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -251,8 +251,8 @@ function filter_table(elem) {
         <td>Python</td>
         <td>3.7.3</td></tr></table>
     <h2>Summary</h2>
-    <p>4 tests ran in 4.96 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">4 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>3 tests ran in 12.79 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">3 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -267,11 +267,11 @@ function filter_table(elem) {
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_rest_api.py::TestAPI::test_post_headers_body_json</td>
-          <td class="col-duration">1.04</td>
+          <td class="col-duration">10.28</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py            83 CRITICAL -----------Request-----------&gt;
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py            76 INFO     -----------Request-----------&gt;
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -286,20 +286,20 @@ Content-Length: 39
     &quot;key2&quot;: &quot;value2&quot;
 }
 
-test_rest_api.py           114 CRITICAL &lt;-----------Response-----------
+test_rest_api.py           107 INFO     &lt;-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Sat, 27 Jul 2019 08:49:31 GMT
+Date: Sat, 27 Jul 2019 09:27:24 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 X-XSS-Protection: 1; mode=block
-Content-Length: 275
+Content-Length: 277
 Connection: keep-alive
 
 {
@@ -319,20 +319,20 @@ Connection: keep-alive
         &quot;key1&quot;: 1,
         &quot;key2&quot;: &quot;value2&quot;
     },
-    &quot;origin&quot;: &quot;112.64.68.228, 112.64.68.228&quot;,
+    &quot;origin&quot;: &quot;223.104.212.102, 223.104.212.102&quot;,
     &quot;url&quot;: &quot;https://httpbin.org/post&quot;
 }
 
-test_rest_api.py           134 INFO     Test test_post_headers_body_json passed.</div></td></tr></tbody>
+test_rest_api.py           127 INFO     Test test_post_headers_body_json passed.</div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_rest_api.py::TestAPI::test_post_normal_body</td>
-          <td class="col-duration">1.02</td>
+          <td class="col-duration">0.83</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py            83 CRITICAL -----------Request-----------&gt;
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py            76 INFO     -----------Request-----------&gt;
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -344,20 +344,20 @@ Content-Length: 18
 
 key1=1&amp;key2=value2
 
-test_rest_api.py           114 CRITICAL &lt;-----------Response-----------
+test_rest_api.py           107 INFO     &lt;-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Sat, 27 Jul 2019 08:49:32 GMT
+Date: Sat, 27 Jul 2019 09:27:25 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 X-XSS-Protection: 1; mode=block
-Content-Length: 256
+Content-Length: 255
 Connection: keep-alive
 
 {
@@ -374,21 +374,21 @@ Connection: keep-alive
         &quot;User-Agent&quot;: &quot;Python Requests&quot;
     },
     &quot;json&quot;: null,
-    &quot;origin&quot;: &quot;112.64.68.228, 112.64.68.228&quot;,
+    &quot;origin&quot;: &quot;223.104.212.102, 223.104.212.102&quot;,
     &quot;url&quot;: &quot;https://httpbin.org/post&quot;
 }
 
-test_rest_api.py           147 INFO     Test test_post_normal_body passed.</div></td></tr></tbody>
+test_rest_api.py           140 INFO     Test test_post_normal_body passed.</div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_rest_api.py::TestAPI::test_get_auth_httpbin</td>
-          <td class="col-duration">1.97</td>
+          <td class="col-duration">0.81</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py           154 INFO     Calling test_get_auth_httpbin.
-test_rest_api.py            83 CRITICAL -----------Request-----------&gt;
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py           147 INFO     Calling test_get_auth_httpbin.
+test_rest_api.py            76 INFO     -----------Request-----------&gt;
 GET http://httpbin.org/basic-auth/user1/password1
 
 User-Agent: python-requests/2.22.0
@@ -399,14 +399,14 @@ Authorization: Basic dXNlcjE6cGFzc3dvcmQx
 
 None
 
-test_rest_api.py           114 CRITICAL &lt;-----------Response-----------
+test_rest_api.py           107 INFO     &lt;-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Sat, 27 Jul 2019 08:49:34 GMT
+Date: Sat, 27 Jul 2019 09:27:26 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
 X-Content-Type-Options: nosniff
@@ -420,37 +420,4 @@ Connection: keep-alive
     &quot;user&quot;: &quot;user1&quot;
 }
 
-test_rest_api.py           162 INFO     Test test_get_auth_httpbin passed.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_rest_api.py::TestAPI::test_mock_service</td>
-          <td class="col-duration">0.05</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py           176 INFO     Calling test_mock_service.
-test_rest_api.py            83 CRITICAL -----------Request-----------&gt;
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-test_rest_api.py           114 CRITICAL &lt;-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Sat, 27 Jul 2019 08:50:57 GMT
-
-{
-    &quot;code&quot;: 1,
-    &quot;message&quot;: &quot;Hello, World!&quot;
-}
-
-test_rest_api.py           181 INFO     Test test_mock_service passed.</div></td></tr></tbody></table></body></html>
+test_rest_api.py           155 INFO     Test test_get_auth_httpbin passed.</div></td></tr></tbody></table></body></html>

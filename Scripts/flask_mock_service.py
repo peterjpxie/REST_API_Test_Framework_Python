@@ -23,7 +23,7 @@ def hello_world():
 
 @app.route('/json')
 def test_json():
-    # sleep(2) # simulate network delay.
+    sleep(2) # simulate network delay.
     return '{"code": 1, "message": "Hello, World!" }'
 
 # Request headers
