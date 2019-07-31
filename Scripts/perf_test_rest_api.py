@@ -14,7 +14,7 @@ Features:
 Python version: 3.7 or above
     
 Install:
-pip install -U requests ipdb
+pip install -U requests
 
 Run:
 
@@ -27,12 +27,13 @@ from logging.handlers import RotatingFileHandler
 import requests
 import json
 import os
-import ipdb
+import pdb
 import ast
 import inspect
 import random
 # import asyncio
 import sys
+import threading
 
 if sys.version_info < (3,7):
     raise Exception("Requires Python 3.7 or above.")
@@ -124,8 +125,7 @@ class TestAPI:
     """ 
     def __init__(self):
         log.debug('To load test data.')  
-        self.lock = asyncio.Lock()
-        self.queue_tpr = asyncio.Queue()
+        self.queue_tpr = Queue()
         
         # request per seconds
         # self.rps_min = 0
@@ -263,15 +263,13 @@ class TestAPI:
         return resp.json()
 
 def main():
-    no_concurrent_tasks = 2
+    concurrent_users = 2
     perf_test = TestAPI()
-    tasks = []
+    workers = []
     for i in range(no_concurrent_tasks):
-        task = asyncio.create_task(perf_test.test_mock_service())
         tasks.append(task)    
-    await asyncio.gather(*tasks)
     print('Done.')
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()
