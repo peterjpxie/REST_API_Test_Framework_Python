@@ -11,10 +11,12 @@ Features:
     - html report
     
 Install:
-pip install -U pytest requests pytest-html ipdb
+pip install -U pytest requests pytest-html
 
 Run:
 pytest
+
+Python version: 3.7 or above
 
 """
 from time import sleep
@@ -24,10 +26,14 @@ from logging.handlers import RotatingFileHandler
 import requests
 import json
 import os
-import ipdb
+# import ipdb
 import ast
 import inspect
 import random
+import sys
+
+if sys.version_info < (3,7):
+    raise Exception("Requires Python 3.7 or above.")
 
 LOG_LEVEL = logging.INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
 
@@ -229,7 +235,7 @@ class TestAPI:
             else:
                 resp = requests.get(url, auth = auth, verify = verify)
         except Exception as ex:
-            log.err('requests.get() failed with exception:', str(ex))
+            log.error('requests.get() failed with exception:', str(ex))
             return None
         
         # pretty request and response into API log file

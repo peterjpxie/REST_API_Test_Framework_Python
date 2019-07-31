@@ -235,7 +235,7 @@ function filter_table(elem) {
 }
 </script>
     <h1>report.html</h1>
-    <p>Report generated on 27-Jul-2019 at 17:28:48 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v1.21.1</p>
+    <p>Report generated on 31-Jul-2019 at 13:48:30 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v1.21.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -251,8 +251,8 @@ function filter_table(elem) {
         <td>Python</td>
         <td>3.7.3</td></tr></table>
     <h2>Summary</h2>
-    <p>3 tests ran in 12.79 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">3 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>0 tests ran in 0.59 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">0 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">1 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -263,161 +263,12 @@ function filter_table(elem) {
           <th>Links</th></tr>
         <tr hidden="true" id="not-found-message">
           <th colspan="4">No results found. Try to check the filters</th></tr></thead>
-      <tbody class="passed results-table-row">
+      <tbody class="error results-table-row">
         <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_rest_api.py::TestAPI::test_post_headers_body_json</td>
-          <td class="col-duration">10.28</td>
+          <td class="col-result">Error</td>
+          <td class="col-name">test_rest_api.py::collect</td>
+          <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py            76 INFO     -----------Request-----------&gt;
-POST http://httpbin.org/post
-
-User-Agent: Python Requests
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-Content-Type: application/json
-Content-Length: 39
-
-{
-    &quot;key1&quot;: 1,
-    &quot;key2&quot;: &quot;value2&quot;
-}
-
-test_rest_api.py           107 INFO     &lt;-----------Response-----------
-Status code:200
-
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
-Content-Type: application/json
-Date: Sat, 27 Jul 2019 09:27:24 GMT
-Referrer-Policy: no-referrer-when-downgrade
-Server: nginx
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Content-Length: 277
-Connection: keep-alive
-
-{
-    &quot;args&quot;: {},
-    &quot;data&quot;: &quot;{\n    \&quot;key1\&quot;: 1,\n    \&quot;key2\&quot;: \&quot;value2\&quot;\n}&quot;,
-    &quot;files&quot;: {},
-    &quot;form&quot;: {},
-    &quot;headers&quot;: {
-        &quot;Accept&quot;: &quot;*/*&quot;,
-        &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;,
-        &quot;Content-Length&quot;: &quot;39&quot;,
-        &quot;Content-Type&quot;: &quot;application/json&quot;,
-        &quot;Host&quot;: &quot;httpbin.org&quot;,
-        &quot;User-Agent&quot;: &quot;Python Requests&quot;
-    },
-    &quot;json&quot;: {
-        &quot;key1&quot;: 1,
-        &quot;key2&quot;: &quot;value2&quot;
-    },
-    &quot;origin&quot;: &quot;223.104.212.102, 223.104.212.102&quot;,
-    &quot;url&quot;: &quot;https://httpbin.org/post&quot;
-}
-
-test_rest_api.py           127 INFO     Test test_post_headers_body_json passed.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_rest_api.py::TestAPI::test_post_normal_body</td>
-          <td class="col-duration">0.83</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py            76 INFO     -----------Request-----------&gt;
-POST http://httpbin.org/post
-
-User-Agent: Python Requests
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-Content-Type: application/json
-Content-Length: 18
-
-key1=1&amp;key2=value2
-
-test_rest_api.py           107 INFO     &lt;-----------Response-----------
-Status code:200
-
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
-Content-Type: application/json
-Date: Sat, 27 Jul 2019 09:27:25 GMT
-Referrer-Policy: no-referrer-when-downgrade
-Server: nginx
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Content-Length: 255
-Connection: keep-alive
-
-{
-    &quot;args&quot;: {},
-    &quot;data&quot;: &quot;key1=1&amp;key2=value2&quot;,
-    &quot;files&quot;: {},
-    &quot;form&quot;: {},
-    &quot;headers&quot;: {
-        &quot;Accept&quot;: &quot;*/*&quot;,
-        &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;,
-        &quot;Content-Length&quot;: &quot;18&quot;,
-        &quot;Content-Type&quot;: &quot;application/json&quot;,
-        &quot;Host&quot;: &quot;httpbin.org&quot;,
-        &quot;User-Agent&quot;: &quot;Python Requests&quot;
-    },
-    &quot;json&quot;: null,
-    &quot;origin&quot;: &quot;223.104.212.102, 223.104.212.102&quot;,
-    &quot;url&quot;: &quot;https://httpbin.org/post&quot;
-}
-
-test_rest_api.py           140 INFO     Test test_post_normal_body passed.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">test_rest_api.py::TestAPI::test_get_auth_httpbin</td>
-          <td class="col-duration">0.81</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log">------------------------------ Captured log call -------------------------------<br/>test_rest_api.py           147 INFO     Calling test_get_auth_httpbin.
-test_rest_api.py            76 INFO     -----------Request-----------&gt;
-GET http://httpbin.org/basic-auth/user1/password1
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-Authorization: Basic dXNlcjE6cGFzc3dvcmQx
-
-None
-
-test_rest_api.py           107 INFO     &lt;-----------Response-----------
-Status code:200
-
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
-Content-Type: application/json
-Date: Sat, 27 Jul 2019 09:27:26 GMT
-Referrer-Policy: no-referrer-when-downgrade
-Server: nginx
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Content-Length: 61
-Connection: keep-alive
-
-{
-    &quot;authenticated&quot;: true,
-    &quot;user&quot;: &quot;user1&quot;
-}
-
-test_rest_api.py           155 INFO     Test test_get_auth_httpbin passed.</div></td></tr></tbody></table></body></html>
+            <div class="log">test_rest_api.py:36: in &lt;module&gt;<br/>    raise Exception(&quot;Requires Python 3.7 or above.&quot;)<br/><span class="error">E   Exception: Requires Python 3.7 or above.</span><br/></div></td></tr></tbody></table></body></html>

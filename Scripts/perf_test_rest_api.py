@@ -6,7 +6,7 @@ Note:
 requests module is synchronous and does not support asyncio to await for responses. 
 Another option is to use aiohttp module, which uses asyncio for asynchrony. This option requires re-writing 
 the API test functions, though they are quite like requests functions, and measuring the response time 
-is not straight forward as requests.       
+is not straight forward as requests and the response time may not be accurate for the nature of asyncio.
 
 Features:
 
@@ -21,6 +21,7 @@ Run:
 
 """
 from time import sleep
+import time
 from datetime import datetime
 import logging
 from logging.handlers import RotatingFileHandler
@@ -34,6 +35,9 @@ import random
 # import asyncio
 import sys
 import threading
+from threading import Thread
+import queue
+
 
 if sys.version_info < (3,7):
     raise Exception("Requires Python 3.7 or above.")
@@ -125,14 +129,15 @@ class TestAPI:
     """ 
     def __init__(self):
         log.debug('To load test data.')  
-        self.queue_tpr = Queue()
+        self.queue_results = queue.Queue()
+        self.lock_stats = threading.Lock()
         
         # request per seconds
         # self.rps_min = 0
         self.rps_mean = 0
         # self.rps_max = 0
-        self.total_requests = 0 
-        self.total_time = 0 
+        self.total_tested_requests = 0 
+        self.total_tested_time = 0 
         
         # time per request
         self.tpr_min = 0
@@ -141,9 +146,7 @@ class TestAPI:
         
         # failures
         self.total_failed_requests = 0      
-        
-        
-    
+            
     # post with headers, json body
     def test_post_headers_body_json(self):
         payload = {'key1': 1, 'key2': 'value2'}
@@ -170,7 +173,7 @@ class TestAPI:
         url = f'http://httpbin.org/basic-auth/{username}/{password}'        
         resp =  self.get(url, auth = (username,password))
         assert resp != None
-        assert resp["authenticated"] == True
+        assert resp.json()["authenticated"] == True
         log.info('Test %s passed.' % inspect.stack()[0][3])        
         """ json response
         {
@@ -186,16 +189,43 @@ class TestAPI:
         log.info('Calling %s.' % inspect.stack()[0][3])               
         url = f'http://127.0.0.1:5000/json'        
         resp = self.get(url)
-        assert resp != None
-        assert resp["code"] == 1
-        log.info('Test %s passed.' % inspect.stack()[0][3])        
+        if resp == None:
+            log.error('Test %s failed with exception.' % inspect.stack()[0][3])
+            return None, None
+        # assert resp != None
+        # assert resp.json()["code"] == 1
+        else:
+            log.info('Test %s passed.' % inspect.stack()[0][3])
+            return resp.status_code, resp.elapsed.total_seconds()
+            
         """ json response
         {
         "code": 1,
         "message": "Hello, World!"
         }
         """
-        
+    
+    def loop_test(self, loop_wait=0, loop_times=sys.maxsize):
+        """
+        loop test of some APIs for performance test purpose.  
+
+        Parameters:
+        loop_wait  wait time between two loops.
+        """
+        looped_times = 0
+        while looped_times < loop_times:
+            # APIs to test
+            resp_code, elapsed_time = self.test_mock_service()
+            log.info('test_mock_service returns: %s, %s' %(resp_code, elapsed_time) )            
+            
+            # statistics
+            self.queue_results.put(['test_mock_service', resp_code, elapsed_time])
+            with self.lock_stats:
+                self.total_tested_requests += 1
+            
+            looped_times += 1
+            sleep(loop_wait)
+                               
     def post(self,url,data,headers={},verify=False,amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
@@ -217,7 +247,11 @@ class TestAPI:
                 headers_new['User-Agent']='Python Requests'
                 
         # send post request
-        resp = requests.post(url, data = data, headers = headers_new, verify = verify)
+        try:
+            resp = requests.post(url, data = data, headers = headers_new, verify = verify)
+        except Exception as ex:
+            log.error('requests.get() failed with exception:', str(ex))
+            return None
         
         # pretty request and response into API log file
         # Note: request print is common instead of checking if it is JSON body. So pass pretty formatted json string as argument to the request for pretty logging. 
@@ -226,11 +260,12 @@ class TestAPI:
         log_api.info('response time in seconds: ' + str(resp.elapsed.total_seconds()) + '\n')
         
         # This return caller function's name, not this function post.
-        caller_func_name = inspect.stack()[1][3]        
-        if resp.status_code != 200:
-            log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
-            return None
-        return resp.json()
+        # caller_func_name = inspect.stack()[1][3]        
+        # if resp.status_code != 200:
+        #     log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
+        #     return None
+        # return resp.json()
+        return resp
 
     def get(self,url,auth = None,verify=False):
         """
@@ -247,7 +282,7 @@ class TestAPI:
             else:
                 resp = requests.get(url, auth = auth, verify = verify)
         except Exception as ex:
-            log.err('requests.get() failed with exception:', str(ex))
+            log.error('requests.get() failed with exception:', str(ex))
             return None
         
         # pretty request and response into API log file
@@ -256,18 +291,36 @@ class TestAPI:
         log_api.info('response time in seconds: ' + str(resp.elapsed.total_seconds()) + '\n' )
         
         # This return caller function's name, not this function post.
-        caller_func_name = inspect.stack()[1][3]        
-        if resp.status_code != 200:
-            log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
-            return None
-        return resp.json()
+        # caller_func_name = inspect.stack()[1][3]        
+        # if resp.status_code != 200:
+        #     log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
+        #     return None
+        # return resp.json()
+        return resp
 
 def main():
     concurrent_users = 2
     perf_test = TestAPI()
     workers = []
-    for i in range(no_concurrent_tasks):
-        tasks.append(task)    
+    start_time = time.time()
+    print('Tests started at %s.' % start_time)
+    for i in range(concurrent_users):
+        thread = Thread(target=perf_test.loop_test, kwargs={'loop_times':10}, daemon=True)         
+        thread.start()
+        workers.append(thread)
+    
+    # Block until all threads finish.
+    for w in workers:
+        w.join()
+        
+    end_time = time.time()
+    
+    # statistics:
+    perf_test.total_tested_time = end_time - start_time
+    
+    print('Tests ended at   %s.\nTotal test time: %s seconds.' % (end_time, end_time - start_time) )
+    print('Total requests: %s.' % perf_test.total_tested_requests ) 
+    
     print('Done.')
 
 
