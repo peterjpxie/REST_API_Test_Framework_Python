@@ -1,4 +1,4 @@
-2019-07-27 05:28:46 [INFO   ][ln-127]: Test test_post_headers_body_json passed.
-2019-07-27 05:28:47 [INFO   ][ln-140]: Test test_post_normal_body passed.
-2019-07-27 05:28:47 [INFO   ][ln-147]: Calling test_get_auth_httpbin.
-2019-07-27 05:28:48 [INFO   ][ln-155]: Test test_get_auth_httpbin passed.
+2019-07-30 16:40:45,681 [INFO   ][ln-180]: Calling test_mock_service.
+2019-07-30 16:40:46,227 [INFO   ][ln-185]: Test test_mock_service passed.
+2019-07-30 16:40:46,227 [INFO   ][ln-180]: Calling test_mock_service.
+2019-07-30 16:40:46,773 [INFO   ][ln-185]: Test test_mock_service passed.

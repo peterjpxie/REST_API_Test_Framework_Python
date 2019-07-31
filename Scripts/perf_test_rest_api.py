@@ -1,9 +1,15 @@
 """
 Description:
-Scale up REST API functional tests to performance tests using asyncio.
+Scale up REST API functional tests to performance tests using threading.
+
+Note: 
+requests module is synchronous and does not support asyncio to await for responses. 
+Another option is to use aiohttp module, which uses asyncio for asynchrony. This option requires re-writing 
+the API test functions, though they are quite like requests functions, and measuring the response time 
+is not straight forward as requests.       
 
 Features:
-- use async / await for request response.
+
 
 Python version: 3.7 or above
     
@@ -25,7 +31,7 @@ import ipdb
 import ast
 import inspect
 import random
-import asyncio
+# import asyncio
 import sys
 
 if sys.version_info < (3,7):
@@ -43,7 +49,8 @@ LOG_LEVEL = logging.INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
 root_path = os.path.dirname( os.path.dirname(os.path.realpath(__file__)) )
 
 # %(levelname)7s to align 7 bytes to right, %(levelname)-7s to left.
-common_formatter = logging.Formatter('%(asctime)s [%(levelname)-7s][ln-%(lineno)-3d]: %(message)s', datefmt='%Y-%m-%d %I:%M:%S')
+# common_formatter = logging.Formatter('%(asctime)s [%(levelname)-7s][ln-%(lineno)-3d]: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+common_formatter = logging.Formatter('%(asctime)s [%(levelname)-7s][ln-%(lineno)-3d]: %(message)s')
 
 # Note: To create multiple log files, must use different logger name.
 def setup_logger(log_file, level=logging.INFO, name='', formatter=common_formatter):
@@ -62,7 +69,8 @@ debug_log_filename = root_path + os.sep + 'Logs' + os.sep + 'debug.log'
 log = setup_logger(debug_log_filename, LOG_LEVEL,'log')
 
 # logger for API outputs
-api_formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %I:%M:%S')
+# api_formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %I:%M:%S')
+api_formatter = logging.Formatter('%(asctime)s: %(message)s')
 api_outputs_filename = root_path + os.sep + 'Logs' + os.sep + 'api_outputs.log'
 log_api = setup_logger(api_outputs_filename, LOG_LEVEL,'log_api',formatter = api_formatter)
 
@@ -118,10 +126,11 @@ class TestAPI:
         log.debug('To load test data.')  
         self.lock = asyncio.Lock()
         self.queue_tpr = asyncio.Queue()
+        
         # request per seconds
-        self.rps_min = 0
+        # self.rps_min = 0
         self.rps_mean = 0
-        self.rps_max = 0
+        # self.rps_max = 0
         self.total_requests = 0 
         self.total_time = 0 
         
@@ -136,14 +145,14 @@ class TestAPI:
         
     
     # post with headers, json body
-    async def test_post_headers_body_json(self):
+    def test_post_headers_body_json(self):
         payload = {'key1': 1, 'key2': 'value2'}
         # No need to specify common headers as it is taken cared of by common self.post() function.
         # headers = {'Content-Type': 'application/json' } 
         
         # convert dict to json by json.dumps() for body data. It is risky to use str(payload) to convert because json format must use double quotes ("")
         url = 'http://httpbin.org/post'
-        await resp = self.post(url, data = json.dumps(payload,indent=4))      
+        resp = self.post(url, data = json.dumps(payload,indent=4))      
         assert resp != None
         log.info('Test %s passed.' % inspect.stack()[0][3])
         """ Request HTTP body:
@@ -153,13 +162,13 @@ class TestAPI:
         """   
         
     # get with authentication
-    async def test_get_auth_httpbin(self):        
+    def test_get_auth_httpbin(self):        
         log.info('Calling %s.' % inspect.stack()[0][3])       
         username = 'user1'
         password = 'password1'
         
         url = f'http://httpbin.org/basic-auth/{username}/{password}'        
-        await resp = self.get(url, auth = (username,password))
+        resp =  self.get(url, auth = (username,password))
         assert resp != None
         assert resp["authenticated"] == True
         log.info('Test %s passed.' % inspect.stack()[0][3])        
@@ -173,10 +182,10 @@ class TestAPI:
     # To run this test using Flask mocking service,
     # start mock service first: python flask_mock_service.py
     # Then run the tests.
-    async def test_mock_service(self):    
+    def test_mock_service(self):    
         log.info('Calling %s.' % inspect.stack()[0][3])               
         url = f'http://127.0.0.1:5000/json'        
-        await resp = self.get(url)
+        resp = self.get(url)
         assert resp != None
         assert resp["code"] == 1
         log.info('Test %s passed.' % inspect.stack()[0][3])        
@@ -187,7 +196,7 @@ class TestAPI:
         }
         """
         
-    async def post(self,url,data,headers={},verify=False,amend_headers=True):
+    def post(self,url,data,headers={},verify=False,amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
             - append common headers
@@ -214,6 +223,7 @@ class TestAPI:
         # Note: request print is common instead of checking if it is JSON body. So pass pretty formatted json string as argument to the request for pretty logging. 
         pretty_print_request(resp.request)    
         pretty_print_response_json(resp)
+        log_api.info('response time in seconds: ' + str(resp.elapsed.total_seconds()) + '\n')
         
         # This return caller function's name, not this function post.
         caller_func_name = inspect.stack()[1][3]        
@@ -222,7 +232,7 @@ class TestAPI:
             return None
         return resp.json()
 
-    async def get(self,url,auth = None,verify=False):
+    def get(self,url,auth = None,verify=False):
         """
         common request get function with below features, which you only need to take care of url:
             - print request and response in API log file
@@ -243,6 +253,7 @@ class TestAPI:
         # pretty request and response into API log file
         pretty_print_request(resp.request)    
         pretty_print_response_json(resp)
+        log_api.info('response time in seconds: ' + str(resp.elapsed.total_seconds()) + '\n' )
         
         # This return caller function's name, not this function post.
         caller_func_name = inspect.stack()[1][3]        
@@ -251,8 +262,16 @@ class TestAPI:
             return None
         return resp.json()
 
-async main():
-    pass
+def main():
+    no_concurrent_tasks = 2
+    perf_test = TestAPI()
+    tasks = []
+    for i in range(no_concurrent_tasks):
+        task = asyncio.create_task(perf_test.test_mock_service())
+        tasks.append(task)    
+    await asyncio.gather(*tasks)
+    print('Done.')
+
 
 if __name__ == '__main__':
     asyncio.run(main())
