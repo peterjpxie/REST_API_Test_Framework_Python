@@ -15,6 +15,7 @@ import ipdb
 from flask import Flask, request, send_file, render_template
 import json
 from time import sleep
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -23,7 +24,7 @@ def hello_world():
 
 @app.route('/json')
 def test_json():
-    sleep(0.5) # simulate network delay.
+    sleep(0.2) # simulate network delay.
     return '{"code": 1, "message": "Hello, World!" }'
 
 # Request headers
@@ -115,7 +116,8 @@ def test_download_file(file='pytest.ini'):
     
 # Run in HTTP  
 # When debug = True, code is reloaded on the fly while saved
-app.run(host='127.0.0.1', port='5000', debug=True)    
+# app.run(host='127.0.0.1', port='5000', debug=True)    
+app.run(host='0.0.0.0', port='5000', debug=True)    
 
 # Run in HTTPS
 # https://werkzeug.palletsprojects.com/en/0.15.x/serving/#quickstart

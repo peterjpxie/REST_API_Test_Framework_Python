@@ -43,7 +43,7 @@ if sys.version_info < (3,7):
     raise Exception("Requires Python 3.7 or above.")
 
 # Change log level to error to improve client performance.
-LOG_LEVEL = logging.INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
+LOG_LEVEL = logging.DEBUG # DEBUG, INFO, WARNING, ERROR, CRITICAL
 
 # Assume project structure as below:
 # Scripts - python scripts
@@ -187,16 +187,22 @@ class TestAPI:
     # Then run the tests.
     def test_mock_service(self):    
         log.info('Calling %s.' % inspect.stack()[0][3])               
-        url = f'http://127.0.0.1:5000/json'        
+        url = r'http://127.0.0.1:5000/json'        
         resp = self.get(url)
-        if resp == None:
-            log.error('Test %s failed with exception.' % inspect.stack()[0][3])
-            return None, None
         # assert resp != None
         # assert resp.json()["code"] == 1
+        if resp == None:
+            log.error('Test %s failed with exception.' % inspect.stack()[0][3])
+            return 'exception', None
+        elif resp.status_code != 200:
+            log.error('Test %s failed with response status code %s.' % (inspect.stack()[0][3],resp.status_code) )
+            return 'fail', resp.elapsed.total_seconds()
+        elif resp.json()["code"] != 1:
+            log.error('Test %s failed with code %s != 1.' % (inspect.stack()[0][3],resp.json["code"]) )
+            return 'fail', resp.elapsed.total_seconds()
         else:
             log.info('Test %s passed.' % inspect.stack()[0][3])
-            return resp.status_code, resp.elapsed.total_seconds()
+            return 'pass', resp.elapsed.total_seconds()
             
         """ json response
         {
@@ -215,17 +221,23 @@ class TestAPI:
         looped_times = 0
         while looped_times < loop_times:
             # APIs to test
-            resp_code, elapsed_time = self.test_mock_service()
-            log.info('test_mock_service returns: %s, %s' %(resp_code, elapsed_time) )            
+            test_result, elapsed_time = self.test_mock_service()
+            log.info('test_mock_service returns: %s, %s' %(test_result, elapsed_time) )            
             
             # statistics
-            self.queue_results.put(['test_mock_service', resp_code, elapsed_time])
-            with self.lock_stats:
-                self.total_tested_requests += 1
+            self.queue_results.put(['test_mock_service', test_result, elapsed_time])
+            # with self.lock_stats:
+            #     self.total_tested_requests += 1
             
             looped_times += 1
             sleep(loop_wait)
                                
+    def stats(self):
+        """ calculate statistics """
+        # get the approximate queue size
+        qszie = self.queue_results.qsize()
+        # while      
+
     def post(self,url,data,headers={},verify=False,amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
@@ -250,14 +262,14 @@ class TestAPI:
         try:
             resp = requests.post(url, data = data, headers = headers_new, verify = verify)
         except Exception as ex:
-            log.error('requests.get() failed with exception:', str(ex))
+            log.error('requests.post() failed with exception:', str(ex))
             return None
         
         # pretty request and response into API log file
         # Note: request print is common instead of checking if it is JSON body. So pass pretty formatted json string as argument to the request for pretty logging. 
         pretty_print_request(resp.request)    
         pretty_print_response_json(resp)
-        log_api.info('response time in seconds: ' + str(resp.elapsed.total_seconds()) + '\n')
+        log_api.debug('response time in seconds: ' + str(resp.elapsed.total_seconds()) + '\n')
         
         # This return caller function's name, not this function post.
         # caller_func_name = inspect.stack()[1][3]        
@@ -288,7 +300,7 @@ class TestAPI:
         # pretty request and response into API log file
         pretty_print_request(resp.request)    
         pretty_print_response_json(resp)
-        log_api.info('response time in seconds: ' + str(resp.elapsed.total_seconds()) + '\n' )
+        log_api.debug('response time in seconds: ' + str(resp.elapsed.total_seconds()) + '\n' )
         
         # This return caller function's name, not this function post.
         # caller_func_name = inspect.stack()[1][3]        
@@ -305,7 +317,7 @@ def main():
     start_time = time.time()
     print('Tests started at %s.' % start_time)
     for i in range(concurrent_users):
-        thread = Thread(target=perf_test.loop_test, kwargs={'loop_times':10}, daemon=True)         
+        thread = Thread(target=perf_test.loop_test, kwargs={'loop_times':3}, daemon=True)         
         thread.start()
         workers.append(thread)
     

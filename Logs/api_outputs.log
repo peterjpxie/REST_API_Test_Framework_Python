@@ -1,500 +1,150 @@
-2019-07-31 16:27:27,031: -----------Request----------->
+2019-08-01 13:06:05,306: -----------Request----------->
 GET http://127.0.0.1:5000/json
 
-User-Agent: python-requests/2.22.0
+User-Agent: python-requests/2.9.1
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
 
 None
 
-2019-07-31 16:27:27,031: <-----------Response-----------
+2019-08-01 13:06:05,306: <-----------Response-----------
 Status code:200
 
 Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:27 GMT
+Content-Length: 39
+Server: Werkzeug/0.15.4 Python/3.5.2
+Date: Thu, 01 Aug 2019 03:06:05 GMT
 
 {
     "code": 1,
-    "message": "Hello, World!"
+    "message": "Hello world!"
 }
 
-2019-07-31 16:27:27,031: response time in seconds: 0.520691
+2019-08-01 13:06:05,306: response time in seconds: 0.209547
 
-2019-07-31 16:27:27,031: -----------Request----------->
+2019-08-01 13:06:05,309: -----------Request----------->
 GET http://127.0.0.1:5000/json
 
-User-Agent: python-requests/2.22.0
+User-Agent: python-requests/2.9.1
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
 
 None
 
-2019-07-31 16:27:27,031: <-----------Response-----------
+2019-08-01 13:06:05,309: <-----------Response-----------
 Status code:200
 
 Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:27 GMT
+Content-Length: 39
+Server: Werkzeug/0.15.4 Python/3.5.2
+Date: Thu, 01 Aug 2019 03:06:05 GMT
 
 {
     "code": 1,
-    "message": "Hello, World!"
+    "message": "Hello world!"
 }
 
-2019-07-31 16:27:27,031: response time in seconds: 0.525112
+2019-08-01 13:06:05,309: response time in seconds: 0.208354
 
-2019-07-31 16:27:27,562: -----------Request----------->
+2019-08-01 13:06:05,515: -----------Request----------->
 GET http://127.0.0.1:5000/json
 
-User-Agent: python-requests/2.22.0
+User-Agent: python-requests/2.9.1
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
 
 None
 
-2019-07-31 16:27:27,562: <-----------Response-----------
+2019-08-01 13:06:05,516: <-----------Response-----------
 Status code:200
 
 Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:27 GMT
+Content-Length: 39
+Server: Werkzeug/0.15.4 Python/3.5.2
+Date: Thu, 01 Aug 2019 03:06:05 GMT
 
 {
     "code": 1,
-    "message": "Hello, World!"
+    "message": "Hello world!"
 }
 
-2019-07-31 16:27:27,562: response time in seconds: 0.527829
+2019-08-01 13:06:05,516: response time in seconds: 0.2076
 
-2019-07-31 16:27:27,562: -----------Request----------->
+2019-08-01 13:06:05,519: -----------Request----------->
 GET http://127.0.0.1:5000/json
 
-User-Agent: python-requests/2.22.0
+User-Agent: python-requests/2.9.1
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
 
 None
 
-2019-07-31 16:27:27,562: <-----------Response-----------
+2019-08-01 13:06:05,519: <-----------Response-----------
 Status code:200
 
 Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:27 GMT
+Content-Length: 39
+Server: Werkzeug/0.15.4 Python/3.5.2
+Date: Thu, 01 Aug 2019 03:06:05 GMT
 
 {
     "code": 1,
-    "message": "Hello, World!"
+    "message": "Hello world!"
 }
 
-2019-07-31 16:27:27,562: response time in seconds: 0.525902
+2019-08-01 13:06:05,519: response time in seconds: 0.208012
 
-2019-07-31 16:27:28,108: -----------Request----------->
+2019-08-01 13:06:05,725: -----------Request----------->
 GET http://127.0.0.1:5000/json
 
-User-Agent: python-requests/2.22.0
+User-Agent: python-requests/2.9.1
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
 
 None
 
-2019-07-31 16:27:28,108: <-----------Response-----------
+2019-08-01 13:06:05,725: <-----------Response-----------
 Status code:200
 
 Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:28 GMT
+Content-Length: 39
+Server: Werkzeug/0.15.4 Python/3.5.2
+Date: Thu, 01 Aug 2019 03:06:05 GMT
 
 {
     "code": 1,
-    "message": "Hello, World!"
+    "message": "Hello world!"
 }
 
-2019-07-31 16:27:28,108: response time in seconds: 0.523816
+2019-08-01 13:06:05,725: response time in seconds: 0.206689
 
-2019-07-31 16:27:28,123: -----------Request----------->
+2019-08-01 13:06:05,727: -----------Request----------->
 GET http://127.0.0.1:5000/json
 
-User-Agent: python-requests/2.22.0
+User-Agent: python-requests/2.9.1
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
 
 None
 
-2019-07-31 16:27:28,123: <-----------Response-----------
+2019-08-01 13:06:05,727: <-----------Response-----------
 Status code:200
 
 Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:28 GMT
+Content-Length: 39
+Server: Werkzeug/0.15.4 Python/3.5.2
+Date: Thu, 01 Aug 2019 03:06:05 GMT
 
 {
     "code": 1,
-    "message": "Hello, World!"
+    "message": "Hello world!"
 }
 
-2019-07-31 16:27:28,123: response time in seconds: 0.528404
-
-2019-07-31 16:27:28,654: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:28,654: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:28,654: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:28 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:28,654: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:28 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:28,654: response time in seconds: 0.518894
-
-2019-07-31 16:27:28,654: response time in seconds: 0.515915
-
-2019-07-31 16:27:29,200: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:29,200: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:29 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:29,200: response time in seconds: 0.516792
-
-2019-07-31 16:27:29,200: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:29,200: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:29 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:29,200: response time in seconds: 0.527891
-
-2019-07-31 16:27:29,746: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:29,746: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:29 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:29,746: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:29,746: response time in seconds: 0.517913
-
-2019-07-31 16:27:29,746: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:29 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:29,746: response time in seconds: 0.525098
-
-2019-07-31 16:27:30,292: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:30,292: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:30 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:30,292: response time in seconds: 0.515129
-
-2019-07-31 16:27:30,292: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:30,292: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:30 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:30,292: response time in seconds: 0.525342
-
-2019-07-31 16:27:30,838: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:30,838: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:30,838: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:30 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:30,838: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:30 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:30,838: response time in seconds: 0.519507
-
-2019-07-31 16:27:30,838: response time in seconds: 0.51438
-
-2019-07-31 16:27:31,352: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:31,352: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:31 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:31,352: response time in seconds: 0.511108
-
-2019-07-31 16:27:31,352: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:31,352: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:31 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:31,352: response time in seconds: 0.513879
-
-2019-07-31 16:27:31,898: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:31,898: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:31 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:31,898: response time in seconds: 0.517814
-
-2019-07-31 16:27:31,898: -----------Request----------->
-GET http://127.0.0.1:5000/json
-
-User-Agent: python-requests/2.22.0
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: keep-alive
-
-None
-
-2019-07-31 16:27:31,898: <-----------Response-----------
-Status code:200
-
-Content-Type: text/html; charset=utf-8
-Content-Length: 40
-Server: Werkzeug/0.15.1 Python/3.7.3
-Date: Wed, 31 Jul 2019 08:27:31 GMT
-
-{
-    "code": 1,
-    "message": "Hello, World!"
-}
-
-2019-07-31 16:27:31,898: response time in seconds: 0.520522
+2019-08-01 13:06:05,727: response time in seconds: 0.205807
 
