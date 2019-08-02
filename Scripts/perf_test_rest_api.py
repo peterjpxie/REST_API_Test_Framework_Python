@@ -130,22 +130,28 @@ class TestAPI:
     def __init__(self):
         log.debug('To load test data.')  
         self.queue_results = queue.Queue()
-        self.lock_stats = threading.Lock()
-        
+        # self.lock_stats = threading.Lock()
+        # test start and end time
+        self.start_time = 0
+        self.end_time = 0
+
         # request per seconds
         # self.rps_min = 0
         self.rps_mean = 0
         # self.rps_max = 0
         self.total_tested_requests = 0 
         self.total_tested_time = 0 
-        
+        self.total_pass_requests = 0
+
         # time per request
-        self.tpr_min = 0
+        self.tpr_min = 999
         self.tpr_mean = 0
         self.tpr_max = 0
+        self.sum_response_time = 0
         
         # failures
-        self.total_failed_requests = 0      
+        self.total_fail_requests = 0      
+        self.total_exception_requests = 0      
             
     # post with headers, json body
     def test_post_headers_body_json(self):
@@ -192,13 +198,13 @@ class TestAPI:
         # assert resp != None
         # assert resp.json()["code"] == 1
         if resp == None:
-            log.error('Test %s failed with exception.' % inspect.stack()[0][3])
+            log.error('Test %s failed with exception.' % inspect.stack()[0][3] )
             return 'exception', None
         elif resp.status_code != 200:
-            log.error('Test %s failed with response status code %s.' % (inspect.stack()[0][3],resp.status_code) )
+            log.error('Test %s failed with response status code %s.' % (inpsect.stack()[0][3],resp.status_code) )
             return 'fail', resp.elapsed.total_seconds()
         elif resp.json()["code"] != 1:
-            log.error('Test %s failed with code %s != 1.' % (inspect.stack()[0][3],resp.json["code"]) )
+            log.error('Test %s failed with code %s != 1.' % (inspect.stack()[0][3], resp.json()["code"]) )
             return 'fail', resp.elapsed.total_seconds()
         else:
             log.info('Test %s passed.' % inspect.stack()[0][3])
@@ -234,9 +240,63 @@ class TestAPI:
                                
     def stats(self):
         """ calculate statistics """
+        end_time = time.time()
         # get the approximate queue size
-        qszie = self.queue_results.qsize()
-        # while      
+        qsize = self.queue_results.qsize()
+        loop = 0
+        for i in range(qsize):
+            try:
+                result=self.queue_results.get_nowait()
+                loop +=1
+            except Empty:
+                break
+            # calc stats
+            if result[1] == 'exception':
+                self.total_exception_requests += 1
+            elif result[1] == 'fail':
+                self.total_fail_requests += 1
+            elif result[1] == 'pass':
+                self.total_pass_requests += 1
+                self.sum_response_time += result[2]
+                if result[2] < self.tpr_min:
+                    self.tpr_min = result[2]
+                if result[2] > self.tpr_max:
+                    self.tpr_max = result[2]
+            
+        self.total_tested_requests += loop
+        # time per requests mean (avg)
+        if self.total_pass_requests != 0:
+            self.tpr_mean = self.sum_response_time / self.total_pass_requests
+        # requests per seconds
+        if self.start_time == 0:
+            log.error('stats: self.start_time is not set, skipping rps stats.')
+        else:
+            # calc the tested time so far.
+            tested_time = end_time - self.start_time
+            self.rps_mean = self.total_pass_requests / tested_time
+        
+        # print stats
+        print('\n-----------------Test Statistics---------------')
+        print(time.asctime())
+        print('Total requests: %s, pass: %s, fail: %s, exception: %s'
+            % (self.total_tested_requests, self.total_pass_requests, self.total_fail_requests, self.total_exception_requests)
+            )
+        if self.total_pass_requests > 0:
+            print('For pass requests:') 
+            print('Request per Second - mean: %.2f' % self.rps_mean)
+            print('Time per Request   - mean: %.6f, min: %.6f, max: %.6f' 
+                % (self.tpr_mean, self.tpr_min, self.tpr_max)
+                )
+        print('\n')
+                
+    def loop_stats(self, interval=60):
+        """ print stats in an interval(secs) continunously
+        
+        Run this as a separate thread so it won't block the main thread.
+        """
+        while True:
+            sleep(interval)
+            self.stats()
 
     def post(self,url,data,headers={},verify=False,amend_headers=True):
         """
@@ -312,29 +372,32 @@ class TestAPI:
 
 def main():
     concurrent_users = 2
+    loop_times = 100
+    stats_interval = 5
     perf_test = TestAPI()
     workers = []
     start_time = time.time()
+    perf_test.start_time = start_time
     print('Tests started at %s.' % start_time)
     for i in range(concurrent_users):
-        thread = Thread(target=perf_test.loop_test, kwargs={'loop_times':3}, daemon=True)         
+        thread = Thread(target=perf_test.loop_test, kwargs={'loop_times': loop_times}, daemon=True)         
         thread.start()
         workers.append(thread)
     
+    stats_thread = Thread(target=perf_test.loop_stats, args=[5], daemon=True)
+    stats_thread.start()
+
     # Block until all threads finish.
     for w in workers:
         w.join()
         
     end_time = time.time()
+    perf_test.end_time = end_time
     
-    # statistics:
-    perf_test.total_tested_time = end_time - start_time
-    
-    print('Tests ended at   %s.\nTotal test time: %s seconds.' % (end_time, end_time - start_time) )
-    print('Total requests: %s.' % perf_test.total_tested_requests ) 
-    
-    print('Done.')
+    # Ensure to execute the last statistics:
+    perf_test.stats()
 
-
+    print('Tests ended at %s.\nTotal test time: %s seconds.' % (end_time, end_time - start_time) )
+    
 if __name__ == '__main__':
     main()
