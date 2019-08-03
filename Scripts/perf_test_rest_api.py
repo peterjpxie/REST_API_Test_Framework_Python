@@ -35,7 +35,7 @@ import random
 # import asyncio
 import sys
 import threading
-from threading import Thread
+from threading import Thread, Event, Timer
 import queue
 
 
@@ -130,7 +130,7 @@ class TestAPI:
     def __init__(self):
         log.debug('To load test data.')  
         self.queue_results = queue.Queue()
-        # self.lock_stats = threading.Lock()
+    
         # test start and end time
         self.start_time = 0
         self.end_time = 0
@@ -151,7 +151,11 @@ class TestAPI:
         
         # failures
         self.total_fail_requests = 0      
-        self.total_exception_requests = 0      
+        self.total_exception_requests = 0  
+
+        # event flag to set and check test time is up.
+        self.event_time_up = Event()
+        self.timer = None
             
     # post with headers, json body
     def test_post_headers_body_json(self):
@@ -169,24 +173,6 @@ class TestAPI:
             "key2": "value2"
         }
         """   
-        
-    # get with authentication
-    def test_get_auth_httpbin(self):        
-        log.info('Calling %s.' % inspect.stack()[0][3])       
-        username = 'user1'
-        password = 'password1'
-        
-        url = f'http://httpbin.org/basic-auth/{username}/{password}'        
-        resp =  self.get(url, auth = (username,password))
-        assert resp != None
-        assert resp.json()["authenticated"] == True
-        log.info('Test %s passed.' % inspect.stack()[0][3])        
-        """ json response
-        {
-        "authenticated": true, 
-        "user": "user1"
-        }
-        """    
     
     # To run this test using Flask mocking service,
     # start mock service first: python flask_mock_service.py
@@ -222,10 +208,11 @@ class TestAPI:
         loop test of some APIs for performance test purpose.  
 
         Parameters:
-        loop_wait  wait time between two loops.
+        loop_wait   wait time between two loops.
+        loop_times  number of loops, default indefinite
         """
         looped_times = 0
-        while looped_times < loop_times:
+        while looped_times < loop_times and not self.event_time_up.is_set():
             # APIs to test
             test_result, elapsed_time = self.test_mock_service()
             log.info('test_mock_service returns: %s, %s' %(test_result, elapsed_time) )            
@@ -298,6 +285,21 @@ class TestAPI:
             sleep(interval)
             self.stats()
 
+    def set_event(self):
+        """ set the time up flag """
+        if not self.event_time_up.is_set():
+            self.event_time_up.set()
+            
+    def start_timer(self, timeout):
+        """ set a timer to stop testing """
+        self.timer = Timer(timeout, self.set_event)
+        self.timer.start()
+
+    def cancel_timer(self):
+        """ cancel the timer if test loop_times is reached first. """
+        if not self.event_time_up.is_set():
+            self.timer.cancel()
+        
     def post(self,url,data,headers={},verify=False,amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
@@ -371,26 +373,39 @@ class TestAPI:
         return resp
 
 def main():
+    ### Test Settings ###
     concurrent_users = 2
-    loop_times = 100
-    stats_interval = 5
+    # test stops whenever loop_times or test_time is met first.
+    loop_times = 30
+    test_time = 36000 # time in seconds
+    stats_interval = 2
+    
     perf_test = TestAPI()
     workers = []
     start_time = time.time()
     perf_test.start_time = start_time
     print('Tests started at %s.' % start_time)
+    # start current user threads
     for i in range(concurrent_users):
         thread = Thread(target=perf_test.loop_test, kwargs={'loop_times': loop_times}, daemon=True)         
         thread.start()
         workers.append(thread)
     
-    stats_thread = Thread(target=perf_test.loop_stats, args=[5], daemon=True)
+    # start timer 
+    perf_test.start_timer(test_time)
+    
+    # start stats thread
+    stats_thread = Thread(target=perf_test.loop_stats, args=[stats_interval], daemon=True)
     stats_thread.start()
 
     # Block until all threads finish.
     for w in workers:
         w.join()
         
+    # clean up
+    # stop timer if loop_times is reached first.
+    perf_test.cancel_timer()
+    
     end_time = time.time()
     perf_test.end_time = end_time
     
@@ -400,4 +415,7 @@ def main():
     print('Tests ended at %s.\nTotal test time: %s seconds.' % (end_time, end_time - start_time) )
     
 if __name__ == '__main__':
+    # try:
     main()
+    # except KeyboardInterrupt:
+    #     sys.exit()
