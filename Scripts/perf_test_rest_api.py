@@ -155,6 +155,9 @@ class TestAPI:
 
         # event flag to set and check test time is up.
         self.event_time_up = Event()
+        # event flag to indicate test is done, either normally or by interruption
+        self.event_test_done = Event()
+        
         self.timer = None
             
     # post with headers, json body
@@ -212,7 +215,10 @@ class TestAPI:
         loop_times  number of loops, default indefinite
         """
         looped_times = 0
-        while looped_times < loop_times and not self.event_time_up.is_set():
+        
+        while (looped_times < loop_times 
+            and not self.event_time_up.is_set()
+            and not self.event_test_done.is_set()):
             # APIs to test
             test_result, elapsed_time = self.test_mock_service()
             log.info('test_mock_service returns: %s, %s' %(test_result, elapsed_time) )            
@@ -224,7 +230,7 @@ class TestAPI:
             
             looped_times += 1
             sleep(loop_wait)
-                               
+                             
     def stats(self):
         """ calculate statistics """
         end_time = time.time()
@@ -281,23 +287,31 @@ class TestAPI:
         
         Run this as a separate thread so it won't block the main thread.
         """
-        while True:
+        # while True:
+        while (not self.event_time_up.is_set()
+            and not self.event_test_done.is_set()):
             sleep(interval)
             self.stats()
 
-    def set_event(self):
+    def set_event_time_up(self):
         """ set the time up flag """
         if not self.event_time_up.is_set():
             self.event_time_up.set()
+            self.event_test_done.set()
+
+    def set_event_test_done(self):
+        """ set the test done flag either normally or by interruption """
+        if not self.event_test_done.is_set():
+            self.event_test_done.set()
             
     def start_timer(self, timeout):
         """ set a timer to stop testing """
-        self.timer = Timer(timeout, self.set_event)
+        self.timer = Timer(timeout, self.set_event_time_up)
         self.timer.start()
 
     def cancel_timer(self):
         """ cancel the timer if test loop_times is reached first. """
-        if not self.event_time_up.is_set():
+        if self.timer != None and not self.event_time_up.is_set():
             self.timer.cancel()
         
     def post(self,url,data,headers={},verify=False,amend_headers=True):
@@ -376,8 +390,8 @@ def main():
     ### Test Settings ###
     concurrent_users = 2
     # test stops whenever loop_times or test_time is met first.
-    loop_times = 30
-    test_time = 36000 # time in seconds
+    loop_times = 20
+    test_time = 300 # time in seconds, e.g. 36000
     stats_interval = 2
     
     perf_test = TestAPI()
@@ -400,7 +414,7 @@ def main():
 
     # Block until all threads finish.
     for w in workers:
-        w.join()
+        w.join()       
         
     # clean up
     # stop timer if loop_times is reached first.
