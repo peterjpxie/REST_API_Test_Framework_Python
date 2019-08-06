@@ -167,10 +167,21 @@ class TestAPI:
         # headers = {'Content-Type': 'application/json' } 
         
         # convert dict to json by json.dumps() for body data. It is risky to use str(payload) to convert because json format must use double quotes ("")
-        url = 'http://httpbin.org/post'
+        url = 'https://httpbin.org/post'
         resp = self.post(url, data = json.dumps(payload,indent=4))      
-        assert resp != None
-        log.info('Test %s passed.' % inspect.stack()[0][3])
+        # assert resp != None
+        if resp == None:
+            log.error('Test %s failed with exception.' % inspect.stack()[0][3] )
+            return 'exception', None
+        elif resp.status_code != 200:
+            log.error('Test %s failed with response status code %s.' % (inpsect.stack()[0][3],resp.status_code) )
+            return 'fail', resp.elapsed.total_seconds()
+        elif resp.json()["url"] != url:
+            log.error('Test %s failed with url %s != %s.' % (inspect.stack()[0][3], resp.json()["url"], url) )
+            return 'fail', resp.elapsed.total_seconds()
+        else:
+            log.info('Test %s passed.' % inspect.stack()[0][3])
+            return 'pass', resp.elapsed.total_seconds()
         """ Request HTTP body:
         {   "key1": 1, 
             "key2": "value2"
@@ -220,13 +231,15 @@ class TestAPI:
             and not self.event_time_up.is_set()
             and not self.event_test_done.is_set()):
             # APIs to test
-            test_result, elapsed_time = self.test_mock_service()
-            log.info('test_mock_service returns: %s, %s' %(test_result, elapsed_time) )            
             
-            # statistics
+            # API - test_mock_service: 
+            test_result, elapsed_time = self.test_mock_service()           
+            # put results into a queue for statistics
             self.queue_results.put(['test_mock_service', test_result, elapsed_time])
-            # with self.lock_stats:
-            #     self.total_tested_requests += 1
+            
+            # API - test_post_headers_body_json:
+            # test_result, elapsed_time = self.test_post_headers_body_json()
+            # self.queue_results.put(['test_post_headers_body_json', test_result, elapsed_time]) 
             
             looped_times += 1
             sleep(loop_wait)
@@ -280,7 +293,7 @@ class TestAPI:
             print('Time per Request   - mean: %.6f, min: %.6f, max: %.6f' 
                 % (self.tpr_mean, self.tpr_min, self.tpr_max)
                 )
-        print('\n')
+        # print('\n')
                 
     def loop_stats(self, interval=60):
         """ print stats in an interval(secs) continunously
@@ -314,7 +327,7 @@ class TestAPI:
         if self.timer != None and not self.event_time_up.is_set():
             self.timer.cancel()
         
-    def post(self,url,data,headers={},verify=False,amend_headers=True):
+    def post(self,url,data,headers={},verify=True,amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
             - append common headers
@@ -323,6 +336,8 @@ class TestAPI:
             - arguments are the same as requests.post, except amend_headers.
         
         verify: False - Disable SSL certificate verification 
+        
+        Return: None for exception
         """
         
         # append common headers if none
@@ -363,6 +378,8 @@ class TestAPI:
             - arguments are the same as requests.get
         
         verify: False - Disable SSL certificate verification 
+        
+        Return: None for exception
         """
         try:
             if auth == None:
@@ -390,15 +407,16 @@ def main():
     ### Test Settings ###
     concurrent_users = 2
     # test stops whenever loop_times or test_time is met first.
-    loop_times = 20
-    test_time = 300 # time in seconds, e.g. 36000
+    loop_times = 30
+    test_time = 3600 # time in seconds, e.g. 36000
     stats_interval = 2
     
     perf_test = TestAPI()
     workers = []
     start_time = time.time()
     perf_test.start_time = start_time
-    print('Tests started at %s.' % start_time)
+    print('Tests started at %s.' % time.asctime())
+    
     # start current user threads
     for i in range(concurrent_users):
         thread = Thread(target=perf_test.loop_test, kwargs={'loop_times': loop_times}, daemon=True)         
@@ -426,7 +444,7 @@ def main():
     # Ensure to execute the last statistics:
     perf_test.stats()
 
-    print('Tests ended at %s.\nTotal test time: %s seconds.' % (end_time, end_time - start_time) )
+    print('\nTests ended at %s.\nTotal test time: %s seconds.' % (time.asctime(), end_time - start_time) )
     
 if __name__ == '__main__':
     # try:
