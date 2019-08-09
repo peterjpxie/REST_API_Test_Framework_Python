@@ -1,6 +1,7 @@
 # A RESTful API testing framework example
 
 ## Features:
+* Support both functional and performance tests
 
 * Common get/post function to 
 
@@ -14,9 +15,15 @@
     
 ## Install:
 
-pip install -U pytest requests pytest-html ipdb
+pip install -U pytest requests Flask pytest-html
 
 ## Run:
 cd Scripts
 
+**Run Functional tests:**
+
 pytest
+
+**Run Performance tests:**
+
+python perf_test_rest_api.py 
