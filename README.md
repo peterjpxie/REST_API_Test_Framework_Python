@@ -20,10 +20,10 @@ pip install -U pytest requests Flask pytest-html
 ## Run:
 cd Scripts
 
-Functional tests:
+**Run Functional tests:**
 
 pytest
 
-Performance tests:
+**Run Performance tests:**
 
 python perf_test_rest_api.py 
