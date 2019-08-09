@@ -135,7 +135,7 @@ class TestAPI:
         self.start_time = 0
         self.end_time = 0
 
-        # request per seconds
+        # request per second
         # self.rps_min = 0
         self.rps_mean = 0
         # self.rps_max = 0
@@ -195,6 +195,8 @@ class TestAPI:
         log.info('Calling %s.' % inspect.stack()[0][3])               
         url = r'http://127.0.0.1:5000/json'        
         resp = self.get(url)
+        
+        # Convert assert for functional tests to validate for performance tests so it won't stop on a test failure. 
         # assert resp != None
         # assert resp.json()["code"] == 1
         if resp == None:
@@ -237,7 +239,7 @@ class TestAPI:
             # put results into a queue for statistics
             self.queue_results.put(['test_mock_service', test_result, elapsed_time])
             
-            # API - test_post_headers_body_json:
+            # # API - test_post_headers_body_json:
             # test_result, elapsed_time = self.test_post_headers_body_json()
             # self.queue_results.put(['test_post_headers_body_json', test_result, elapsed_time]) 
             
@@ -273,7 +275,7 @@ class TestAPI:
         # time per requests mean (avg)
         if self.total_pass_requests != 0:
             self.tpr_mean = self.sum_response_time / self.total_pass_requests
-        # requests per seconds
+        # requests per second
         if self.start_time == 0:
             log.error('stats: self.start_time is not set, skipping rps stats.')
         else:
@@ -417,7 +419,7 @@ def main():
     perf_test.start_time = start_time
     print('Tests started at %s.' % time.asctime())
     
-    # start current user threads
+    # start concurrent user threads
     for i in range(concurrent_users):
         thread = Thread(target=perf_test.loop_test, kwargs={'loop_times': loop_times}, daemon=True)         
         thread.start()
@@ -447,7 +449,4 @@ def main():
     print('\nTests ended at %s.\nTotal test time: %s seconds.' % (time.asctime(), end_time - start_time) )
     
 if __name__ == '__main__':
-    # try:
     main()
-    # except KeyboardInterrupt:
-    #     sys.exit()
