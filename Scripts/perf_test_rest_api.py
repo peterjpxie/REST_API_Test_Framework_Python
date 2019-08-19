@@ -407,11 +407,12 @@ class TestAPI:
 
 def main():
     ### Test Settings ###
-    concurrent_users = 2
+    concurrent_users = 10
     # test stops whenever loop_times or test_time is met first.
     loop_times = 30
     test_time = 3600 # time in seconds, e.g. 36000
     stats_interval = 2
+    ramp_up = 0 # total time in secs to ramp up. default 0, no wait
     
     perf_test = TestAPI()
     workers = []
@@ -424,6 +425,8 @@ def main():
         thread = Thread(target=perf_test.loop_test, kwargs={'loop_times': loop_times}, daemon=True)         
         thread.start()
         workers.append(thread)
+        # ramp up wait
+        sleep(ramp_up / concurrent_users)
     
     # start timer 
     perf_test.start_timer(test_time)
