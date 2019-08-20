@@ -420,6 +420,10 @@ def main():
     perf_test.start_time = start_time
     print('Tests started at %s.' % time.asctime())
     
+    # start stats thread
+    stats_thread = Thread(target=perf_test.loop_stats, args=[stats_interval], daemon=True)
+    stats_thread.start()
+    
     # start concurrent user threads
     for i in range(concurrent_users):
         thread = Thread(target=perf_test.loop_test, kwargs={'loop_times': loop_times}, daemon=True)         
@@ -431,10 +435,6 @@ def main():
     # start timer 
     perf_test.start_timer(test_time)
     
-    # start stats thread
-    stats_thread = Thread(target=perf_test.loop_stats, args=[stats_interval], daemon=True)
-    stats_thread.start()
-
     # Block until all threads finish.
     for w in workers:
         w.join()       
