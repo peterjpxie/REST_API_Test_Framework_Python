@@ -38,7 +38,6 @@ import threading
 from threading import Thread, Event, Timer
 import queue
 
-
 if sys.version_info < (3,7):
     raise Exception("Requires Python 3.7 or above.")
 
