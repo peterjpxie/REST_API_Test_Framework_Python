@@ -27,3 +27,6 @@ pytest
 **Run Performance tests:**
 
 python perf_test_rest_api.py 
+
+## Medium Post
+Check out the [medium post](https://medium.com/@peter.jp.xie/rest-api-testing-using-python-751022c364b8?source=friends_link&sk=bb13119f8c0e8e6d5b071eca8c22e29c) for more details.
