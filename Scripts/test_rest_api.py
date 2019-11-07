@@ -82,7 +82,7 @@ def pretty_print_request(request):
         request.body)
         )
 
-# pretty print Restful request to API log
+# pretty print Restful response to API log
 # argument is response object         
 def pretty_print_response(response):
     log_api.info('{}\n{}\n\n{}\n\n{}\n'.format(
