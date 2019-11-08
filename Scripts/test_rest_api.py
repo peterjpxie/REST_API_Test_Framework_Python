@@ -204,9 +204,9 @@ class TestAPI:
         headers_new = headers
         if amend_headers == True:
             # headers = {'Content-Type':r'application/json', User-Agent:'Python Requests'}
-            if not headers_new.__contains__('Content-Type'):
+            if not 'Content-Type' in headers_new:
                 headers_new['Content-Type']=r'application/json'
-            if not headers_new.__contains__('User-Agent'):
+            if not 'User-Agent' in headers_new:
                 headers_new['User-Agent']='Python Requests'
                 
         # send post request
