@@ -110,11 +110,20 @@ Note: Remove this function because ast.literal_eval(request.body) is buggy.
 # argument is response object 
 # display body in json format explicitly with expected indent. Actually most of the time it is not very necessary because body is formatted in pretty print way.    
 def pretty_print_response_json(response):
+    """ pretty print response in json format. 
+        If failing to parse body in json format, print in text.
+    """
+    try:
+        resp_data = response.json()
+        resp_body = json.dumps(resp_data,indent=4)
+    # if .json() fails, ValueError is raised.
+    except ValueError:
+        resp_body = response.text
     log_api.info('{}\n{}\n\n{}\n\n{}\n'.format(
         '<-----------Response-----------',
         'Status code:' + str(response.status_code),
         '\n'.join('{}: {}'.format(k, v) for k, v in response.headers.items()),
-        json.dumps(response.json(),indent=4)
+        resp_body
         ))
 
 class TestAPI:
@@ -210,7 +219,7 @@ class TestAPI:
                 headers_new['User-Agent']='Python Requests'
                 
         # send post request
-        resp = requests.post(url, data = data, headers = headers_new, verify = verify)
+        resp = requests.post(url, data=data, headers=headers_new, verify=verify)
         
         # pretty request and response into API log file
         # Note: request print is common instead of checking if it is JSON body. So pass pretty formatted json string as argument to the request for pretty logging. 
@@ -235,9 +244,9 @@ class TestAPI:
         """
         try:
             if auth == None:
-                resp = requests.get(url, verify = verify)
+                resp = requests.get(url, verify=verify)
             else:
-                resp = requests.get(url, auth = auth, verify = verify)
+                resp = requests.get(url, auth=auth, verify=verify)
         except Exception as ex:
             log.error('requests.get() failed with exception:', str(ex))
             return None

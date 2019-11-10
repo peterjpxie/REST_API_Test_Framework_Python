@@ -1,4 +1,4 @@
-2019-11-07 04:42:01: -----------Request----------->
+2019-11-11 08:24:40: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -13,14 +13,14 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2019-11-07 04:42:01: <-----------Response-----------
+2019-11-11 08:24:40: <-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Thu, 07 Nov 2019 05:41:58 GMT
+Date: Sun, 10 Nov 2019 21:24:39 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
 X-Content-Type-Options: nosniff
@@ -50,7 +50,7 @@ Connection: keep-alive
     "url": "https://httpbin.org/post"
 }
 
-2019-11-07 04:42:02: -----------Request----------->
+2019-11-11 08:24:41: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -62,14 +62,14 @@ Content-Length: 18
 
 key1=1&key2=value2
 
-2019-11-07 04:42:02: <-----------Response-----------
+2019-11-11 08:24:41: <-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Thu, 07 Nov 2019 05:42:00 GMT
+Date: Sun, 10 Nov 2019 21:24:39 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
 X-Content-Type-Options: nosniff
@@ -96,7 +96,7 @@ Connection: keep-alive
     "url": "https://httpbin.org/post"
 }
 
-2019-11-07 04:42:03: -----------Request----------->
+2019-11-11 08:24:41: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
 User-Agent: python-requests/2.22.0
@@ -107,14 +107,14 @@ Authorization: Basic dXNlcjE6cGFzc3dvcmQx
 
 None
 
-2019-11-07 04:42:03: <-----------Response-----------
+2019-11-11 08:24:41: <-----------Response-----------
 Status code:200
 
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
 Content-Encoding: gzip
 Content-Type: application/json
-Date: Thu, 07 Nov 2019 05:42:01 GMT
+Date: Sun, 10 Nov 2019 21:24:40 GMT
 Referrer-Policy: no-referrer-when-downgrade
 Server: nginx
 X-Content-Type-Options: nosniff
