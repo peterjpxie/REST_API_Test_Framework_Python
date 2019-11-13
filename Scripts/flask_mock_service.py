@@ -22,7 +22,7 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/json')
+@app.route('/json', methods=['POST', 'GET'])
 def test_json():
     sleep(0.2) # simulate network delay.
     return '{"code": 1, "message": "Hello, World!" }'
