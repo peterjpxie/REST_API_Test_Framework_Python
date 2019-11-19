@@ -1,5 +1,7 @@
 # customised files
 report.html
+debug.log
+api_outputs.log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
