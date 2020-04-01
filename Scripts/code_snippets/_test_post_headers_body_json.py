@@ -11,7 +11,7 @@ def test_post_headers_body_json():
     payload = {'key1': 1, 'key2': 'value2'}
     
     # convert dict to json by json.dumps() for body data. 
-    resp = requests.post(url, data = json.dumps(payload,indent=4))       
+    resp = requests.post(url, headers=headers, data=json.dumps(payload,indent=4))       
     
     # Validate response headers and body contents, e.g. status code.
     assert resp.status_code == 200
