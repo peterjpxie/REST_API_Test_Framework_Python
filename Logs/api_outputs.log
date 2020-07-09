@@ -1,4 +1,4 @@
-2019-11-19 07:46:40: -----------Request----------->
+2020-07-10 09:47:34: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -13,21 +13,16 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2019-11-19 07:46:40: <-----------Response-----------
+2020-07-10 09:47:34: <-----------Response-----------
 Status code:200
 
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
+Date: Thu, 09 Jul 2020 23:47:34 GMT
 Content-Type: application/json
-Date: Tue, 19 Nov 2019 08:46:41 GMT
-Referrer-Policy: no-referrer-when-downgrade
-Server: nginx
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Content-Length: 274
+Content-Length: 517
 Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
 
 {
     "args": {},
@@ -40,17 +35,18 @@ Connection: keep-alive
         "Content-Length": "39",
         "Content-Type": "application/json",
         "Host": "httpbin.org",
-        "User-Agent": "Python Requests"
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-5f07ac96-a27245484b6e2508b171e21c"
     },
     "json": {
         "key1": 1,
         "key2": "value2"
     },
-    "origin": "121.200.7.230, 121.200.7.230",
-    "url": "https://httpbin.org/post"
+    "origin": "203.23.27.5",
+    "url": "http://httpbin.org/post"
 }
 
-2019-11-19 07:46:41: -----------Request----------->
+2020-07-10 09:47:35: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -62,21 +58,16 @@ Content-Length: 18
 
 key1=1&key2=value2
 
-2019-11-19 07:46:41: <-----------Response-----------
+2020-07-10 09:47:35: <-----------Response-----------
 Status code:200
 
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
+Date: Thu, 09 Jul 2020 23:47:35 GMT
 Content-Type: application/json
-Date: Tue, 19 Nov 2019 08:46:42 GMT
-Referrer-Policy: no-referrer-when-downgrade
-Server: nginx
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Content-Length: 256
+Content-Length: 449
 Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
 
 {
     "args": {},
@@ -89,14 +80,15 @@ Connection: keep-alive
         "Content-Length": "18",
         "Content-Type": "application/json",
         "Host": "httpbin.org",
-        "User-Agent": "Python Requests"
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-5f07ac97-674aaff5f57af1ebbc53d5b9"
     },
     "json": null,
-    "origin": "121.200.7.230, 121.200.7.230",
-    "url": "https://httpbin.org/post"
+    "origin": "203.23.27.5",
+    "url": "http://httpbin.org/post"
 }
 
-2019-11-19 07:46:42: -----------Request----------->
+2020-07-10 09:47:36: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
 User-Agent: python-requests/2.22.0
@@ -107,21 +99,16 @@ Authorization: Basic dXNlcjE6cGFzc3dvcmQx
 
 None
 
-2019-11-19 07:46:42: <-----------Response-----------
+2020-07-10 09:47:36: <-----------Response-----------
 Status code:200
 
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Content-Encoding: gzip
+Date: Thu, 09 Jul 2020 23:47:35 GMT
 Content-Type: application/json
-Date: Tue, 19 Nov 2019 08:46:43 GMT
-Referrer-Policy: no-referrer-when-downgrade
-Server: nginx
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-Content-Length: 61
+Content-Length: 48
 Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
 
 {
     "authenticated": true,

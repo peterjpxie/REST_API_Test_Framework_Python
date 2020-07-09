@@ -328,7 +328,7 @@ class TestAPI:
         if self.timer != None and not self.event_time_up.is_set():
             self.timer.cancel()
         
-    def post(self,url,data,headers={},verify=True,amend_headers=True):
+    def post(self, url, data,headers={}, verify=True, amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
             - append common headers
@@ -344,10 +344,9 @@ class TestAPI:
         # append common headers if none
         headers_new = headers
         if amend_headers == True:
-            # headers = {'Content-Type':r'application/json', User-Agent:'Python Requests'}
-            if not headers_new.__contains__('Content-Type'):
+            if 'Content-Type' not in headers_new:
                 headers_new['Content-Type']=r'application/json'
-            if not headers_new.__contains__('User-Agent'):
+            if 'User-Agent' not in headers_new:
                 headers_new['User-Agent']='Python Requests'
                 
         # send post request
@@ -371,7 +370,7 @@ class TestAPI:
         # return resp.json()
         return resp
 
-    def get(self,url,auth = None,verify=False):
+    def get(self, url, auth=None, verify=False):
         """
         common request get function with below features, which you only need to take care of url:
             - print request and response in API log file

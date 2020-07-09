@@ -198,7 +198,7 @@ class TestAPI:
         }
         """
         
-    def post(self,url,data,headers={},verify=False,amend_headers=True):
+    def post(self, url, data, headers={}, verify=False, amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
             - append common headers
@@ -212,10 +212,9 @@ class TestAPI:
         # append common headers if none
         headers_new = headers
         if amend_headers == True:
-            # headers = {'Content-Type':r'application/json', User-Agent:'Python Requests'}
-            if not 'Content-Type' in headers_new:
+            if 'Content-Type' not in headers_new:
                 headers_new['Content-Type']=r'application/json'
-            if not 'User-Agent' in headers_new:
+            if 'User-Agent' not in headers_new:
                 headers_new['User-Agent']='Python Requests'
                 
         # send post request
@@ -233,7 +232,7 @@ class TestAPI:
             return None
         return resp.json()
 
-    def get(self,url,auth = None,verify=False):
+    def get(self, url, auth = None, verify=False):
         """
         common request get function with below features, which you only need to take care of url:
             - print request and response in API log file
