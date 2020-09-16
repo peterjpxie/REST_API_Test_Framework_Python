@@ -6,8 +6,9 @@ def pretty_print_request(request):
         '-----------Request----------->',
         request.method + ' ' + request.url,
         '\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
-        request.body)
+        request.body)        
     )
+    print('request body type:', type(request.body))
 
 def pretty_print_response(response):
     print('\n{}\n{}\n\n{}\n\n{}\n'.format(
@@ -27,7 +28,8 @@ def test_post_headers_body_json():
     payload = {'key1': 1, 'key2': 'value2'}
     
     # convert dict to json by json.dumps() for body data. 
-    resp = requests.post(url, headers=headers, data=json.dumps(payload,indent=4))       
+    resp = requests.post(url, headers=headers, data=json.dumps(payload,indent=4))  
+    # resp = requests.post(url, json=payload)  
     
     # Validate response headers and body contents, e.g. status code.
     assert resp.status_code == 200
@@ -37,4 +39,3 @@ def test_post_headers_body_json():
     # print full request and response
     pretty_print_request(resp.request)
     pretty_print_response(resp)
-     
