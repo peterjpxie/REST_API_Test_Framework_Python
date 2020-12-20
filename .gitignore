@@ -2,6 +2,7 @@
 report.html
 debug.log
 api_outputs.log
+test_tmp.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

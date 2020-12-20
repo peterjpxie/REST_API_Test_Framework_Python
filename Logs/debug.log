@@ -1,4 +1,1 @@
-2020-07-10 09:47:34 [INFO   ][ln-146]: Test test_post_headers_body_json passed.
-2020-07-10 09:47:35 [INFO   ][ln-159]: Test test_post_normal_body passed.
-2020-07-10 09:47:35 [INFO   ][ln-166]: Calling test_get_auth_httpbin.
-2020-07-10 09:47:36 [INFO   ][ln-174]: Test test_get_auth_httpbin passed.
+2020-11-29 06:10:50 [INFO   ][ln-188]: Calling test_mock_service.

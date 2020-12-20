@@ -18,14 +18,43 @@ from time import sleep
 
 app = Flask(__name__)
 
+# Supports only GET method by default
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Hello World!'
 
 @app.route('/json', methods=['POST', 'GET'])
 def test_json():
     sleep(0.2) # simulate network delay.
     return '{"code": 1, "message": "Hello, World!" }'
+
+# Return dynamic status code and content based on request header data for any endpoints
+# Features:
+# - Define only one route for all endpoints since we use <path:subpath>
+# - Define only one function for all endpoints and test scenarios since we return based on request header data
+# 
+# Sample request header data:
+#   ret_status_code: 
+#   ret_data:  
+@app.route('/dynamic/<path:subpath>', methods=['POST', 'GET', 'DELETE', 'PUT', 'OPTIONS'])
+def mock_dynamic():
+   user_agent = headers.get('User-Agent')
+    if user_agent is not None:
+        return 'Header User-Agent in the request is %s.' % user_agent 
+    else:
+        return 'Header User-Agent does not exist in the request.'
+
+# Request body content
+# http://flask.pocoo.org/docs/1.0/api/#flask.Request
+@app.route('/request_body', methods=['POST', 'GET'])
+def test_req_body():
+    # get_data(cache=True, as_text=False, parse_form_data=False)
+    request_body = request.get_data()
+    request_body = request_body.decode('utf-8') # decode if it is byte string b''
+    return 'Request body content is\n%s' % request_body
+        if request.is_json:
+        return 'Request body content as json:\n%s' % json.dumps(request.get_json(cache=False),indent=4)
+    return '{"code": 1, "message": "Hello2, World!" }'
 
 # Request headers
 # http://flask.pocoo.org/docs/1.0/api/#flask.Request
@@ -98,10 +127,6 @@ pwd
 def test_req_form_data():
     return 'Request body:\n%s\n%s' % (request.form["username"],request.form["password"])
 
-@app.route('/hello/')
-@app.route('/hello/<name>')
-def hello(name=None):
-    return render_template('hello.html', name=name)
 
 # return a file
 # http://flask.pocoo.org/docs/1.0/api/#flask.send_file
