@@ -1,22 +1,117 @@
-2020-11-29 06:10:50: -----------Request----------->
-POST http://127.0.0.1:5000/
+2020-12-20 04:40:57: -----------Request----------->
+POST http://httpbin.org/post
 
 User-Agent: Python Requests
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
 Content-Type: application/json
-Content-Length: 7
+Content-Length: 39
 
-{'a':1}
+{
+    "key1": 1,
+    "key2": "value2"
+}
 
-2020-11-29 06:10:50: <-----------Response-----------
+2020-12-20 04:40:57: <-----------Response-----------
 Status code:200
 
-Content-Type: text/html; charset=utf-8
-Content-Length: 13
-Server: Werkzeug/0.15.1 Python/3.7.4
-Date: Sat, 28 Nov 2020 19:10:50 GMT
+Date: Sun, 20 Dec 2020 05:40:56 GMT
+Content-Type: application/json
+Content-Length: 517
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
 
-Hello, World!
+{
+    "args": {},
+    "data": "{\n    \"key1\": 1,\n    \"key2\": \"value2\"\n}",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "39",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-5fdee3e8-20841a4808eb3b3373292117"
+    },
+    "json": {
+        "key1": 1,
+        "key2": "value2"
+    },
+    "origin": "121.200.6.5",
+    "url": "http://httpbin.org/post"
+}
+
+2020-12-20 04:40:58: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 18
+
+key1=1&key2=value2
+
+2020-12-20 04:40:58: <-----------Response-----------
+Status code:200
+
+Date: Sun, 20 Dec 2020 05:40:56 GMT
+Content-Type: application/json
+Content-Length: 449
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "key1=1&key2=value2",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "18",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-5fdee3e8-655d1e6e716f6a7c62bfec15"
+    },
+    "json": null,
+    "origin": "121.200.6.5",
+    "url": "http://httpbin.org/post"
+}
+
+2020-12-20 04:40:58: -----------Request----------->
+GET http://httpbin.org/basic-auth/user1/password1
+
+User-Agent: python-requests/2.22.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Authorization: Basic dXNlcjE6cGFzc3dvcmQx
+
+None
+
+2020-12-20 04:40:58: <-----------Response-----------
+Status code:200
+
+Date: Sun, 20 Dec 2020 05:40:57 GMT
+Content-Type: application/json
+Content-Length: 48
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "authenticated": true,
+    "user": "user1"
+}
 

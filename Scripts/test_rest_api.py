@@ -6,7 +6,7 @@ Features:
     - Common get/post function to 
         * Print every request and response in a API output file
         * Append common headers
-        * Take care of request exception and non-200 response codes and return None, so you only need to care normal json response.
+        * Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
     - Use flask to mock service
     - html report
     
@@ -35,7 +35,9 @@ import sys
 if sys.version_info < (3,7):
     raise Exception("Requires Python 3.7 or above.")
 
+## Parameters
 LOG_LEVEL = logging.INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
+VALID_HTTP_RESP = (200, 201, 202)
 
 # Assume project structure as below:
 # Scripts - python scripts
@@ -203,7 +205,7 @@ class TestAPI:
         common request post function with below features, which you only need to take care of url and body data:
             - append common headers
             - print request and response in API log file
-            - Take care of request exception and non-200 response codes and return None, so you only need to care normal json response.
+            - Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
             - arguments are the same as requests.post, except amend_headers.
         
         verify: False - Disable SSL certificate verification 
@@ -227,7 +229,7 @@ class TestAPI:
         
         # This return caller function's name, not this function post.
         caller_func_name = inspect.stack()[1][3]        
-        if resp.status_code != 200:
+        if resp.status_code not in VALID_HTTP_RESP:
             log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
             return None
         return resp.json()
@@ -236,7 +238,7 @@ class TestAPI:
         """
         common request get function with below features, which you only need to take care of url:
             - print request and response in API log file
-            - Take care of request exception and non-200 response codes and return None, so you only need to care normal json response.
+            - Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
             - arguments are the same as requests.get
         
         verify: False - Disable SSL certificate verification 
@@ -256,7 +258,7 @@ class TestAPI:
         
         # This return caller function's name, not this function post.
         caller_func_name = inspect.stack()[1][3]        
-        if resp.status_code != 200:
+        if resp.status_code not in VALID_HTTP_RESP:
             log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
             return None
         return resp.json()
