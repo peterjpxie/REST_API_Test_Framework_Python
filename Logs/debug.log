@@ -1,4 +1,4 @@
-2020-12-20 04:40:57 [INFO   ][ln-148]: Test test_post_headers_body_json passed.
-2020-12-20 04:40:58 [INFO   ][ln-161]: Test test_post_normal_body passed.
-2020-12-20 04:40:58 [INFO   ][ln-168]: Calling test_get_auth_httpbin.
-2020-12-20 04:40:58 [INFO   ][ln-176]: Test test_get_auth_httpbin passed.
+2020-12-26 01:16:01 [INFO   ][ln-143]: Test test_post_headers_body_json passed.
+2020-12-26 01:16:02 [INFO   ][ln-156]: Test test_post_normal_body passed.
+2020-12-26 01:16:02 [INFO   ][ln-163]: Calling test_get_auth_httpbin.
+2020-12-26 01:16:02 [INFO   ][ln-171]: Test test_get_auth_httpbin passed.

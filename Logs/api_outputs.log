@@ -1,4 +1,4 @@
-2020-12-20 04:40:57: -----------Request----------->
+2020-12-26 01:16:01: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -13,10 +13,10 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2020-12-20 04:40:57: <-----------Response-----------
+2020-12-26 01:16:01: <-----------Response-----------
 Status code:200
 
-Date: Sun, 20 Dec 2020 05:40:56 GMT
+Date: Sat, 26 Dec 2020 02:16:01 GMT
 Content-Type: application/json
 Content-Length: 517
 Connection: keep-alive
@@ -36,7 +36,7 @@ Access-Control-Allow-Credentials: true
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-5fdee3e8-20841a4808eb3b3373292117"
+        "X-Amzn-Trace-Id": "Root=1-5fe69ce1-43a5712c5702ac241111e466"
     },
     "json": {
         "key1": 1,
@@ -46,7 +46,7 @@ Access-Control-Allow-Credentials: true
     "url": "http://httpbin.org/post"
 }
 
-2020-12-20 04:40:58: -----------Request----------->
+2020-12-26 01:16:02: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -58,10 +58,10 @@ Content-Length: 18
 
 key1=1&key2=value2
 
-2020-12-20 04:40:58: <-----------Response-----------
+2020-12-26 01:16:02: <-----------Response-----------
 Status code:200
 
-Date: Sun, 20 Dec 2020 05:40:56 GMT
+Date: Sat, 26 Dec 2020 02:16:02 GMT
 Content-Type: application/json
 Content-Length: 449
 Connection: keep-alive
@@ -81,17 +81,17 @@ Access-Control-Allow-Credentials: true
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-5fdee3e8-655d1e6e716f6a7c62bfec15"
+        "X-Amzn-Trace-Id": "Root=1-5fe69ce2-36bbd2797a683f8a6ae920ff"
     },
     "json": null,
     "origin": "121.200.6.5",
     "url": "http://httpbin.org/post"
 }
 
-2020-12-20 04:40:58: -----------Request----------->
+2020-12-26 01:16:02: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
-User-Agent: python-requests/2.22.0
+User-Agent: python-requests/2.25.1
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
@@ -99,10 +99,10 @@ Authorization: Basic dXNlcjE6cGFzc3dvcmQx
 
 None
 
-2020-12-20 04:40:58: <-----------Response-----------
+2020-12-26 01:16:02: <-----------Response-----------
 Status code:200
 
-Date: Sun, 20 Dec 2020 05:40:57 GMT
+Date: Sat, 26 Dec 2020 02:16:02 GMT
 Content-Type: application/json
 Content-Length: 48
 Connection: keep-alive

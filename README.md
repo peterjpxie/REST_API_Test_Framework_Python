@@ -15,7 +15,7 @@
     
 ## Install:
 
-pip install -U pytest requests Flask pytest-html
+pip install -r Scripts/requirements.txt
 
 ## Run:
 cd Scripts

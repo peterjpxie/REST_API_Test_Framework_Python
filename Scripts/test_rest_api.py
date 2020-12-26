@@ -91,23 +91,17 @@ def pretty_print_response(response):
         '<-----------Response-----------',
         'Status code:' + str(response.status_code),
         '\n'.join('{}: {}'.format(k, v) for k, v in response.headers.items()),
-        response.text
-        ))        
+        response.text)
+        )        
 
         
-'''
-Note: Remove this function because ast.literal_eval(request.body) is buggy. 
-      request.body is json string itself, when we try to use ast.literal_eval to convert json string to dict, 
-      it fails for incompatible fields like json true vs dic True. 
-      We should use json.loads(request.body), then json.dumps, but it is doing nothing but changing indent. 
-'''
-# def pretty_print_request_json(request):
-#     log_api.info('{}\n{}\n\n{}\n\n{}\n'.format(
-#         '-----------Request----------->',
-#         request.method + ' ' + request.url,
-#         '\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
-#         json.dumps(ast.literal_eval(request.body),indent=4))
-#         )
+def pretty_print_request_json(request):
+    log_api.info('{}\n{}\n\n{}\n\n{}\n'.format(
+        '-----------Request----------->',
+        request.method + ' ' + request.url,
+        '\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
+        json.dumps(json.loads(request.body),indent=4))
+        )
         
 # argument is response object 
 # display body in json format explicitly with expected indent. Actually most of the time it is not very necessary because body is formatted in pretty print way.    
@@ -118,9 +112,10 @@ def pretty_print_response_json(response):
     try:
         resp_data = response.json()
         resp_body = json.dumps(resp_data,indent=4)
-    # if .json() fails, ValueError is raised.
+    # if .json() fails, ValueError is raised, take text format
     except ValueError:
         resp_body = response.text
+        
     log_api.info('{}\n{}\n\n{}\n\n{}\n'.format(
         '<-----------Response-----------',
         'Status code:' + str(response.status_code),

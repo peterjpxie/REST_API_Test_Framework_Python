@@ -1,0 +1,1 @@
+grep "def test" test*.py /dev/null
