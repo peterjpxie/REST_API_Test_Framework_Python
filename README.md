@@ -1,4 +1,4 @@
-# A RESTful API Testing Framework Example
+# A RESTful API Test Framework Example
 
 ## Features:
 * Support both functional and performance tests
