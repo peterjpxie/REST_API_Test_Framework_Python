@@ -55,12 +55,12 @@ def setup_logger(log_file, level=logging.INFO, name='', formatter=common_formatt
     """Function setup as many loggers as you want."""
     handler = logging.FileHandler(log_file,mode='w') # default mode is append
     # Or use a rotating file handler
-    # handler = RotatingFileHandler(log_file,maxBytes=1024, backupCount=5)          
-    handler.setFormatter(formatter)    
+    # handler = RotatingFileHandler(log_file,maxBytes=1024, backupCount=5)
+    handler.setFormatter(formatter)
     logger = logging.getLogger(name)
     logger.setLevel(level)
-    logger.addHandler(handler)    
-    return logger   
+    logger.addHandler(handler)
+    return logger
     
 # default debug logger 
 debug_log_filename = root_path + os.sep + 'Logs' + os.sep + 'debug.log'
@@ -183,7 +183,7 @@ class TestAPI:
     def disabled_test_mock_service(self):
     # def test_mock_service(self):    
         log.info('Calling %s.' % inspect.stack()[0][3])               
-        url = f'http://127.0.0.1:5000/json'        
+        url = 'http://127.0.0.1:5000/hello'        
         resp = self.get(url)
         assert resp != None
         assert resp["code"] == 1
@@ -194,7 +194,25 @@ class TestAPI:
         "message": "Hello, World!"
         }
         """
+
+    # Any endpoints with expected response status code and body data set in the request headers.
+    def disabled_test_mock_service_dynamic(self):      
+    # def test_mock_service_dynamic(self):    
+        log.info('Calling %s.' % inspect.stack()[0][3])               
+        url = 'http://127.0.0.1:5000/anyendpoint'   
+        response_status_code = '202'
+        response_data = '{"code": 0, "message": "all good"}'
+        headers = {'response_status_code': response_status_code, 'response_data': response_data}
+        resp = self.get(url, headers = headers)          
+        assert resp != None
+        assert resp["code"] == 0
+        log.info('Test %s passed.' % inspect.stack()[0][3])        
+        """ response
+        202 
         
+        {"code": 0, "message": "all good"}
+        """
+
     def post(self, url, data, headers={}, verify=False, amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
@@ -229,7 +247,7 @@ class TestAPI:
             return None
         return resp.json()
 
-    def get(self, url, auth = None, verify=False):
+    def get(self, url, headers={}, auth = None, verify=False):
         """
         common request get function with below features, which you only need to take care of url:
             - print request and response in API log file
@@ -240,9 +258,9 @@ class TestAPI:
         """
         try:
             if auth == None:
-                resp = requests.get(url, verify=verify)
+                resp = requests.get(url, headers=headers, verify=verify)
             else:
-                resp = requests.get(url, auth=auth, verify=verify)
+                resp = requests.get(url, headers=headers, auth=auth, verify=verify)
         except Exception as ex:
             log.error('requests.get() failed with exception:', str(ex))
             return None
