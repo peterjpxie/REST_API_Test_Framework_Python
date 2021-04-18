@@ -3,21 +3,18 @@ Description:
 Restful API testing framework example
 
 Features:
-    - Common get/post function to 
-        * Print every request and response in a API output file
-        * Append common headers
-        * Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
-    - Use flask to mock service
-    - html report
+    Common get/post function to:
+    * Print every request and response in a API output file
+    * Append common headers
+    * Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
     
 Install:
-pip install -U pytest requests pytest-html
+pip install -r requirements.txt
 
 Run:
 pytest
 
 Python version: 3.7 or above
-
 """
 from time import sleep
 from datetime import datetime
@@ -27,9 +24,7 @@ import requests
 import json
 import os
 # import ipdb
-import ast
 import inspect
-import random
 import sys
 
 if sys.version_info < (3,7):
@@ -180,10 +175,10 @@ class TestAPI:
     # First, rename this method from disabled_test_mock_service to test_mock_service. 
     # Second, start mock service first: python flask_mock_service.py
     # Then, run the tests, i.e. pytest.
-    def disabled_test_mock_service(self):
-    # def test_mock_service(self):    
+    # def disabled_test_mock_service(self):
+    def test_mock_service(self):    
         log.info('Calling %s.' % inspect.stack()[0][3])               
-        url = 'http://127.0.0.1:5000/hello'        
+        url = 'http://127.0.0.1:5000/hello'    
         resp = self.get(url)
         assert resp != None
         assert resp["code"] == 1
@@ -196,14 +191,14 @@ class TestAPI:
         """
 
     # Any endpoints with expected response status code and body data set in the request headers.
-    def disabled_test_mock_service_dynamic(self):      
-    # def test_mock_service_dynamic(self):    
+    # def disabled_test_mock_service_dynamic(self):      
+    def test_mock_service_dynamic(self):    
         log.info('Calling %s.' % inspect.stack()[0][3])               
         url = 'http://127.0.0.1:5000/anyendpoint'   
         response_status_code = '202'
         response_data = '{"code": 0, "message": "all good"}'
-        headers = {'response_status_code': response_status_code, 'response_data': response_data}
-        resp = self.get(url, headers = headers)          
+        headers = {'response_status_code': response_status_code, 'response_data': response_data}    
+        resp = self.get(url, headers = headers)       
         assert resp != None
         assert resp["code"] == 0
         log.info('Test %s passed.' % inspect.stack()[0][3])        
@@ -233,8 +228,12 @@ class TestAPI:
                 headers_new['User-Agent']='Python Requests'
                 
         # send post request
-        resp = requests.post(url, data=data, headers=headers_new, verify=verify)
-        
+        try:
+            resp = requests.post(url, data=data, headers=headers_new, verify=verify)
+        except Exception as ex:
+            log.error('requests.post() failed with exception: %s' % str(ex))
+            return None        
+
         # pretty request and response into API log file
         # Note: request print is common instead of checking if it is JSON body. So pass pretty formatted json string as argument to the request for pretty logging. 
         pretty_print_request(resp.request)    
@@ -262,7 +261,7 @@ class TestAPI:
             else:
                 resp = requests.get(url, headers=headers, auth=auth, verify=verify)
         except Exception as ex:
-            log.error('requests.get() failed with exception:', str(ex))
+            log.error('requests.get() failed with exception: %s' % str(ex))
             return None
         
         # pretty request and response into API log file
@@ -275,4 +274,3 @@ class TestAPI:
             log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
             return None
         return resp.json()
-
