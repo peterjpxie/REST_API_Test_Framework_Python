@@ -195,9 +195,9 @@ class TestAPI:
     def test_mock_service_dynamic(self):    
         log.info('Calling %s.' % inspect.stack()[0][3])               
         url = 'http://127.0.0.1:5000/anyendpoint'   
-        response_status_code = '202'
-        response_data = '{"code": 0, "message": "all good"}'
-        headers = {'response_status_code': response_status_code, 'response_data': response_data}    
+        response_code = '202'
+        response_body = '{"code": 0, "message": "all good"}'
+        headers = {'response_code': response_code, 'response_body': response_body}    
         resp = self.get(url, headers = headers)       
         assert resp != None
         assert resp["code"] == 0

@@ -1,4 +1,4 @@
-2021-04-18 02:53:51: -----------Request----------->
+2021-04-23 06:14:57: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -13,10 +13,10 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2021-04-18 02:53:51: <-----------Response-----------
+2021-04-23 06:14:57: <-----------Response-----------
 Status code:200
 
-Date: Sun, 18 Apr 2021 04:53:51 GMT
+Date: Thu, 22 Apr 2021 20:14:56 GMT
 Content-Type: application/json
 Content-Length: 519
 Connection: keep-alive
@@ -36,7 +36,7 @@ Access-Control-Allow-Credentials: true
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-607bbb5f-14c3ba2556e1d39a66d0b5c8"
+        "X-Amzn-Trace-Id": "Root=1-6081d940-43de75644efa5fce12e2a3fe"
     },
     "json": {
         "key1": 1,
@@ -46,7 +46,7 @@ Access-Control-Allow-Credentials: true
     "url": "http://httpbin.org/post"
 }
 
-2021-04-18 02:53:52: -----------Request----------->
+2021-04-23 06:14:58: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -58,10 +58,10 @@ Content-Length: 18
 
 key1=1&key2=value2
 
-2021-04-18 02:53:52: <-----------Response-----------
+2021-04-23 06:14:58: <-----------Response-----------
 Status code:200
 
-Date: Sun, 18 Apr 2021 04:53:52 GMT
+Date: Thu, 22 Apr 2021 20:14:57 GMT
 Content-Type: application/json
 Content-Length: 451
 Connection: keep-alive
@@ -81,14 +81,14 @@ Access-Control-Allow-Credentials: true
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-607bbb60-5e2635c70953934a2ebc825c"
+        "X-Amzn-Trace-Id": "Root=1-6081d941-347684362976580554b560fd"
     },
     "json": null,
     "origin": "121.200.4.214",
     "url": "http://httpbin.org/post"
 }
 
-2021-04-18 02:53:53: -----------Request----------->
+2021-04-23 06:14:58: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
 User-Agent: python-requests/2.25.1
@@ -99,10 +99,10 @@ Authorization: Basic dXNlcjE6cGFzc3dvcmQx
 
 None
 
-2021-04-18 02:53:53: <-----------Response-----------
+2021-04-23 06:14:58: <-----------Response-----------
 Status code:200
 
-Date: Sun, 18 Apr 2021 04:53:53 GMT
+Date: Thu, 22 Apr 2021 20:14:58 GMT
 Content-Type: application/json
 Content-Length: 48
 Connection: keep-alive
@@ -115,7 +115,7 @@ Access-Control-Allow-Credentials: true
     "user": "user1"
 }
 
-2021-04-18 02:53:53: -----------Request----------->
+2021-04-23 06:14:59: -----------Request----------->
 GET http://127.0.0.1:5000/hello
 
 User-Agent: python-requests/2.25.1
@@ -125,38 +125,38 @@ Connection: keep-alive
 
 None
 
-2021-04-18 02:53:53: <-----------Response-----------
+2021-04-23 06:14:59: <-----------Response-----------
 Status code:200
 
 Content-Type: text/html; charset=utf-8
 Content-Length: 40
 Server: Werkzeug/1.0.1 Python/3.9.3
-Date: Sun, 18 Apr 2021 04:53:53 GMT
+Date: Thu, 22 Apr 2021 20:14:59 GMT
 
 {
     "code": 1,
     "message": "Hello, World!"
 }
 
-2021-04-18 02:53:53: -----------Request----------->
+2021-04-23 06:14:59: -----------Request----------->
 GET http://127.0.0.1:5000/anyendpoint
 
 User-Agent: python-requests/2.25.1
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
-response_status_code: 202
-response_data: {"code": 0, "message": "all good"}
+response_code: 202
+response_body: {"code": 0, "message": "all good"}
 
 None
 
-2021-04-18 02:53:53: <-----------Response-----------
+2021-04-23 06:14:59: <-----------Response-----------
 Status code:202
 
 Content-Type: text/html; charset=utf-8
 Content-Length: 34
 Server: Werkzeug/1.0.1 Python/3.9.3
-Date: Sun, 18 Apr 2021 04:53:53 GMT
+Date: Thu, 22 Apr 2021 20:14:59 GMT
 
 {
     "code": 0,

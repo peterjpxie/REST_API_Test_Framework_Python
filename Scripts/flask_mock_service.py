@@ -25,18 +25,18 @@ def mock_json():
 # - Define only one function for all endpoints and test scenarios since we return based on request header data
 # 
 # Sample request headers for expected return status code and body data:
-#   response_status_code: 200
-#   response_data: '{"code": 0, "message": "Hello, World!" }'
+#   response_code: 200
+#   response_body: '{"code": 0, "message": "Hello, World!" }'
 @app.before_request
 def mock_dynamic():
     if not request.url.endswith('/hello'):
         headers = request.headers
-        response_status_code = headers.get('response_status_code', 200) # default to 200
-        response_data = headers.get('response_data')
-        if response_data is None:
-            return '{"message": "response_data is not set." }'
+        response_code = headers.get('response_code', 200) # default to 200
+        response_body = headers.get('response_body')
+        if response_body is None:
+            return '{"message": "response_body is not set." }'
         else:
-            return response_data, int(response_status_code)        
+            return response_body, int(response_code)        
 
     
 # Run in HTTP  
