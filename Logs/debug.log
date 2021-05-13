@@ -1,8 +1,8 @@
-2021-04-23 06:14:57 [INFO   ][ln-138]: Test test_post_headers_body_json passed.
-2021-04-23 06:14:58 [INFO   ][ln-151]: Test test_post_normal_body passed.
-2021-04-23 06:14:58 [INFO   ][ln-158]: Calling test_get_auth_httpbin.
-2021-04-23 06:14:58 [INFO   ][ln-166]: Test test_get_auth_httpbin passed.
-2021-04-23 06:14:58 [INFO   ][ln-180]: Calling test_mock_service.
-2021-04-23 06:14:59 [INFO   ][ln-185]: Test test_mock_service passed.
-2021-04-23 06:14:59 [INFO   ][ln-196]: Calling test_mock_service_dynamic.
-2021-04-23 06:14:59 [INFO   ][ln-204]: Test test_mock_service_dynamic passed.
+2021-05-13 10:27:16 [INFO   ][ln-138]: Test test_post_headers_body_json passed.
+2021-05-13 10:27:16 [INFO   ][ln-151]: Test test_post_normal_body passed.
+2021-05-13 10:27:16 [INFO   ][ln-158]: Calling test_get_auth_httpbin.
+2021-05-13 10:27:17 [INFO   ][ln-166]: Test test_get_auth_httpbin passed.
+2021-05-13 10:27:17 [INFO   ][ln-180]: Calling test_mock_service.
+2021-05-13 10:27:17 [INFO   ][ln-185]: Test test_mock_service passed.
+2021-05-13 10:27:17 [INFO   ][ln-196]: Calling test_mock_service_dynamic.
+2021-05-13 10:27:17 [INFO   ][ln-204]: Test test_mock_service_dynamic passed.

@@ -20,9 +20,6 @@ def mock_json():
     return '{"code": 1, "message": "Hello, World!" }'
 
 # Return dynamic status code and content based on request header data for any endpoints
-# Features:
-# - Define only one route for all endpoints since we use <path:subpath>
-# - Define only one function for all endpoints and test scenarios since we return based on request header data
 # 
 # Sample request headers for expected return status code and body data:
 #   response_code: 200
