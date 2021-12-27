@@ -26,6 +26,7 @@ import os
 # import ipdb
 import inspect
 import sys
+from dotmap import DotMap
 
 if sys.version_info < (3,7):
     raise Exception("Requires Python 3.7 or above.")
@@ -131,14 +132,41 @@ class TestAPI:
         # No need to specify common headers as it is taken cared of by common self.post() function.
         # headers = {'Content-Type': 'application/json' } 
         
-        # convert dict to json by json.dumps() for body data. It is risky to use str(payload) to convert because json format must use double quotes ("")
+        # convert dict to json by json.dumps() for body data. It is risky to use str(payload) 
+        # to convert because json format must use double quotes ("")
         url = 'http://httpbin.org/post'
         resp = self.post(url, data = json.dumps(payload,indent=4))      
         assert resp != None
+        # self.post converts the return to json if it is not None
+        assert resp['url'] == url
+        assert resp['json']['key1'] == 1
+        # dot fashion with DotMap
+        assert DotMap(resp).json.key1 == 1        
         log.info('Test %s passed.' % inspect.stack()[0][3])
         """ Request HTTP body:
         {   "key1": 1, 
             "key2": "value2"
+        }
+
+        Response body:
+        {
+        "args": {},
+        "data": "{\n    \"key1\": 1,\n    \"key2\": \"value2\"\n}",
+        "files": {},
+        "form": {},
+        "headers": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate",
+            "Content-Length": "39",
+            "Host": "httpbin.org",
+            "User-Agent": "python-requests/2.22.0"
+        },
+        "json": {
+            "key1": 1,
+            "key2": "value2"
+        },
+        "origin": "103.115.210.48, 103.115.210.48",
+        "url": "https://httpbin.org/post"
         }
         """   
 
@@ -239,7 +267,7 @@ class TestAPI:
         pretty_print_request(resp.request)    
         pretty_print_response_json(resp)
         
-        # This return caller function's name, not this function post.
+        # This returns caller function's name, not this function post.
         caller_func_name = inspect.stack()[1][3]        
         if resp.status_code not in VALID_HTTP_RESP:
             log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))

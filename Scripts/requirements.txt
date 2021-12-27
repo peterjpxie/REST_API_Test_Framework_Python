@@ -2,3 +2,4 @@ pytest
 requests
 pytest-html
 Flask
+dotmap
