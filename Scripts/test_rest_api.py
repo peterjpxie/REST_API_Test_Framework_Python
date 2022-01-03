@@ -14,7 +14,7 @@ pip install -r requirements.txt
 Run:
 pytest
 
-Python version: 3.7 or above
+Python version: 3.6 or above
 """
 from time import sleep
 from datetime import datetime
@@ -28,8 +28,8 @@ import inspect
 import sys
 from dotmap import DotMap
 
-if sys.version_info < (3,7):
-    raise Exception("Requires Python 3.7 or above.")
+if sys.version_info < (3,6):
+    raise Exception("Requires Python 3.6 or above.")
 
 ## Parameters
 LOG_LEVEL = logging.INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
@@ -118,6 +118,59 @@ def pretty_print_response_json(response):
         '\n'.join('{}: {}'.format(k, v) for k, v in response.headers.items()),
         resp_body
         ))
+
+def dict_to_ini(dict_var, file=None):
+    """ Covert a dict to ini file format
+
+    Example Input    
+    -------------    
+    {
+        "name": {
+            "firstname": "Peter",
+            "secondname": "Xie"
+        },
+        "scores": [100,99],
+        "age": 30
+    }
+
+    Example Output
+    --------------
+    name.firstname = Peter
+    name.secondname = Xie
+    scores[0] = 100
+    scores[1] = 99
+    age = 30
+    """
+    ini_contents = ''
+
+    def iterate_dict(var, prefix=None):
+        """ 
+        """            
+        # recursive if dict
+        if isinstance(var,dict):
+            for k,v in var.items():
+                if prefix is None:
+                    new_prefix = k  # e.g. age
+                else:
+                    new_prefix = prefix + '.' + k # e.g. name.firstname
+                iterate_dict(v, new_prefix)
+        elif isinstance(var,list):
+            for index, value in enumerate(var):
+                assert prefix is not None # Invalid to start from something like iterate_dict([1,2], None)
+                new_prefix = '%s[%d]' % (prefix, index) # e.g. scores[0]
+                iterate_dict(value, new_prefix)                             
+        else:                
+            this_item = "%s = %s" % (prefix, var) 
+            nonlocal ini_contents
+            ini_contents += this_item + '\n'
+            
+    assert isinstance(dict_var, dict)
+    iterate_dict(dict_var, None)
+    if file is not None:
+        with open(file, 'w') as f:
+            f.write(ini_contents)
+            
+    return ini_contents
 
 class TestAPI:
     """
@@ -302,3 +355,16 @@ class TestAPI:
             log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
             return None
         return resp.json()
+
+
+if __name__ == '__main__':
+    # self test
+    var = {
+        "name": {
+            "firstname": "Peter",
+            "secondname": "Xie"
+        },
+        "scores": [{"k1": 1},{"k1":"v2"}],
+        "age": 22
+    }
+    print(dict_to_ini(var,"a.ini"))

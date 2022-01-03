@@ -1,8 +1,0 @@
-2021-12-27 03:47:29 [INFO   ][ln-145]: Test test_post_headers_body_json passed.
-2021-12-27 03:47:29 [INFO   ][ln-179]: Test test_post_normal_body passed.
-2021-12-27 03:47:29 [INFO   ][ln-186]: Calling test_get_auth_httpbin.
-2021-12-27 03:47:30 [INFO   ][ln-194]: Test test_get_auth_httpbin passed.
-2021-12-27 03:47:30 [INFO   ][ln-208]: Calling test_mock_service.
-2021-12-27 03:47:30 [INFO   ][ln-213]: Test test_mock_service passed.
-2021-12-27 03:47:30 [INFO   ][ln-224]: Calling test_mock_service_dynamic.
-2021-12-27 03:47:30 [INFO   ][ln-232]: Test test_mock_service_dynamic passed.
