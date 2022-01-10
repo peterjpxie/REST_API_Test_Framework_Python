@@ -1,0 +1,9 @@
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Content-Type: application/json
+
+{
+    "key1": 1,
+    "key2": "value2"
+}
