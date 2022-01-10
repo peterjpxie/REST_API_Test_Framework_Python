@@ -1,0 +1,8 @@
+2022-01-10 09:50:56 [INFO   ][ln-202]: Test test_post_headers_body_json passed.
+2022-01-10 09:50:56 [INFO   ][ln-236]: Test test_post_normal_body passed.
+2022-01-10 09:50:56 [INFO   ][ln-243]: Calling test_get_auth_httpbin.
+2022-01-10 09:50:57 [INFO   ][ln-251]: Test test_get_auth_httpbin passed.
+2022-01-10 09:50:57 [INFO   ][ln-265]: Calling test_mock_service.
+2022-01-10 09:50:57 [INFO   ][ln-270]: Test test_mock_service passed.
+2022-01-10 09:50:57 [INFO   ][ln-281]: Calling test_mock_service_dynamic.
+2022-01-10 09:50:57 [INFO   ][ln-289]: Test test_mock_service_dynamic passed.

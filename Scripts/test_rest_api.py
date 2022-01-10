@@ -133,15 +133,17 @@ def dict_to_ini(dict_var, file=None):
         "age": 30
     }
 
-    Example Output
+    Example Output (return/file)
     --------------
+    age = 30
     name.firstname = Peter
     name.secondname = Xie
     scores[0] = 100
     scores[1] = 99
-    age = 30
+
+    Note: The output is sorted.
     """
-    ini_contents = ''
+    ini_content_list = []
 
     def iterate_dict(var, prefix=None):
         """ 
@@ -161,16 +163,18 @@ def dict_to_ini(dict_var, file=None):
                 iterate_dict(value, new_prefix)                             
         else:                
             this_item = "%s = %s" % (prefix, var) 
-            nonlocal ini_contents
-            ini_contents += this_item + '\n'
+            nonlocal ini_content_list
+            ini_content_list.append(this_item)
             
     assert isinstance(dict_var, dict)
     iterate_dict(dict_var, None)
+    ini_content_list.sort()
+    ini_content = '\n'.join(ini_content_list)
     if file is not None:
         with open(file, 'w') as f:
-            f.write(ini_contents)
+            f.write(ini_content)
             
-    return ini_contents
+    return ini_content
 
 class TestAPI:
     """
