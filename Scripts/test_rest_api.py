@@ -31,7 +31,7 @@ from dotmap import DotMap
 if sys.version_info < (3,6):
     raise Exception("Requires Python 3.6 or above.")
 
-## Parameters
+### Parameters ###
 LOG_LEVEL = logging.INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
 VALID_HTTP_RESP = (200, 201, 202)
 
@@ -100,7 +100,8 @@ def pretty_print_request_json(request):
         )
         
 # argument is response object 
-# display body in json format explicitly with expected indent. Actually most of the time it is not very necessary because body is formatted in pretty print way.    
+# display body in json format explicitly with expected indent. Actually most of the time it is not very necessary 
+# because body is formatted in pretty print way.    
 def pretty_print_response_json(response):
     """ pretty print response in json format. 
         If failing to parse body in json format, print in text.
@@ -176,6 +177,22 @@ def dict_to_ini(dict_var, file=None):
             
     return ini_content
 
+def parse_test_input(filename):
+    """Parse request test input
+    
+    Args: filename in path 
+    Return: method, url, headers, data
+    """
+    if not os.path.isfile(filename):
+        raise FileNotFoundError
+    
+    with open(filename,'r') as f:
+        pass
+        # TODO
+
+
+
+
 class TestAPI:
     """
     Test Restful HTTP API examples. 
@@ -189,8 +206,7 @@ class TestAPI:
         # No need to specify common headers as it is taken cared of by common self.post() function.
         # headers = {'Content-Type': 'application/json' } 
         
-        # convert dict to json by json.dumps() for body data. It is risky to use str(payload) 
-        # to convert because json format must use double quotes ("")
+        # convert dict to json by json.dumps() for body data. 
         url = 'http://httpbin.org/post'
         resp = self.post(url, data = json.dumps(payload,indent=4))      
         assert resp != None
