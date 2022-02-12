@@ -182,12 +182,34 @@ def parse_test_input(filename):
     
     Args: filename in path 
     Return: method, url, headers, data
+
+    Sample Input:
+    POST http://httpbin.org/post 
+
+    User-Agent: Python Requests
+    Content-Type: application/json
+
+    {
+        "key1": 1,
+        "key2": "value2"
+    }
     """
     if not os.path.isfile(filename):
+        log.error('parse_test_input: Invalid filename: %s' % filename)
         raise FileNotFoundError
     
     with open(filename,'r') as f:
-        pass
+
+        # 1st line: Method url
+        # e.g. POST http://httpbin.org/post 
+        1st_line = f.readline()
+        assert len(1st_line.split()) == 2
+        method, url = 1st_line.split()
+        method, url = method.strip(), url.strip()
+
+        # next line is empty
+        2nd_line = f.readline()
+
         # TODO
 
 
