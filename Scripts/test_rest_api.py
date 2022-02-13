@@ -350,7 +350,7 @@ class TestAPI:
     def post(self, url, data, headers={}, verify=False, amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
-            - append common headers
+            - append common headers (when amend_headers=True)
             - print request and response in API log file
             - Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
             - arguments are the same as requests.post, except amend_headers.
@@ -385,7 +385,7 @@ class TestAPI:
             return None
         return resp.json()
 
-    def get(self, url, headers={}, auth = None, verify=False):
+    def get(self, url, headers={}, auth=None, verify=False):
         """
         common request get function with below features, which you only need to take care of url:
             - print request and response in API log file
@@ -413,7 +413,6 @@ class TestAPI:
             log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
             return None
         return resp.json()
-
 
 if __name__ == '__main__':
     # self test  
