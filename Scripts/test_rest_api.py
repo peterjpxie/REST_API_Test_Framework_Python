@@ -347,7 +347,7 @@ class TestAPI:
         {"code": 0, "message": "all good"}
         """
 
-    def post(self, url, data, headers={}, verify=False, amend_headers=True):
+    def post(self, url, data, headers={}, auth=None, verify=False, amend_headers=True):
         """
         common request post function with below features, which you only need to take care of url and body data:
             - append common headers (when amend_headers=True)
@@ -368,7 +368,7 @@ class TestAPI:
                 
         # send post request
         try:
-            resp = requests.post(url, data=data, headers=headers_new, verify=verify)
+            resp = requests.post(url, data=data, headers=headers_new, auth=auth, verify=verify)
         except Exception as ex:
             log.error('requests.post() failed with exception: %s' % str(ex))
             return None        
@@ -395,10 +395,7 @@ class TestAPI:
         verify: False - Disable SSL certificate verification 
         """
         try:
-            if auth == None:
-                resp = requests.get(url, headers=headers, verify=verify)
-            else:
-                resp = requests.get(url, headers=headers, auth=auth, verify=verify)
+            resp = requests.get(url, headers=headers, auth=auth, verify=verify)
         except Exception as ex:
             log.error('requests.get() failed with exception: %s' % str(ex))
             return None

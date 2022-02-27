@@ -1,0 +1,165 @@
+2022-02-27 10:19:34: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 39
+
+{
+    "key1": 1,
+    "key2": "value2"
+}
+
+2022-02-27 10:19:34: <-----------Response-----------
+Status code:200
+
+Date: Sun, 27 Feb 2022 14:19:34 GMT
+Content-Type: application/json
+Content-Length: 520
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "{\n    \"key1\": 1,\n    \"key2\": \"value2\"\n}",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "39",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-621b8876-1aec6e29274583eb0b849d75"
+    },
+    "json": {
+        "key1": 1,
+        "key2": "value2"
+    },
+    "origin": "54.206.179.186",
+    "url": "http://httpbin.org/post"
+}
+
+2022-02-27 10:19:34: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 18
+
+key1=1&key2=value2
+
+2022-02-27 10:19:34: <-----------Response-----------
+Status code:200
+
+Date: Sun, 27 Feb 2022 14:19:34 GMT
+Content-Type: application/json
+Content-Length: 452
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "key1=1&key2=value2",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "18",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-621b8876-1cad3a0159438ce21e4bef38"
+    },
+    "json": null,
+    "origin": "54.206.179.186",
+    "url": "http://httpbin.org/post"
+}
+
+2022-02-27 10:19:34: -----------Request----------->
+GET http://httpbin.org/basic-auth/user1/password1
+
+User-Agent: python-requests/2.26.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Authorization: Basic dXNlcjE6cGFzc3dvcmQx
+
+None
+
+2022-02-27 10:19:34: <-----------Response-----------
+Status code:200
+
+Date: Sun, 27 Feb 2022 14:19:34 GMT
+Content-Type: application/json
+Content-Length: 48
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "authenticated": true,
+    "user": "user1"
+}
+
+2022-02-27 10:19:35: -----------Request----------->
+GET http://127.0.0.1:5000/hello
+
+User-Agent: python-requests/2.26.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+None
+
+2022-02-27 10:19:35: <-----------Response-----------
+Status code:200
+
+Content-Type: text/html; charset=utf-8
+Content-Length: 40
+Server: Werkzeug/2.0.1 Python/3.7.10
+Date: Sun, 27 Feb 2022 14:19:35 GMT
+
+{
+    "code": 1,
+    "message": "Hello, World!"
+}
+
+2022-02-27 10:19:35: -----------Request----------->
+GET http://127.0.0.1:5000/anyendpoint
+
+User-Agent: python-requests/2.26.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+response_code: 202
+response_body: {"code": 0, "message": "all good"}
+
+None
+
+2022-02-27 10:19:35: <-----------Response-----------
+Status code:202
+
+Content-Type: text/html; charset=utf-8
+Content-Length: 34
+Server: Werkzeug/2.0.1 Python/3.7.10
+Date: Sun, 27 Feb 2022 14:19:35 GMT
+
+{
+    "code": 0,
+    "message": "all good"
+}
+
