@@ -1,4 +1,4 @@
-2022-02-28 10:10:01: -----------Request----------->
+2022-03-04 09:40:43: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -13,12 +13,12 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2022-02-28 10:10:01: <-----------Response-----------
+2022-03-04 09:40:43: <-----------Response-----------
 Status code:200
 
-Date: Mon, 28 Feb 2022 14:10:01 GMT
+Date: Fri, 04 Mar 2022 09:40:43 GMT
 Content-Type: application/json
-Content-Length: 520
+Content-Length: 519
 Connection: keep-alive
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
@@ -36,17 +36,17 @@ Access-Control-Allow-Credentials: true
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-621cd7b9-5af2ecbc70d247ff1d49118e"
+        "X-Amzn-Trace-Id": "Root=1-6221de9b-50c7e3ea0bdd35c54fd733ea"
     },
     "json": {
         "key1": 1,
         "key2": "value2"
     },
-    "origin": "54.153.234.116",
+    "origin": "47.243.182.41",
     "url": "http://httpbin.org/post"
 }
 
-2022-02-28 10:10:01: -----------Request----------->
+2022-03-04 09:40:44: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -58,12 +58,12 @@ Content-Length: 18
 
 key1=1&key2=value2
 
-2022-02-28 10:10:01: <-----------Response-----------
+2022-03-04 09:40:44: <-----------Response-----------
 Status code:200
 
-Date: Mon, 28 Feb 2022 14:10:01 GMT
+Date: Fri, 04 Mar 2022 09:40:44 GMT
 Content-Type: application/json
-Content-Length: 452
+Content-Length: 451
 Connection: keep-alive
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
@@ -81,17 +81,17 @@ Access-Control-Allow-Credentials: true
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-621cd7b9-7f5e6a3d4bc09d6252ff0af6"
+        "X-Amzn-Trace-Id": "Root=1-6221de9c-31dc672d4ccafd3e260eed2a"
     },
     "json": null,
-    "origin": "54.153.234.116",
+    "origin": "47.243.182.41",
     "url": "http://httpbin.org/post"
 }
 
-2022-02-28 10:10:02: -----------Request----------->
+2022-03-04 09:40:45: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
-User-Agent: python-requests/2.26.0
+User-Agent: python-requests/2.18.4
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: keep-alive
@@ -99,10 +99,10 @@ Authorization: Basic dXNlcjE6cGFzc3dvcmQx
 
 None
 
-2022-02-28 10:10:02: <-----------Response-----------
+2022-03-04 09:40:45: <-----------Response-----------
 Status code:200
 
-Date: Mon, 28 Feb 2022 14:10:01 GMT
+Date: Fri, 04 Mar 2022 09:40:45 GMT
 Content-Type: application/json
 Content-Length: 48
 Connection: keep-alive
@@ -113,5 +113,53 @@ Access-Control-Allow-Credentials: true
 {
     "authenticated": true,
     "user": "user1"
+}
+
+2022-03-04 09:40:45: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 39
+
+{
+    "key1": 1,
+    "key2": "value2"
+}
+
+2022-03-04 09:40:45: <-----------Response-----------
+Status code:200
+
+Date: Fri, 04 Mar 2022 09:40:45 GMT
+Content-Type: application/json
+Content-Length: 519
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "{\n    \"key1\": 1,\n    \"key2\": \"value2\"\n}",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "39",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-6221de9d-50bf6f5377dc04be20433927"
+    },
+    "json": {
+        "key1": 1,
+        "key2": "value2"
+    },
+    "origin": "47.243.182.41",
+    "url": "http://httpbin.org/post"
 }
 

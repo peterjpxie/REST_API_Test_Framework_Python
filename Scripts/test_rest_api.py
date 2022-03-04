@@ -347,6 +347,23 @@ class TestAPI:
         {"code": 0, "message": "all good"}
         """
 
+    # test by input and output text files
+    def test_by_input_text(self):
+        payload = {'key1': 1, 'key2': 'value2'}
+        # No need to specify common headers as it is taken cared of by common self.post() function.
+        # headers = {'Content-Type': 'application/json' } 
+        
+        # convert dict to json by json.dumps() for body data. 
+        url = 'http://httpbin.org/post'
+        resp = self.request('post', url, data = json.dumps(payload,indent=4))      
+        assert resp != None
+        # self.post converts the return to json if it is not None
+        assert resp['url'] == url
+        assert resp['json']['key1'] == 1
+        # dot fashion with DotMap
+        assert DotMap(resp).json.key1 == 1        
+        log.info('Test %s passed.' % inspect.stack()[0][3])
+
     def post(self, url, data, headers={}, amend_headers=True, verify=False):
         """
         common request post function with below features, which you only need to take care of url and body data:
@@ -433,11 +450,11 @@ class TestAPI:
                 
         # send post request
         try:
-            resp = requests.request(method, url, data=data, headers=headers_new, verify=verify)
+            resp = requests.request(method, url, data=data, headers=headers_new, verify=verify, **kwargs)
         except Exception as ex:
             log.error('requests.request() failed with exception: %s' % str(ex))
-            return None        
-
+            return None
+        
         # pretty request and response into API log file
         # Note: request print is common instead of checking if it is JSON body. So pass pretty formatted json string as argument to the request for pretty logging. 
         pretty_print_request(resp.request)    
@@ -454,4 +471,5 @@ if __name__ == '__main__':
     # self test  
     method, url, headers, body = parse_test_input('../inputs/test_case_01/request_01.txt')
     print('\n'.join([method, url, str(headers), body]))
+    
     pass
