@@ -230,7 +230,6 @@ def parse_test_input(filename):
 
     return method, url, headers, body
 
-
 class TestAPI:
     """
     Test Restful HTTP API examples. 

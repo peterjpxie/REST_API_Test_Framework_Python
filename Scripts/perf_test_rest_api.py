@@ -8,17 +8,7 @@ Another option is to use aiohttp module, which uses asyncio for asynchrony. This
 the API test functions, though they are quite like requests functions, and measuring the response time 
 is not straight forward as requests and the response time may not be accurate for the nature of asyncio.
 
-Features:
-
-
 Python version: 3.7 or above
-    
-Install:
-pip install -U requests
-
-Run:
-
-
 """
 from time import sleep
 import time
