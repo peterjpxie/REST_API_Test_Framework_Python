@@ -205,8 +205,9 @@ def ini_to_dict(input):
 
     ret_dict = {}
     for line in content.split("\n"):
-        if " = " in line:
-            key, value = line.split(' = ')
+        if "=" in line:
+            key, value = line.split('=')
+            key, value = key.strip(), value.strip()
             ret_dict[key] = value
     return ret_dict
 
@@ -223,15 +224,28 @@ def diff_simple_dict(expected, actual, ignore=[], output_file=None):
     Return: diff output string. Default empty string '' if no diff.
 
     """
-    diff = ''
-    # missing in actual
-    for key in expected:
+    diff_list = []
+    for key in expected and key not in ignore:
+        # missing in actual
         if key not in actual:
-            diff = diff + '- %s = %s' % (key,expected[key])
-    # diff 
+            diff_list.append('- %s = %s \n' % (key,expected[key]) )
+        # diff
+        elif expected[key] != actual[key]:
+            diff_list.append('- %s = %s \n' % (key,expected[key]) )
+            diff_list.append('+ %s = %s \n' % (key,actual[key]) )
 
-    # missing in expected
-    pass
+    # more in actual (missing in expected)
+    for key in actual and key not in ignore:
+        if key not in expected:
+            diff_list.append('+ %s = %s \n' % (key,actual[key]))
+
+    diff_list.sort()
+    diff = '\n'.join(diff_list)
+    if output_file:
+        with open(output_file, 'w') as f:
+            f.write(diff)
+            
+    return diff
 
 def parse_test_input(filename):
     """Parse request test input
@@ -413,22 +427,24 @@ class TestAPI:
         """        
         # post
         input_root = '../input'
+        output_root = '../output'
         testcase_full_dir = path.join(input_root,testcase_folder)
         for request_file in os.listdir(testcase_full_dir):
+            # parse input files
             request_file_path = path.join(testcase_full_dir,request_file)
             log.info("Test by input file %s" % request_file_path)
             method, url, headers, body = parse_test_input(request_file_path)
             log.info("Parsed request:")
             log.info('%s %s\n%s\n%s' % (method, url, headers, body))
+
             resp = self.request(method, url, headers, body)
 
             assert resp != None
-            ## Compare output with expected output file 
-            # convert actual json response to ini format and save in a file
-            assert resp['url'] == url
-            assert resp['json']['key1'] == 1
-            # dot fashion with DotMap
-            assert DotMap(resp).json.key1 == 1        
+            # write response dict to ini output
+            output_file_dir = path.join(output_root,testcase_folder)
+            os.makedirs(output_file_dir)
+            output_file_path = path.join(output_file_dir,testcase_folder)
+            # todo - compare
             log.info('Test %s passed.' % inspect.stack()[0][3])
 
     def post(self, url, data, headers={}, amend_headers=True, verify=False):
