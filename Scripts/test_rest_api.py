@@ -446,9 +446,9 @@ class TestAPI:
         Run it without expect files, examine the output manually, then copy output folder as expect folder if passed.
         """
         # post
-        input_root = path.join(root_path,"input")
-        output_root = path.join(root_path,"output")
-        expect_root = path.join(root_path,"expect")
+        input_root = path.join(root_path,"inputs")
+        output_root = path.join(root_path,"outputs")
+        expect_root = path.join(root_path,"expects")
         diff_root = path.join(root_path,"diff")
         testcase_full_dir = path.join(input_root, testcase_folder)
         for request_file in os.listdir(testcase_full_dir):
