@@ -9,6 +9,12 @@ Run:
 pytest
 
 Python version: 3.6 or above
+
+Project structure:
+├── inputs
+├── Logs
+└── Scripts
+
 """
 from time import sleep
 from datetime import datetime
@@ -25,19 +31,13 @@ from dotmap import DotMap
 import re
 import pytest
 
-if sys.version_info < (3, 6):
-    raise SystemError("Requires Python 3.6 or above.")
-
-### Parameters ###
-LOG_LEVEL = logging.INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+### Settings ###
+LOG_LEVEL = logging.DEBUG  # DEBUG, INFO, WARNING, ERROR, CRITICAL
 VALID_HTTP_RESP = (200, 201, 202)
 
-# Assume project structure as below:
-# ├── inputs
-# ├── Logs
-# └── Scripts
-#
 
+if sys.version_info < (3, 6):
+    raise SystemError("Requires Python 3.6 or above.")
 
 # root_path is parent folder of Scripts folder (one level up)
 root_path = path.dirname(path.dirname(path.realpath(__file__)))
@@ -198,7 +198,7 @@ def dict_to_ini(dict_var, file=None):
 
 
 def ini_to_dict(input):
-    """Covert a ini file or content string to simple dict
+    """Covert a ini file to a simple dict
 
     Example Input (file or content string)
     -------------
@@ -217,8 +217,8 @@ def ini_to_dict(input):
     if path.isfile(input):
         with open(input) as f:
             content = f.read()
-    else:  # input is content string
-        content = input
+    else:
+        return {}
 
     ret_dict = {}
     for line in content.split("\n"):
@@ -432,6 +432,7 @@ class TestAPI:
         {"code": 0, "message": "all good"}
         """
 
+
     @pytest.mark.parametrize("testcase_folder", ["test_case_01", "test_case_02"])
     def test_by_input_output_text(self, testcase_folder):
         """test by input and expected output text files
@@ -439,18 +440,24 @@ class TestAPI:
         Write only this test function and use parametrize method to test different cases by:
         - read input request text files
         - compare output with expected output text files where json content is converted to ini format for easy comparison
+
+        Best Practice:
+        For the first run, no need to prepare the expected output files. 
+        Run it without expect files, examine the output manually, then copy output folder as expect folder if passed.
         """
         # post
-        input_root = "../input"
-        output_root = "../output"
+        input_root = path.join(root_path,"input")
+        output_root = path.join(root_path,"output")
+        expect_root = path.join(root_path,"expect")
+        diff_root = path.join(root_path,"diff")
         testcase_full_dir = path.join(input_root, testcase_folder)
         for request_file in os.listdir(testcase_full_dir):
             # parse input files
             request_file_path = path.join(testcase_full_dir, request_file)
             log.info("Test by input file %s" % request_file_path)
             method, url, headers, body = parse_test_input(request_file_path)
-            log.info("Parsed request:")
-            log.info("%s %s\n%s\n%s" % (method, url, headers, body))
+            log.debug("Parsed request:")
+            log.debug("%s %s\n%s\n%s" % (method, url, headers, body))
 
             resp = self.request(method, url, headers, body)
 
@@ -460,9 +467,19 @@ class TestAPI:
             os.makedirs(output_file_dir)
             output_filename = request_file.replace("request", "response")
             output_file_path = path.join(output_file_dir, output_filename)
+            # convert to a ini file
             dict_to_ini(resp, output_file_path)
+            expect_file_dir = path.join(expect_root, testcase_folder)
+            os.makedirs(expect_file_dir)
+            expect_file_path = path.join(expect_file_dir, output_filename)
             # todo - compare
-
+            actual = ini_to_dict(output_file_path)
+            expected = ini_to_dict(expect_file_path)
+            diff_file_dir = path.join(diff_root, testcase_folder)
+            os.makedirs(diff_file_dir)
+            diff_file_path = path.join(diff_file_dir, output_filename)
+            diff = diff_simple_dict(actual, expected, ignore=[], output_file=diff_file_path)
+            assert diff == []
             log.info("Test %s passed." % inspect.stack()[0][3])
 
     def post(self, url, data, headers={}, amend_headers=True, verify=False):
