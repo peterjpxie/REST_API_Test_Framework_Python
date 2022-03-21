@@ -1,14 +1,14 @@
-2022-03-21 12:54:05 [DEBUG  ][ln-329]: To load test data.
-2022-03-21 12:54:05 [INFO   ][ln-460]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
-2022-03-21 12:54:05 [DEBUG  ][ln-462]: Parsed request:
-2022-03-21 12:54:05 [DEBUG  ][ln-463]: POST http://httpbin.org/post
+2022-03-21 01:38:16 [DEBUG  ][ln-330]: To load test data.
+2022-03-21 01:38:16 [INFO   ][ln-461]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
+2022-03-21 01:38:16 [DEBUG  ][ln-463]: Parsed request:
+2022-03-21 01:38:16 [DEBUG  ][ln-464]: POST http://httpbin.org/post
 {'User-Agent': 'Python Requests', 'Content-Type': 'application/json'}
 {
     "key1": 1,
     "key2": "value2"
 }
-2022-03-21 12:54:06 [INFO   ][ln-460]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
-2022-03-21 12:54:06 [DEBUG  ][ln-462]: Parsed request:
-2022-03-21 12:54:06 [DEBUG  ][ln-463]: GET http://httpbin.org/basic-auth/user1/password1
+2022-03-21 01:38:17 [INFO   ][ln-461]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
+2022-03-21 01:38:17 [DEBUG  ][ln-463]: Parsed request:
+2022-03-21 01:38:17 [DEBUG  ][ln-464]: GET http://httpbin.org/basic-auth/user1/password1
 {'Authorization': 'Basic dXNlcjE6cGFzc3dvcmQx'}
 None

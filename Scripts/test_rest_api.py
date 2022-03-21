@@ -225,8 +225,8 @@ def ini_to_dict(input):
 
     ret_dict = {}
     for line in content.split("\n"):
-        if "=" in line:
-            key, value = line.split("=")
+        if " = " in line:
+            key, value = line.split(" = ", maxsplit = 1)
             key, value = key.strip(), value.strip()
             ret_dict[key] = value
     return ret_dict
@@ -246,19 +246,21 @@ def diff_simple_dict(expected, actual, ignore=[], output_file=None):
 
     """
     diff_list = []
-    for key in expected and key not in ignore:
-        # missing in actual
-        if key not in actual:
-            diff_list.append("- %s = %s \n" % (key, expected[key]))
-        # diff
-        elif expected[key] != actual[key]:
-            diff_list.append("- %s = %s \n" % (key, expected[key]))
-            diff_list.append("+ %s = %s \n" % (key, actual[key]))
+    for key in expected:
+        if key not in ignore:
+            # missing in actual
+            if key not in actual:
+                diff_list.append("- %s = %s" % (key, expected[key]))
+            # diff
+            elif expected[key] != actual[key]:
+                diff_list.append("- %s = %s" % (key, expected[key]))
+                diff_list.append("+ %s = %s" % (key, actual[key]))
 
     # more in actual (missing in expected)
-    for key in actual and key not in ignore:
-        if key not in expected:
-            diff_list.append("+ %s = %s \n" % (key, actual[key]))
+    for key in actual:
+        if key not in ignore:
+            if key not in expected:
+                diff_list.append("+ %s = %s" % (key, actual[key]))
 
     diff_list.sort()
     diff = "\n".join(diff_list)
@@ -267,7 +269,6 @@ def diff_simple_dict(expected, actual, ignore=[], output_file=None):
             f.write(diff)
 
     return diff
-
 
 def parse_test_input(filename):
     """Parse request test input
@@ -309,7 +310,7 @@ def parse_test_input(filename):
             headers = dict([re.split(":\s*", line) for line in header_lines])
             # print(headers)
         else:
-            headers = None
+            headers = {}
 
         # part 3: body
         if parts_len > 2 and parts[2].strip() != "":
@@ -326,7 +327,10 @@ class TestAPI:
     Test Restful HTTP API examples.
     """
     def setup_class(cls):
-        log.debug("To load test data.")
+        pass
+        # todo
+        # parse test case list
+        # clear up old diff logs
 
     def test_post_headers_body_json(self):
         """post with headers, json body"""
@@ -482,7 +486,7 @@ class TestAPI:
             os.makedirs(diff_file_dir, exist_ok=True)
             diff_file_path = path.join(diff_file_dir, output_filename)
             diff = diff_simple_dict(actual, expected, ignore=[], output_file=diff_file_path)
-            assert diff == []
+            assert diff == '', "response does not match expected output"
             log.info("Test %s passed." % inspect.stack()[0][3])
 
     def post(self, url, data, headers={}, amend_headers=True, verify=False):
