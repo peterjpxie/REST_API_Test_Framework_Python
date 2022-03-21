@@ -182,6 +182,9 @@ def dict_to_ini(dict_var, file=None):
                 new_prefix = "%s[%d]" % (prefix, index)  # e.g. scores[0]
                 iterate_dict(value, new_prefix)
         else:
+            # for multiple line string, i.e. with \n, convert to 1 line repr string 
+            if isinstance(var,str) and '\n' in var:
+                var = repr(var)
             this_item = "%s = %s" % (prefix, var)
             nonlocal ini_content_list
             ini_content_list.append(this_item)
@@ -464,19 +467,19 @@ class TestAPI:
             assert resp != None
             # write response dict to ini output
             output_file_dir = path.join(output_root, testcase_folder)
-            os.makedirs(output_file_dir)
+            os.makedirs(output_file_dir, exist_ok=True)
             output_filename = request_file.replace("request", "response")
             output_file_path = path.join(output_file_dir, output_filename)
             # convert to a ini file
             dict_to_ini(resp, output_file_path)
             expect_file_dir = path.join(expect_root, testcase_folder)
-            os.makedirs(expect_file_dir)
+            os.makedirs(expect_file_dir, exist_ok=True)
             expect_file_path = path.join(expect_file_dir, output_filename)
             # todo - compare
             actual = ini_to_dict(output_file_path)
             expected = ini_to_dict(expect_file_path)
             diff_file_dir = path.join(diff_root, testcase_folder)
-            os.makedirs(diff_file_dir)
+            os.makedirs(diff_file_dir, exist_ok=True)
             diff_file_path = path.join(diff_file_dir, output_filename)
             diff = diff_simple_dict(actual, expected, ignore=[], output_file=diff_file_path)
             assert diff == []
