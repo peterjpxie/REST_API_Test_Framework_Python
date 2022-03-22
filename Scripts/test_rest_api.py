@@ -16,11 +16,7 @@ Project structure:
 └── Scripts
 
 """
-from time import sleep
-from datetime import datetime
 import logging
-from logging.handlers import RotatingFileHandler
-from urllib import request
 import requests
 import json
 import os
@@ -31,6 +27,7 @@ from dotmap import DotMap
 import re
 import pytest
 from glob import glob
+import shutil
 
 ### Settings ###
 LOG_LEVEL = logging.DEBUG  # DEBUG, INFO, WARNING, ERROR, CRITICAL
@@ -338,10 +335,18 @@ class TestAPI:
     Test Restful HTTP API examples.
     """
     def setup_class(cls):
-        pass
-        # todo
-        # parse test case list
-        # clear up old diff logs
+        # clear up old diff and output files
+        diff_root = path.join(root_path, "diff")
+        output_root = path.join(root_path, "outputs")
+        shutil.rmtree(diff_root, ignore_errors=True)
+        shutil.rmtree(output_root, ignore_errors=True)
+        # get input test case lists
+        global test_case_list
+        test_case_list = []
+        input_root = path.join(root_path, "inputs")
+        for tc in os.listdir(input_root):
+            if tc.startswith('test_case'):
+                test_case_list.append(tc)
 
     def test_post_headers_body_json(self):
         """post with headers, json body"""
@@ -451,7 +456,8 @@ class TestAPI:
         """
 
 
-    @pytest.mark.parametrize("testcase_folder", ["test_case_01", "test_case_02"])
+    # @pytest.mark.parametrize("testcase_folder", ["test_case_01", "test_case_02"])
+    @pytest.mark.parametrize("testcase_folder", test_case_list)
     def test_by_input_output_text(self, testcase_folder):
         """test by input and expected output text files
 
