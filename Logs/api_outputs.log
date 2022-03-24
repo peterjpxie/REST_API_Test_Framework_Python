@@ -1,4 +1,4 @@
-2022-03-24 01:33:37: -----------Request----------->
+2022-03-24 01:34:52: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -13,10 +13,10 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2022-03-24 01:33:37: <-----------Response-----------
+2022-03-24 01:34:52: <-----------Response-----------
 Status code:200
 
-Date: Thu, 24 Mar 2022 13:33:36 GMT
+Date: Thu, 24 Mar 2022 13:34:52 GMT
 Content-Type: application/json
 Content-Length: 519
 Connection: keep-alive
@@ -36,7 +36,7 @@ Access-Control-Allow-Credentials: true
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-623c7330-5b9514080e3cea460e4d7d57"
+        "X-Amzn-Trace-Id": "Root=1-623c737c-02d1d3b92ffe562948d50887"
     },
     "json": {
         "key1": 1,
@@ -46,7 +46,7 @@ Access-Control-Allow-Credentials: true
     "url": "http://httpbin.org/post"
 }
 
-2022-03-24 01:33:37: -----------Request----------->
+2022-03-24 01:34:52: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
 User-Agent: Python Requests
@@ -58,10 +58,10 @@ Content-Type: application/json
 
 None
 
-2022-03-24 01:33:37: <-----------Response-----------
+2022-03-24 01:34:52: <-----------Response-----------
 Status code:200
 
-Date: Thu, 24 Mar 2022 13:33:37 GMT
+Date: Thu, 24 Mar 2022 13:34:52 GMT
 Content-Type: application/json
 Content-Length: 48
 Connection: keep-alive

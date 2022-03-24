@@ -338,6 +338,8 @@ class TestAPI:
     """
     Test Restful HTTP API examples.
     """
+    
+
     def setup_class(cls):
         log.info("calling setup_class")
         # clear up old diff and output files
