@@ -72,6 +72,13 @@ log_api = setup_logger(
     api_outputs_filename, LOG_LEVEL, "log_api", formatter=api_formatter
 )
 
+# get input test case lists for parametrized tests
+test_case_list = []
+input_root = path.join(root_path, "inputs")
+for tc in os.listdir(input_root):
+    if tc.startswith('test_case'):
+        test_case_list.append(tc)
+
 # pretty print Restful request to API log
 # argument is request object
 def pretty_print_request(request):
@@ -87,7 +94,6 @@ def pretty_print_request(request):
         )
     )
 
-
 # pretty print Restful response to API log
 # argument is response object
 def pretty_print_response(response):
@@ -100,7 +106,6 @@ def pretty_print_response(response):
         )
     )
 
-
 def pretty_print_request_json(request):
     log_api.info(
         "{}\n{}\n\n{}\n\n{}\n".format(
@@ -110,7 +115,6 @@ def pretty_print_request_json(request):
             json.dumps(json.loads(request.body), indent=4),
         )
     )
-
 
 # argument is response object
 # display body in json format explicitly with expected indent. Actually most of the time it is not very necessary
@@ -340,13 +344,7 @@ class TestAPI:
         output_root = path.join(root_path, "outputs")
         shutil.rmtree(diff_root, ignore_errors=True)
         shutil.rmtree(output_root, ignore_errors=True)
-        # get input test case lists
-        global test_case_list
-        test_case_list = []
-        input_root = path.join(root_path, "inputs")
-        for tc in os.listdir(input_root):
-            if tc.startswith('test_case'):
-                test_case_list.append(tc)
+
 
     def test_post_headers_body_json(self):
         """post with headers, json body"""

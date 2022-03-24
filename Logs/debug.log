@@ -1,0 +1,15 @@
+2022-03-24 01:33:36 [INFO   ][482]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
+2022-03-24 01:33:36 [DEBUG  ][484]: Parsed request:
+2022-03-24 01:33:36 [DEBUG  ][485]: POST http://httpbin.org/post
+{'User-Agent': 'Python Requests', 'Content-Type': 'application/json'}
+{
+    "key1": 1,
+    "key2": "value2"
+}
+2022-03-24 01:33:37 [INFO   ][511]: Test test_by_input_output_text[test_case_01] passed.
+2022-03-24 01:33:37 [INFO   ][482]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
+2022-03-24 01:33:37 [DEBUG  ][484]: Parsed request:
+2022-03-24 01:33:37 [DEBUG  ][485]: GET http://httpbin.org/basic-auth/user1/password1
+{'Authorization': 'Basic dXNlcjE6cGFzc3dvcmQx'}
+None
+2022-03-24 01:33:37 [INFO   ][511]: Test test_by_input_output_text[test_case_02] passed.
