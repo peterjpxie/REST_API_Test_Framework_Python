@@ -1,8 +1,14 @@
-2022-01-10 09:50:56 [INFO   ][ln-202]: Test test_post_headers_body_json passed.
-2022-01-10 09:50:56 [INFO   ][ln-236]: Test test_post_normal_body passed.
-2022-01-10 09:50:56 [INFO   ][ln-243]: Calling test_get_auth_httpbin.
-2022-01-10 09:50:57 [INFO   ][ln-251]: Test test_get_auth_httpbin passed.
-2022-01-10 09:50:57 [INFO   ][ln-265]: Calling test_mock_service.
-2022-01-10 09:50:57 [INFO   ][ln-270]: Test test_mock_service passed.
-2022-01-10 09:50:57 [INFO   ][ln-281]: Calling test_mock_service_dynamic.
-2022-01-10 09:50:57 [INFO   ][ln-289]: Test test_mock_service_dynamic passed.
+2022-03-26 02:07:28 [INFO   ][381]: Test test_post_headers_body_json passed.
+2022-03-26 02:07:28 [INFO   ][415]: Test test_post_normal_body passed.
+2022-03-26 02:07:28 [INFO   ][422]: Calling test_get_auth_httpbin.
+2022-03-26 02:07:29 [INFO   ][430]: Test test_get_auth_httpbin passed.
+2022-03-26 02:07:29 [INFO   ][443]: Calling test_mock_service.
+2022-03-26 02:07:29 [INFO   ][448]: Test test_mock_service passed.
+2022-03-26 02:07:29 [INFO   ][458]: Calling test_mock_service_dynamic.
+2022-03-26 02:07:29 [INFO   ][466]: Test test_mock_service_dynamic passed.
+2022-03-26 02:07:29 [INFO   ][497]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
+2022-03-26 02:07:30 [INFO   ][528]: Test test_by_input_output_text[test_case_01] passed.
+2022-03-26 02:07:30 [INFO   ][497]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
+2022-03-26 02:07:30 [INFO   ][528]: Test test_by_input_output_text[test_case_01] passed.
+2022-03-26 02:07:30 [INFO   ][497]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
+2022-03-26 02:07:30 [INFO   ][528]: Test test_by_input_output_text[test_case_02] passed.

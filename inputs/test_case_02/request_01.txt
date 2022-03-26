@@ -1,0 +1,3 @@
+GET http://httpbin.org/basic-auth/user1/password1
+
+Authorization: Basic dXNlcjE6cGFzc3dvcmQx
