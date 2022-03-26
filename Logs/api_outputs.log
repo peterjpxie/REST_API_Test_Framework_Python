@@ -1,4 +1,4 @@
-2022-03-26 04:07:46: -----------Request----------->
+2022-03-26 02:07:28: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
@@ -13,10 +13,10 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2022-03-26 04:07:46: <-----------Response-----------
+2022-03-26 02:07:28: <-----------Response-----------
 Status code:200
 
-Date: Sat, 26 Mar 2022 04:07:45 GMT
+Date: Sat, 26 Mar 2022 14:07:28 GMT
 Content-Type: application/json
 Content-Length: 519
 Connection: keep-alive
@@ -36,7 +36,7 @@ Access-Control-Allow-Credentials: true
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-623e9191-403305b110879629002f50e6"
+        "X-Amzn-Trace-Id": "Root=1-623f1e20-7a29f7aa1bf514133e601282"
     },
     "json": {
         "key1": 1,
@@ -46,7 +46,216 @@ Access-Control-Allow-Credentials: true
     "url": "http://httpbin.org/post"
 }
 
-2022-03-26 04:07:46: -----------Request----------->
+2022-03-26 02:07:28: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 18
+
+key1=1&key2=value2
+
+2022-03-26 02:07:28: <-----------Response-----------
+Status code:200
+
+Date: Sat, 26 Mar 2022 14:07:28 GMT
+Content-Type: application/json
+Content-Length: 451
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "key1=1&key2=value2",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "18",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-623f1e20-4897168237fd5c8663cd7774"
+    },
+    "json": null,
+    "origin": "47.243.182.41",
+    "url": "http://httpbin.org/post"
+}
+
+2022-03-26 02:07:29: -----------Request----------->
+GET http://httpbin.org/basic-auth/user1/password1
+
+User-Agent: python-requests/2.27.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Authorization: Basic dXNlcjE6cGFzc3dvcmQx
+
+None
+
+2022-03-26 02:07:29: <-----------Response-----------
+Status code:200
+
+Date: Sat, 26 Mar 2022 14:07:29 GMT
+Content-Type: application/json
+Content-Length: 48
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "authenticated": true,
+    "user": "user1"
+}
+
+2022-03-26 02:07:29: -----------Request----------->
+GET http://127.0.0.1:5000/hello
+
+User-Agent: python-requests/2.27.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+None
+
+2022-03-26 02:07:29: <-----------Response-----------
+Status code:200
+
+Content-Type: text/html; charset=utf-8
+Content-Length: 40
+Server: Werkzeug/2.0.3 Python/3.7.12
+Date: Sat, 26 Mar 2022 14:07:29 GMT
+
+{
+    "code": 1,
+    "message": "Hello, World!"
+}
+
+2022-03-26 02:07:29: -----------Request----------->
+GET http://127.0.0.1:5000/anyendpoint
+
+User-Agent: python-requests/2.27.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+response_code: 202
+response_body: {"code": 0, "message": "all good"}
+
+None
+
+2022-03-26 02:07:29: <-----------Response-----------
+Status code:202
+
+Content-Type: text/html; charset=utf-8
+Content-Length: 34
+Server: Werkzeug/2.0.3 Python/3.7.12
+Date: Sat, 26 Mar 2022 14:07:29 GMT
+
+{
+    "code": 0,
+    "message": "all good"
+}
+
+2022-03-26 02:07:30: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 39
+
+{
+    "key1": 1,
+    "key2": "value2"
+}
+
+2022-03-26 02:07:30: <-----------Response-----------
+Status code:200
+
+Date: Sat, 26 Mar 2022 14:07:29 GMT
+Content-Type: application/json
+Content-Length: 519
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "{\n    \"key1\": 1,\n    \"key2\": \"value2\"\n}",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "39",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-623f1e21-6fb9e7000ad1747002b68b79"
+    },
+    "json": {
+        "key1": 1,
+        "key2": "value2"
+    },
+    "origin": "47.243.182.41",
+    "url": "http://httpbin.org/post"
+}
+
+2022-03-26 02:07:30: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 29
+
+{
+    "key1": "test case2",
+}
+
+2022-03-26 02:07:30: <-----------Response-----------
+Status code:200
+
+Date: Sat, 26 Mar 2022 14:07:30 GMT
+Content-Type: application/json
+Content-Length: 468
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "{\n    \"key1\": \"test case2\",\n}",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "29",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-623f1e22-7dba9c667923655a4e747e53"
+    },
+    "json": null,
+    "origin": "47.243.182.41",
+    "url": "http://httpbin.org/post"
+}
+
+2022-03-26 02:07:30: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
 User-Agent: Python Requests
@@ -58,10 +267,10 @@ Content-Type: application/json
 
 None
 
-2022-03-26 04:07:46: <-----------Response-----------
+2022-03-26 02:07:30: <-----------Response-----------
 Status code:200
 
-Date: Sat, 26 Mar 2022 04:07:46 GMT
+Date: Sat, 26 Mar 2022 14:07:30 GMT
 Content-Type: application/json
 Content-Length: 48
 Connection: keep-alive

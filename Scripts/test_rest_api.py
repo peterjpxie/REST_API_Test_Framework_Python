@@ -12,9 +12,11 @@ Python version: 3.6 or above
 
 Project structure:
 ├── inputs
+├── outputs
+├── expects
+├── diff
 ├── Logs
 └── Scripts
-
 """
 import logging
 import requests
@@ -26,13 +28,11 @@ import sys
 from dotmap import DotMap
 import re
 import pytest
-from glob import glob
 import shutil
 
 ### Settings ###
-LOG_LEVEL = logging.DEBUG  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+LOG_LEVEL = logging.INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
 VALID_HTTP_RESP = (200, 201, 202)
-
 
 if sys.version_info < (3, 6):
     raise SystemError("Requires Python 3.6 or above.")
@@ -87,11 +87,12 @@ shutil.rmtree(diff_root, ignore_errors=True)
 shutil.rmtree(output_root, ignore_errors=True)
 
 
-# pretty print Restful request to API log
-# argument is request object
 def pretty_print_request(request):
-    """
-    Pay attention at the formatting used in this function because it is programmed to be pretty printed and may differ from the actual request.
+    """pretty print request
+
+    Params
+    ------
+    request:   requests' request object
     """
     log_api.info(
         "{}\n{}\n\n{}\n\n{}\n".format(
@@ -103,9 +104,13 @@ def pretty_print_request(request):
     )
 
 
-# pretty print Restful response to API log
-# argument is response object
 def pretty_print_response(response):
+    """pretty print response
+
+    Params
+    ------
+    response:   requests' response object
+    """
     log_api.info(
         "{}\n{}\n\n{}\n\n{}\n".format(
             "<-----------Response-----------",
@@ -117,6 +122,13 @@ def pretty_print_response(response):
 
 
 def pretty_print_request_json(request):
+    """pretty print request in json format
+    Note it may differ from the actual request as it is pretty formatted.
+
+    Params
+    ------
+    request:   requests' request object
+    """
     log_api.info(
         "{}\n{}\n\n{}\n\n{}\n".format(
             "-----------Request----------->",
@@ -127,12 +139,13 @@ def pretty_print_request_json(request):
     )
 
 
-# argument is response object
-# display body in json format explicitly with expected indent. Actually most of the time it is not very necessary
-# because body is formatted in pretty print way.
 def pretty_print_response_json(response):
-    """pretty print response in json format.
+    """pretty print response in json format
     If failing to parse body in json format, print in text.
+
+    Params
+    ------
+    response:   requests' response object
     """
     try:
         resp_data = response.json()
@@ -262,13 +275,12 @@ def diff_simple_dict(expected, actual, ignore=[], output_file=None):
 
     Params
     ------
-    expected: expected dict
-    actual: actual dict
-    ignore: list of keys to ignore
+    expected:   expected dict
+    actual:     actual dict
+    ignore:     list of keys to ignore
     output_file: file to write the diff output to if provided
 
     Return: diff output string. Default empty string '' if no diff.
-
     """
     diff_list = []
     for key in expected:
@@ -289,7 +301,7 @@ def diff_simple_dict(expected, actual, ignore=[], output_file=None):
 
     diff_list.sort()
     diff = "\n".join(diff_list)
-    if output_file:
+    if output_file and diff != "":
         with open(output_file, "w") as f:
             f.write(diff)
 
@@ -350,14 +362,12 @@ def parse_test_input(filename):
 
 class TestAPI:
     """
-    Test Restful HTTP API examples.
+    Test Restful API examples.
     """
 
     def test_post_headers_body_json(self):
         """post with headers, json body"""
         payload = {"key1": 1, "key2": "value2"}
-        # No need to specify common headers as it is taken cared of by common self.post() function.
-        # headers = {'Content-Type': 'application/json' }
 
         # convert dict to json by json.dumps() for body data.
         url = "http://httpbin.org/post"
@@ -460,7 +470,6 @@ class TestAPI:
         {"code": 0, "message": "all good"}
         """
 
-    # @pytest.mark.parametrize("testcase_folder", ["test_case_01", "test_case_02"])
     @pytest.mark.parametrize("testcase_folder", test_case_list)
     def test_by_input_output_text(self, testcase_folder):
         """test by input and expected output text files
@@ -545,7 +554,8 @@ class TestAPI:
             return None
 
         # pretty request and response into API log file
-        # Note: request print is common instead of checking if it is JSON body. So pass pretty formatted json string as argument to the request for pretty logging.
+        # Note: request print is common instead of checking if it is JSON body.
+        # So pass pretty formatted json string as argument to the request body for pretty logging.
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
@@ -615,7 +625,6 @@ class TestAPI:
 
         Return: response dict or None
         """
-
         # append common headers if none
         headers_new = headers
         if amend_headers == True:
@@ -632,7 +641,8 @@ class TestAPI:
             return None
 
         # pretty request and response into API log file
-        # Note: request print is common instead of checking if it is JSON body. So pass pretty formatted json string as argument to the request for pretty logging.
+        # Note: request print is common instead of checking if it is JSON body.
+        # So pass pretty formatted json string as argument to the request body for pretty logging.
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
@@ -649,21 +659,4 @@ class TestAPI:
 
 if __name__ == "__main__":
     # self test
-    # post
-    method, url, headers, body = parse_test_input(
-        "../inputs/test_case_01/request_01.txt"
-    )
-    print("\n".join([method, url, str(headers), body]))
-    tests = TestAPI()
-    resp = tests.request(method, url, headers, body)
-    print(json.dumps(resp, indent=4))
-    # get
-    method, url, headers, body = parse_test_input(
-        "../inputs/test_case_02/request_01.txt"
-    )
-    print("\n".join([method, url, str(headers), str(body)]))
-    # tests = TestAPI()
-    resp = tests.request(method, url, headers, body)
-    print(json.dumps(resp, indent=4))
-
     pass
