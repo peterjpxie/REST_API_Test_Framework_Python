@@ -72,12 +72,20 @@ log_api = setup_logger(
     api_outputs_filename, LOG_LEVEL, "log_api", formatter=api_formatter
 )
 
+### Setup ###
 # get input test case lists for parametrized tests
 test_case_list = []
 input_root = path.join(root_path, "inputs")
 for tc in os.listdir(input_root):
     if tc.startswith('test_case'):
         test_case_list.append(tc)
+
+# clear up old diff and output files
+diff_root = path.join(root_path, "diff")
+output_root = path.join(root_path, "outputs")
+shutil.rmtree(diff_root, ignore_errors=True)
+shutil.rmtree(output_root, ignore_errors=True) 
+
 
 # pretty print Restful request to API log
 # argument is request object
@@ -338,16 +346,6 @@ class TestAPI:
     """
     Test Restful HTTP API examples.
     """
-    
-
-    def setup_class(cls):
-        log.info("calling setup_class")
-        # clear up old diff and output files
-        diff_root = path.join(root_path, "diff")
-        output_root = path.join(root_path, "outputs")
-        shutil.rmtree(diff_root, ignore_errors=True)
-        shutil.rmtree(output_root, ignore_errors=True)
-
     def test_post_headers_body_json(self):
         """post with headers, json body"""
         payload = {"key1": 1, "key2": "value2"}
