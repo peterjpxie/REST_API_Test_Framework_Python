@@ -5,10 +5,10 @@
 * Common get/post/request function to 
 1. Print every request and response in a API output file
 2. Append common headers
-3. Take care of request exception and non-200 response codes and return None, so you only need to care normal json response.
+3. Handle request exception and non-20X response codes, so you only need to focus on normal json response.
 * Test by parametrized input / output text files
 * Use flask to mock API services dynamically with magic
-* Html report
+* HTML report
     
 ## Install:
 `pip install -r Scripts/requirements.txt`
