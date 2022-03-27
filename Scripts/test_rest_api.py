@@ -104,23 +104,6 @@ def pretty_print_request(request):
     )
 
 
-def pretty_print_response(response):
-    """pretty print response
-
-    Params
-    ------
-    response:   requests' response object
-    """
-    log_api.info(
-        "{}\n{}\n\n{}\n\n{}\n".format(
-            "<-----------Response-----------",
-            "Status code:" + str(response.status_code),
-            "\n".join("{}: {}".format(k, v) for k, v in response.headers.items()),
-            response.text,
-        )
-    )
-
-
 def pretty_print_request_json(request):
     """pretty print request in json format
     Note it may differ from the actual request as it is pretty formatted.
@@ -554,8 +537,7 @@ class TestAPI:
             return None
 
         # pretty request and response into API log file
-        # Note: request print is common instead of checking if it is JSON body.
-        # So pass pretty formatted json string as argument to the request body for pretty logging.
+        # Note: request print is common as it could be a JSON body or a normal text
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
@@ -641,8 +623,7 @@ class TestAPI:
             return None
 
         # pretty request and response into API log file
-        # Note: request print is common instead of checking if it is JSON body.
-        # So pass pretty formatted json string as argument to the request body for pretty logging.
+        # Note: request print is common as it could be a JSON body or a normal text
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
