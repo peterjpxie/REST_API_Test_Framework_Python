@@ -174,7 +174,7 @@ def dict_to_ini(dict_var, file=None):
     ini_content_list = []
 
     def iterate_dict(var, prefix=None):
-        """iterate dict and convert to a list of 'key1.key2 = value' string"""
+        """iterate dict and convert to a list of 'key1.key2[i] = value' string"""
         # recursive if dict
         if isinstance(var, dict):
             for k, v in var.items():
@@ -327,16 +327,13 @@ def parse_test_input(filename):
         if parts_len > 1 and parts[1].strip() != "":
             header_lines = re.split("\s*\n", parts[1])
             header_lines = [line.strip() for line in header_lines]  # strip line spaces
-            # print(header_lines)
             headers = dict([re.split(":\s*", line) for line in header_lines])
-            # print(headers)
         else:
             headers = {}
 
         # part 3: body
         if parts_len > 2 and parts[2].strip() != "":
             body = parts[2].strip().strip("\n")
-            # print(body)
         else:
             body = None
 
@@ -465,7 +462,6 @@ class TestAPI:
         For the first run, no need to prepare the expected output files.
         Run it without expect files, examine the output manually, then copy output folder as expect folder if passed.
         """
-        # post
         input_root = path.join(root_path, "inputs")
         output_root = path.join(root_path, "outputs")
         expect_root = path.join(root_path, "expects")
@@ -475,6 +471,7 @@ class TestAPI:
             if not request_file.endswith(".txt"):
                 # ignore non-request text files, i.e. .ignore files
                 continue
+
             # parse input files
             request_file_path = path.join(testcase_full_dir, request_file)
             log.info("Test by input file %s" % request_file_path)
@@ -483,17 +480,19 @@ class TestAPI:
             log.debug("%s %s\n%s\n%s" % (method, url, headers, body))
 
             resp = self.request(method, url, headers, body)
-
             assert resp != None
+
             # write response dict to ini output
             output_file_dir = path.join(output_root, testcase_folder)
             os.makedirs(output_file_dir, exist_ok=True)
             output_filename = request_file.replace("request_", "response_")
             output_file_path = path.join(output_file_dir, output_filename)
+            
             # convert to a ini file
             dict_to_ini(resp, output_file_path)
             expect_file_dir = path.join(expect_root, testcase_folder)
             expect_file_path = path.join(expect_file_dir, output_filename)
+            
             # compare
             actual = ini_to_dict(output_file_path)
             expected = ini_to_dict(expect_file_path)
@@ -525,8 +524,8 @@ class TestAPI:
 
         # append common headers if none
         headers_new = headers
-        if amend_headers == True:
-            headers_new["Content-Type"] = r"application/json"
+        if amend_headers is True:
+            headers_new["Content-Type"] = "application/json"
             headers_new["User-Agent"] = "Python Requests"
 
         # send post request
@@ -609,9 +608,8 @@ class TestAPI:
         """
         # append common headers if none
         headers_new = headers
-        if amend_headers == True:
-            headers_new["Content-Type"] = r"application/json"
-            headers_new["User-Agent"] = "Python Requests"
+        if amend_headers is True:
+            headers_new["Content-Type"] = "application/json"
 
         # send request
         try:
