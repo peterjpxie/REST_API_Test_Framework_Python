@@ -1,6 +1,6 @@
 def request(self, method, url, headers={}, data=None, 
     amend_headers=True, verify=False, **kwargs):
-    """Common request function, which can be used for any request methods such as post, get, delete, put etc."""
+    """Common request function, return json response or None for any errors"""
     import requests
     # append common headers
     headers_new = headers
@@ -9,18 +9,14 @@ def request(self, method, url, headers={}, data=None,
     
     # send request
     try:
-        resp = requests.request(
-            method, url, headers=headers_new, data=data, verify=verify, **kwargs
-        )
+        resp = requests.request(method, url, headers=headers_new, data=data, verify=verify, **kwargs)
     except Exception as ex:
-        log.error("requests.request() failed with exception: %s" % str(ex))
         return None
 
-    # pretty request and response into API log file
+    # pretty request and response into log file
     pretty_print_request(resp.request)
     pretty_print_response_json(resp)
 
-    if resp.status_code not in VALID_HTTP_RESP:
-        log.error("request failed with response code %s." % resp.status_code)
+    if resp.status_code not in (200, 201, 202):
         return None
     return resp.json()
