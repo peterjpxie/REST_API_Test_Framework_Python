@@ -1,31 +1,8 @@
 def dict_to_ini(dict_var, file=None):
-    """Covert a dict to ini file format
-
-    Example Input
-    -------------
-    {
-        "name": {
-            "firstname": "Peter",
-            "secondname": "Xie"
-        },
-        "scores": [100,99],
-        "age": 30
-    }
-
-    Example Output (return/file)
-    --------------
-    age = 30
-    name.firstname = Peter
-    name.secondname = Xie
-    scores[0] = 100
-    scores[1] = 99
-
-    Note: The output is sorted.
-    """
     ini_content_list = []
 
     def iterate_dict(var, prefix=None):
-        """ """
+        """iterate dict and convert to a list of 'key1.key2 = value' string"""
         # recursive if dict
         if isinstance(var, dict):
             for k, v in var.items():
@@ -36,9 +13,6 @@ def dict_to_ini(dict_var, file=None):
                 iterate_dict(v, new_prefix)
         elif isinstance(var, list):
             for index, value in enumerate(var):
-                assert (
-                    prefix is not None
-                )  # Invalid to start from something like iterate_dict([1,2], None)
                 new_prefix = "%s[%d]" % (prefix, index)  # e.g. scores[0]
                 iterate_dict(value, new_prefix)
         else:

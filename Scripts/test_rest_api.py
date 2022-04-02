@@ -174,7 +174,7 @@ def dict_to_ini(dict_var, file=None):
     ini_content_list = []
 
     def iterate_dict(var, prefix=None):
-        """ """
+        """iterate dict and convert to a list of 'key1.key2 = value' string"""
         # recursive if dict
         if isinstance(var, dict):
             for k, v in var.items():
