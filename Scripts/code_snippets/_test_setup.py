@@ -1,4 +1,4 @@
-""" get input test case lists for parametrized tests"""
+"""get input test case lists for parametrized tests"""
 import os
 from os import path
 # root_path is parent folder of Scripts folder

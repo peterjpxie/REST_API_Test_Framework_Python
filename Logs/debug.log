@@ -1,14 +1,6 @@
-2022-04-02 09:54:18 [INFO   ][361]: Test test_post_headers_body_json passed.
-2022-04-02 09:54:18 [INFO   ][395]: Test test_post_normal_body passed.
-2022-04-02 09:54:18 [INFO   ][402]: Calling test_get_auth_httpbin.
-2022-04-02 09:54:19 [INFO   ][410]: Test test_get_auth_httpbin passed.
-2022-04-02 09:54:19 [INFO   ][423]: Calling test_mock_service.
-2022-04-02 09:54:19 [ERROR  ][567]: requests.get() failed with exception: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /hello (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ffada83d950>: Failed to establish a new connection: [Errno 111] Connection refused'))
-2022-04-02 09:54:19 [INFO   ][438]: Calling test_mock_service_dynamic.
-2022-04-02 09:54:19 [ERROR  ][567]: requests.get() failed with exception: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /anyendpoint (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ffada83d450>: Failed to establish a new connection: [Errno 111] Connection refused'))
-2022-04-02 09:54:19 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
-2022-04-02 09:54:19 [INFO   ][510]: Test test_by_input_output_text[test_case_01] passed.
-2022-04-02 09:54:19 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
-2022-04-02 09:54:20 [INFO   ][510]: Test test_by_input_output_text[test_case_01] passed.
-2022-04-02 09:54:20 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
-2022-04-02 09:54:20 [INFO   ][510]: Test test_by_input_output_text[test_case_02] passed.
+2022-04-09 08:07:06 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
+2022-04-09 08:07:07 [INFO   ][508]: Test test_by_input_output_text[test_case_01] passed.
+2022-04-09 08:07:07 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
+2022-04-09 08:07:08 [INFO   ][508]: Test test_by_input_output_text[test_case_01] passed.
+2022-04-09 08:07:08 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
+2022-04-09 08:07:08 [INFO   ][508]: Test test_by_input_output_text[test_case_02] passed.

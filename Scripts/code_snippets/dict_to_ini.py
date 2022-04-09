@@ -14,6 +14,9 @@ def dict_to_ini(dict_var, file=None):
                 new_prefix = "%s[%d]" % (prefix, index)  # e.g. scores[0]
                 iterate_dict(value, new_prefix)
         else:
+            # for multiple line string, i.e. with \n, convert to 1 line repr string
+            if isinstance(var, str) and "\n" in var:
+                var = repr(var)            
             this_item = "%s = %s" % (prefix, var)
             nonlocal ini_content_list
             ini_content_list.append(this_item)

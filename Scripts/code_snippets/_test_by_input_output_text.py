@@ -1,8 +1,11 @@
+import pytest
+
 @pytest.mark.parametrize("testcase_folder", test_case_list)
-def test_by_input_output_text(self, testcase_folder):
+def test_by_input_output_text(testcase_folder):
     """test by input and expected output text files"""
     import os
     from os import path
+    import requests
     input_root = path.join(root_path, "inputs")
     output_root = path.join(root_path, "outputs")
     expect_root = path.join(root_path, "expects")
@@ -18,8 +21,9 @@ def test_by_input_output_text(self, testcase_folder):
         request_file_path = path.join(testcase_full_dir, request_file)
         method, url, headers, body = parse_test_input(request_file_path)
         
-        resp = self.request(method, url, headers, body)
-        assert resp != None
+        resp = requests.request(method, url, headers=headers, data=body, verify=False)
+        assert resp.status_code in (200, 201, 202)
+        resp = resp.json() # convert to dict
 
         ## write response dict to ini output
         output_file_dir = path.join(output_root, testcase_folder)
