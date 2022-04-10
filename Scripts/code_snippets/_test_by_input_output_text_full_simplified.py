@@ -2,8 +2,8 @@
 import os
 from os import path
 # root_path is parent folder of Scripts folder
-root_path = path.dirname(path.dirname(path.realpath(__file__)))
-# root_path = '../..' # if inside code_snippets subfolder
+# root_path = path.dirname(path.dirname(path.realpath(__file__)))
+root_path = path.dirname(path.dirname(path.dirname(path.realpath(__file__)))) # if inside code_snippets subfolder
 test_case_list = []
 input_root = path.join(root_path, "inputs")
 for tc in os.listdir(input_root):
