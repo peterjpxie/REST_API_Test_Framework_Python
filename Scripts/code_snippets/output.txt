@@ -1,0 +1,14 @@
+
+git clone https://github.com/peterjpxie/REST_API_Test_Framework_Python.git
+cd REST_API_Test_Framework_Python
+pytest Scripts/code_snippets/_test_by_input_output_text_full_simplified.py
+
+Scripts/code_snippets/_test_by_input_output_text_full_simplified.py::test_by_input_output_text[test_case_01] PASSED                                                                   [ 50%]
+Scripts/code_snippets/_test_by_input_output_text_full_simplified.py::test_by_input_output_text[test_case_02] PASSED           
+
+# or run for the full test framework
+pytest Scripts/test_rest_api.py
+
+...
+Scripts/test_rest_api.py::TestAPI::test_by_input_output_text[test_case_01] PASSED                                                                                                     [ 85%]
+Scripts/test_rest_api.py::TestAPI::test_by_input_output_text[test_case_02] PASSED 
