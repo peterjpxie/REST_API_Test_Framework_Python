@@ -1,14 +1,14 @@
-2022-04-16 09:22:03 [INFO   ][361]: Test test_post_headers_body_json passed.
-2022-04-16 09:22:03 [INFO   ][395]: Test test_post_normal_body passed.
-2022-04-16 09:22:03 [INFO   ][402]: Calling test_get_auth_httpbin.
-2022-04-16 09:22:04 [INFO   ][410]: Test test_get_auth_httpbin passed.
-2022-04-16 09:22:04 [INFO   ][423]: Calling test_mock_service.
-2022-04-16 09:22:04 [ERROR  ][565]: requests.get() failed with exception: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /hello (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f0b9a8f7990>: Failed to establish a new connection: [Errno 111] Connection refused'))
-2022-04-16 09:22:04 [INFO   ][438]: Calling test_mock_service_dynamic.
-2022-04-16 09:22:04 [ERROR  ][565]: requests.get() failed with exception: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /anyendpoint (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f0b9a8f3790>: Failed to establish a new connection: [Errno 111] Connection refused'))
-2022-04-16 09:22:04 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
-2022-04-16 09:22:04 [INFO   ][508]: Test test_by_input_output_text[test_case_01] passed.
-2022-04-16 09:22:04 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
-2022-04-16 09:22:05 [INFO   ][508]: Test test_by_input_output_text[test_case_01] passed.
-2022-04-16 09:22:05 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
-2022-04-16 09:22:05 [INFO   ][508]: Test test_by_input_output_text[test_case_02] passed.
+2022-04-24 02:25:19 [INFO   ][361]: Test test_post_headers_body_json passed.
+2022-04-24 02:25:20 [INFO   ][395]: Test test_post_normal_body passed.
+2022-04-24 02:25:20 [INFO   ][402]: Calling test_get_auth_httpbin.
+2022-04-24 02:25:20 [INFO   ][410]: Test test_get_auth_httpbin passed.
+2022-04-24 02:25:20 [INFO   ][423]: Calling test_mock_service.
+2022-04-24 02:25:20 [INFO   ][428]: Test test_mock_service passed.
+2022-04-24 02:25:20 [INFO   ][438]: Calling test_mock_service_dynamic.
+2022-04-24 02:25:20 [INFO   ][446]: Test test_mock_service_dynamic passed.
+2022-04-24 02:25:20 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
+2022-04-24 02:25:21 [INFO   ][508]: Test test_by_input_output_text[test_case_01] passed.
+2022-04-24 02:25:21 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
+2022-04-24 02:25:21 [INFO   ][508]: Test test_by_input_output_text[test_case_01] passed.
+2022-04-24 02:25:21 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
+2022-04-24 02:25:22 [INFO   ][508]: Test test_by_input_output_text[test_case_02] passed.

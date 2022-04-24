@@ -1,5 +1,9 @@
 These are code snippets for Medium article.
 
+request_01.txt
+https://gist.github.com/peterjpxie/26c803df6d766b0497ce7269cfd679e6
+
+
 _test_by_input_output_text_full_simplified.py
 201
 https://gist.github.com/1f60c0a062ee22ed99e89461dacccfa4
@@ -31,3 +35,6 @@ https://gist.github.com/5a64d4d9ad91bea30824638fddece9df
 ini_to_dict.py
 201
 https://gist.github.com/2b77e820899cbd6f25f52e4f9b88cb8c
+
+run output example:
+https://gist.github.com/peterjpxie/0a454897bcd794287fbf77c2229c06e7
