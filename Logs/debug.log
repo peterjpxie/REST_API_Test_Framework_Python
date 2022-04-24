@@ -1,14 +1,14 @@
-2022-03-26 02:07:28 [INFO   ][381]: Test test_post_headers_body_json passed.
-2022-03-26 02:07:28 [INFO   ][415]: Test test_post_normal_body passed.
-2022-03-26 02:07:28 [INFO   ][422]: Calling test_get_auth_httpbin.
-2022-03-26 02:07:29 [INFO   ][430]: Test test_get_auth_httpbin passed.
-2022-03-26 02:07:29 [INFO   ][443]: Calling test_mock_service.
-2022-03-26 02:07:29 [INFO   ][448]: Test test_mock_service passed.
-2022-03-26 02:07:29 [INFO   ][458]: Calling test_mock_service_dynamic.
-2022-03-26 02:07:29 [INFO   ][466]: Test test_mock_service_dynamic passed.
-2022-03-26 02:07:29 [INFO   ][497]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
-2022-03-26 02:07:30 [INFO   ][528]: Test test_by_input_output_text[test_case_01] passed.
-2022-03-26 02:07:30 [INFO   ][497]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
-2022-03-26 02:07:30 [INFO   ][528]: Test test_by_input_output_text[test_case_01] passed.
-2022-03-26 02:07:30 [INFO   ][497]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
-2022-03-26 02:07:30 [INFO   ][528]: Test test_by_input_output_text[test_case_02] passed.
+2022-04-24 02:25:19 [INFO   ][361]: Test test_post_headers_body_json passed.
+2022-04-24 02:25:20 [INFO   ][395]: Test test_post_normal_body passed.
+2022-04-24 02:25:20 [INFO   ][402]: Calling test_get_auth_httpbin.
+2022-04-24 02:25:20 [INFO   ][410]: Test test_get_auth_httpbin passed.
+2022-04-24 02:25:20 [INFO   ][423]: Calling test_mock_service.
+2022-04-24 02:25:20 [INFO   ][428]: Test test_mock_service passed.
+2022-04-24 02:25:20 [INFO   ][438]: Calling test_mock_service_dynamic.
+2022-04-24 02:25:20 [INFO   ][446]: Test test_mock_service_dynamic passed.
+2022-04-24 02:25:20 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
+2022-04-24 02:25:21 [INFO   ][508]: Test test_by_input_output_text[test_case_01] passed.
+2022-04-24 02:25:21 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
+2022-04-24 02:25:21 [INFO   ][508]: Test test_by_input_output_text[test_case_01] passed.
+2022-04-24 02:25:21 [INFO   ][477]: Test by input file /root/repo/Rest_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
+2022-04-24 02:25:22 [INFO   ][508]: Test test_by_input_output_text[test_case_02] passed.

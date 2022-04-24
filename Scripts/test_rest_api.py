@@ -104,23 +104,6 @@ def pretty_print_request(request):
     )
 
 
-def pretty_print_response(response):
-    """pretty print response
-
-    Params
-    ------
-    response:   requests' response object
-    """
-    log_api.info(
-        "{}\n{}\n\n{}\n\n{}\n".format(
-            "<-----------Response-----------",
-            "Status code:" + str(response.status_code),
-            "\n".join("{}: {}".format(k, v) for k, v in response.headers.items()),
-            response.text,
-        )
-    )
-
-
 def pretty_print_request_json(request):
     """pretty print request in json format
     Note it may differ from the actual request as it is pretty formatted.
@@ -191,7 +174,7 @@ def dict_to_ini(dict_var, file=None):
     ini_content_list = []
 
     def iterate_dict(var, prefix=None):
-        """ """
+        """iterate dict and convert to a list of 'key1.key2[i] = value' string"""
         # recursive if dict
         if isinstance(var, dict):
             for k, v in var.items():
@@ -344,16 +327,13 @@ def parse_test_input(filename):
         if parts_len > 1 and parts[1].strip() != "":
             header_lines = re.split("\s*\n", parts[1])
             header_lines = [line.strip() for line in header_lines]  # strip line spaces
-            # print(header_lines)
             headers = dict([re.split(":\s*", line) for line in header_lines])
-            # print(headers)
         else:
             headers = {}
 
         # part 3: body
         if parts_len > 2 and parts[2].strip() != "":
             body = parts[2].strip().strip("\n")
-            # print(body)
         else:
             body = None
 
@@ -482,7 +462,6 @@ class TestAPI:
         For the first run, no need to prepare the expected output files.
         Run it without expect files, examine the output manually, then copy output folder as expect folder if passed.
         """
-        # post
         input_root = path.join(root_path, "inputs")
         output_root = path.join(root_path, "outputs")
         expect_root = path.join(root_path, "expects")
@@ -492,6 +471,7 @@ class TestAPI:
             if not request_file.endswith(".txt"):
                 # ignore non-request text files, i.e. .ignore files
                 continue
+
             # parse input files
             request_file_path = path.join(testcase_full_dir, request_file)
             log.info("Test by input file %s" % request_file_path)
@@ -500,27 +480,27 @@ class TestAPI:
             log.debug("%s %s\n%s\n%s" % (method, url, headers, body))
 
             resp = self.request(method, url, headers, body)
-
             assert resp != None
-            # write response dict to ini output
+
+            # write response dict to a ini format file
             output_file_dir = path.join(output_root, testcase_folder)
             os.makedirs(output_file_dir, exist_ok=True)
             output_filename = request_file.replace("request_", "response_")
             output_file_path = path.join(output_file_dir, output_filename)
-            # convert to a ini file
             dict_to_ini(resp, output_file_path)
+
+            # compare
             expect_file_dir = path.join(expect_root, testcase_folder)
             expect_file_path = path.join(expect_file_dir, output_filename)
-            # compare
-            actual = ini_to_dict(output_file_path)
-            expected = ini_to_dict(expect_file_path)
             ignore_filename = request_file.replace(".txt", ".ignore")
-            ignore_file_path = path.join(testcase_full_dir, ignore_filename)
-            ignore = parse_ignore_file(ignore_file_path)
-
+            ignore_file_path = path.join(testcase_full_dir, ignore_filename)            
             diff_file_dir = path.join(diff_root, testcase_folder)
             os.makedirs(diff_file_dir, exist_ok=True)
             diff_file_path = path.join(diff_file_dir, output_filename)
+
+            actual = ini_to_dict(output_file_path)
+            expected = ini_to_dict(expect_file_path)
+            ignore = parse_ignore_file(ignore_file_path)
             diff = diff_simple_dict(
                 actual, expected, ignore=ignore, output_file=diff_file_path
             )
@@ -542,8 +522,8 @@ class TestAPI:
 
         # append common headers if none
         headers_new = headers
-        if amend_headers == True:
-            headers_new["Content-Type"] = r"application/json"
+        if amend_headers is True:
+            headers_new["Content-Type"] = "application/json"
             headers_new["User-Agent"] = "Python Requests"
 
         # send post request
@@ -554,8 +534,7 @@ class TestAPI:
             return None
 
         # pretty request and response into API log file
-        # Note: request print is common instead of checking if it is JSON body.
-        # So pass pretty formatted json string as argument to the request body for pretty logging.
+        # Note: request print is common as it could be a JSON body or a normal text
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
@@ -627,9 +606,8 @@ class TestAPI:
         """
         # append common headers if none
         headers_new = headers
-        if amend_headers == True:
-            headers_new["Content-Type"] = r"application/json"
-            headers_new["User-Agent"] = "Python Requests"
+        if amend_headers is True:
+            headers_new["Content-Type"] = "application/json"
 
         # send request
         try:
@@ -641,8 +619,7 @@ class TestAPI:
             return None
 
         # pretty request and response into API log file
-        # Note: request print is common instead of checking if it is JSON body.
-        # So pass pretty formatted json string as argument to the request body for pretty logging.
+        # Note: request print is common as it could be a JSON body or a normal text
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
