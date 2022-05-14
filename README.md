@@ -2,13 +2,13 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ## Features:
 * Support both functional and performance tests
+* Test by parametrized input / output text files
+* Use flask to mock API services dynamically with magic
+* HTML report
 * Common get/post/request function to 
 1. Print every request and response in a API output file
 2. Append common headers
 3. Handle request exception and non-20X response codes, so you only need to focus on normal json response.
-* Test by parametrized input / output text files
-* Use flask to mock API services dynamically with magic
-* HTML report
     
 ## Install:
 `pip install -r Scripts/requirements.txt`
