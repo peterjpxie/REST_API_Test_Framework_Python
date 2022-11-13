@@ -350,17 +350,19 @@ class TestAPI:
         payload = {"key1": 1, "key2": "value2"}
         # No need to specify common headers as it is taken cared of by common self.post() function.
         # headers = {'Content-Type': 'application/json' }
+        headers = {'User-Agent': 'Python Requests'}
 
         # convert dict to json by json.dumps() for body data.
         url = "http://httpbin.org/post"
-        resp = self.post(url, data=json.dumps(payload, indent=4)) # , headers=headers
+        resp = self.post(url, headers=headers, data=json.dumps(payload, indent=4)) 
         assert resp != None
         # self.post converts the return to json if it is not None
         assert resp["url"] == url
         assert resp["json"]["key1"] == 1
         # dot fashion with DotMap
         assert DotMap(resp).json.key1 == 1
-        log.info("Test %s passed." % inspect.stack()[0][3])
+        this_function_name = inspect.stack()[0][3]
+        log.info("Test %s passed." % this_function_name)
         """ Request HTTP body:
         {   "key1": 1, 
             "key2": "value2"
@@ -377,7 +379,7 @@ class TestAPI:
             "Accept-Encoding": "gzip, deflate",
             "Content-Length": "39",
             "Host": "httpbin.org",
-            "User-Agent": "python-requests/2.26.0"
+            "User-Agent": "Python Requests"
         },
         "json": {
             "key1": 1,
