@@ -348,10 +348,12 @@ class TestAPI:
     def test_post_headers_body_json(self):
         """post with headers, json body"""
         payload = {"key1": 1, "key2": "value2"}
+        # No need to specify common headers as it is taken cared of by common self.post() function.
+        # headers = {'Content-Type': 'application/json' }
 
         # convert dict to json by json.dumps() for body data.
         url = "http://httpbin.org/post"
-        resp = self.post(url, data=json.dumps(payload, indent=4))
+        resp = self.post(url, data=json.dumps(payload, indent=4)) # , headers=headers
         assert resp != None
         # self.post converts the return to json if it is not None
         assert resp["url"] == url
@@ -375,7 +377,7 @@ class TestAPI:
             "Accept-Encoding": "gzip, deflate",
             "Content-Length": "39",
             "Host": "httpbin.org",
-            "User-Agent": "python-requests/2.22.0"
+            "User-Agent": "python-requests/2.26.0"
         },
         "json": {
             "key1": 1,
@@ -524,7 +526,6 @@ class TestAPI:
         headers_new = headers
         if amend_headers is True:
             headers_new["Content-Type"] = "application/json"
-            headers_new["User-Agent"] = "Python Requests"
 
         # send post request
         try:

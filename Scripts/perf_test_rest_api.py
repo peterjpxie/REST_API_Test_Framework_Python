@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Description:
 Scale up REST API functional tests to performance tests using threading.
