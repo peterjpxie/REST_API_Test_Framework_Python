@@ -6,7 +6,7 @@
 * Use flask to mock API services dynamically with magic
 * HTML report
 * Common get/post/request functions to:
-    1. Print every request and response in a API output file
+    1. Print every request and response in an API output file
     2. Append common headers
     3. Handle request exceptions and non-20X response codes, so you only need to focus on normal json response.
     
