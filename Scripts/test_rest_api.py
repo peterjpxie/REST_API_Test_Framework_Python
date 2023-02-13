@@ -361,7 +361,7 @@ class TestAPI:
         assert resp["json"]["key1"] == 1
         # dot fashion with DotMap
         assert DotMap(resp).json.key1 == 1
-        this_function_name = inspect.stack()[0][3]
+        this_function_name = inspect.stack()[0].function
         log.info("Test %s passed." % this_function_name)
         """ Request HTTP body:
         {   "key1": 1, 
@@ -396,14 +396,14 @@ class TestAPI:
         url = "http://httpbin.org/post"
         resp = self.post(url, data=payload, amend_headers=False)
         assert resp != None
-        log.info("Test %s passed." % inspect.stack()[0][3])
+        log.info("Test %s passed." % inspect.stack()[0].function)
         """ Request HTTP body:
         key1=1&key2=value2
         """
 
     def test_get_auth_httpbin(self):
         """get with authentication"""
-        log.info("Calling %s." % inspect.stack()[0][3])
+        log.info("Calling %s." % inspect.stack()[0].function)
         username = "user1"
         password = "password1"
 
@@ -411,7 +411,7 @@ class TestAPI:
         resp = self.get(url, auth=(username, password))
         assert resp != None
         assert resp["authenticated"] == True
-        log.info("Test %s passed." % inspect.stack()[0][3])
+        log.info("Test %s passed." % inspect.stack()[0].function)
         """ json response
         {
         "authenticated": true, 
@@ -424,12 +424,12 @@ class TestAPI:
 
         Start mock service first: python flask_mock_service.py
         """
-        log.info("Calling %s." % inspect.stack()[0][3])
+        log.info("Calling %s." % inspect.stack()[0].function)
         url = "http://127.0.0.1:5000/hello"
         resp = self.get(url)
         assert resp != None
         assert resp["code"] == 1
-        log.info("Test %s passed." % inspect.stack()[0][3])
+        log.info("Test %s passed." % inspect.stack()[0].function)
         """ json response
         {
         "code": 1,
@@ -439,7 +439,7 @@ class TestAPI:
 
     def test_mock_service_dynamic(self):
         """test with dynamic mocking where expected response status code and body data are set in the request headers"""
-        log.info("Calling %s." % inspect.stack()[0][3])
+        log.info("Calling %s." % inspect.stack()[0].function)
         url = "http://127.0.0.1:5000/anyendpoint"
         response_code = "202"
         response_body = '{"code": 0, "message": "all good"}'
@@ -447,7 +447,7 @@ class TestAPI:
         resp = self.get(url, headers=headers)
         assert resp != None
         assert resp["code"] == 0
-        log.info("Test %s passed." % inspect.stack()[0][3])
+        log.info("Test %s passed." % inspect.stack()[0].function)
         """ response
         202 
         
@@ -509,7 +509,7 @@ class TestAPI:
                 actual, expected, ignore=ignore, output_file=diff_file_path
             )
             assert diff == "", "response does not match expected output"
-            log.info("Test %s[%s] passed." % (inspect.stack()[0][3], testcase_folder))
+            log.info("Test %s[%s] passed." % (inspect.stack()[0].function, testcase_folder))
 
     def post(self, url, data, headers={}, amend_headers=True, verify=False):
         """
@@ -541,8 +541,8 @@ class TestAPI:
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
-        # This returns caller function's name, not this function post.
-        caller_func_name = inspect.stack()[1][3]
+        # This returns caller's function name, not this function post.
+        caller_func_name = inspect.stack()[1].function
         if resp.status_code not in VALID_HTTP_RESP:
             log.error(
                 "%s failed with response code %s."
@@ -572,8 +572,8 @@ class TestAPI:
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
-        # This return caller function's name, not this function post.
-        caller_func_name = inspect.stack()[1][3]
+        # This return caller's function name, not this function post.
+        caller_func_name = inspect.stack()[1].function
         if resp.status_code not in VALID_HTTP_RESP:
             log.error(
                 "%s failed with response code %s."
@@ -626,8 +626,8 @@ class TestAPI:
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
-        # This returns caller function's name, not this function post.
-        caller_func_name = inspect.stack()[1][3]
+        # This returns caller's function name, not this function post.
+        caller_func_name = inspect.stack()[1].function
         if resp.status_code not in VALID_HTTP_RESP:
             log.error(
                 "%s failed with response code %s."

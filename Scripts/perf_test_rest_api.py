@@ -13,20 +13,15 @@ Python version: 3.7 or above
 """
 from time import sleep
 import time
-from datetime import datetime
 import logging
 from logging.handlers import RotatingFileHandler
 import requests
 import json
 import os
-import pdb
 import ast
 import inspect
-import random
 
-# import asyncio
 import sys
-import threading
 from threading import Thread, Event, Timer
 import queue
 
@@ -47,7 +42,7 @@ root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 # %(levelname)7s to align 7 bytes to right, %(levelname)-7s to left.
 # common_formatter = logging.Formatter('%(asctime)s [%(levelname)-7s][ln-%(lineno)-3d]: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 common_formatter = logging.Formatter(
-    "%(asctime)s [%(levelname)-7s][ln-%(lineno)-3d]: %(message)s"
+    "%(asctime)s [%(levelname)-7s][%(lineno)-3d]: %(message)s"
 )
 
 # Note: To create multiple log files, must use different logger name.
@@ -179,7 +174,7 @@ class TestAPI:
         resp = self.post(url, data=json.dumps(payload, indent=4))
         # assert resp != None
         if resp == None:
-            log.error("Test %s failed with exception." % inspect.stack()[0][3])
+            log.error("Test %s failed with exception." % inspect.stack()[0].function)
             return "exception", None
         elif resp.status_code != 200:
             log.error(
@@ -190,11 +185,11 @@ class TestAPI:
         elif resp.json()["url"] != url:
             log.error(
                 "Test %s failed with url %s != %s."
-                % (inspect.stack()[0][3], resp.json()["url"], url)
+                % (inspect.stack()[0].function, resp.json()["url"], url)
             )
             return "fail", resp.elapsed.total_seconds()
         else:
-            log.info("Test %s passed." % inspect.stack()[0][3])
+            log.info("Test %s passed." % inspect.stack()[0].function)
             return "pass", resp.elapsed.total_seconds()
         """ Request HTTP body:
         {   "key1": 1, 
@@ -206,15 +201,15 @@ class TestAPI:
     # start mock service first: python flask_mock_service.py
     # Then run the tests.
     def test_mock_service(self):
-        log.info("Calling %s." % inspect.stack()[0][3])
-        url = r"http://127.0.0.1:5000/json"
+        log.info("Calling %s." % inspect.stack()[0].function)
+        url = r"http://127.0.0.1:5000/hello"
         resp = self.get(url)
 
         # Convert assert for functional tests to validate for performance tests so it won't stop on a test failure.
         # assert resp != None
         # assert resp.json()["code"] == 1
         if resp == None:
-            log.error("Test %s failed with exception." % inspect.stack()[0][3])
+            log.error("Test %s failed with exception." % inspect.stack()[0].function)
             return "exception", None
         elif resp.status_code != 200:
             log.error(
@@ -225,11 +220,11 @@ class TestAPI:
         elif resp.json()["code"] != 1:
             log.error(
                 "Test %s failed with code %s != 1."
-                % (inspect.stack()[0][3], resp.json()["code"])
+                % (inspect.stack()[0].function, resp.json()["code"])
             )
             return "fail", resp.elapsed.total_seconds()
         else:
-            log.info("Test %s passed." % inspect.stack()[0][3])
+            log.info("Test %s passed." % inspect.stack()[0].function)
             return "pass", resp.elapsed.total_seconds()
 
         """ json response
@@ -393,12 +388,6 @@ class TestAPI:
             "response time in seconds: " + str(resp.elapsed.total_seconds()) + "\n"
         )
 
-        # This return caller function's name, not this function post.
-        # caller_func_name = inspect.stack()[1][3]
-        # if resp.status_code != 200:
-        #     log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
-        #     return None
-        # return resp.json()
         return resp
 
     def get(self, url, auth=None, verify=False):
@@ -428,12 +417,6 @@ class TestAPI:
             "response time in seconds: " + str(resp.elapsed.total_seconds()) + "\n"
         )
 
-        # This return caller function's name, not this function post.
-        # caller_func_name = inspect.stack()[1][3]
-        # if resp.status_code != 200:
-        #     log.error('%s failed with response code %s.' %(caller_func_name,resp.status_code))
-        #     return None
-        # return resp.json()
         return resp
 
 
@@ -486,7 +469,7 @@ def main():
     perf_test.stats()
 
     print(
-        "\nTests ended at %s.\nTotal test time: %s seconds."
+        "\nTests ended at %s.\nTotal test time: %.2f seconds."
         % (time.asctime(), end_time - start_time)
     )
 

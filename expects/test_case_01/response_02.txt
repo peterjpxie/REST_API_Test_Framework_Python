@@ -1,6 +1,6 @@
 data = '{\n    "key1": "test request 2"\n}'
 headers.Accept = */*
-headers.Accept-Encoding = gzip, deflate
+headers.Accept-Encoding = gzip, deflate, br
 headers.Content-Length = 32
 headers.Content-Type = application/json
 headers.Host = httpbin.org

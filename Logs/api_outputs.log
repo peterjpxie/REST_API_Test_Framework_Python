@@ -1,8 +1,8 @@
-2022-11-14 09:23:20: -----------Request----------->
+2023-02-13 03:53:15: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
-Accept-Encoding: gzip, deflate
+Accept-Encoding: gzip, deflate, br
 Accept: */*
 Connection: keep-alive
 Content-Type: application/json
@@ -13,12 +13,12 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2022-11-14 09:23:20: <-----------Response-----------
+2023-02-13 03:53:15: <-----------Response-----------
 Status code:200
 
-Date: Sun, 13 Nov 2022 22:23:20 GMT
+Date: Mon, 13 Feb 2023 04:53:15 GMT
 Content-Type: application/json
-Content-Length: 518
+Content-Length: 523
 Connection: keep-alive
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
@@ -31,26 +31,26 @@ Access-Control-Allow-Credentials: true
     "form": {},
     "headers": {
         "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate",
+        "Accept-Encoding": "gzip, deflate, br",
         "Content-Length": "39",
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-63716e58-422ff1e13d169abc56ac1934"
+        "X-Amzn-Trace-Id": "Root=1-63e9c23b-55e74ae207d6e0f3359d948e"
     },
     "json": {
         "key1": 1,
         "key2": "value2"
     },
-    "origin": "13.54.66.174",
+    "origin": "3.105.185.205",
     "url": "http://httpbin.org/post"
 }
 
-2022-11-14 09:23:20: -----------Request----------->
+2023-02-13 03:53:16: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: python-requests/2.26.0
-Accept-Encoding: gzip, deflate
+Accept-Encoding: gzip, deflate, br
 Accept: */*
 Connection: keep-alive
 Content-Length: 18
@@ -58,12 +58,12 @@ Content-Type: application/x-www-form-urlencoded
 
 key1=1&key2=value2
 
-2022-11-14 09:23:20: <-----------Response-----------
+2023-02-13 03:53:16: <-----------Response-----------
 Status code:200
 
-Date: Sun, 13 Nov 2022 22:23:20 GMT
+Date: Mon, 13 Feb 2023 04:53:16 GMT
 Content-Type: application/json
-Content-Length: 498
+Content-Length: 503
 Connection: keep-alive
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
@@ -79,33 +79,33 @@ Access-Control-Allow-Credentials: true
     },
     "headers": {
         "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate",
+        "Accept-Encoding": "gzip, deflate, br",
         "Content-Length": "18",
         "Content-Type": "application/x-www-form-urlencoded",
         "Host": "httpbin.org",
         "User-Agent": "python-requests/2.26.0",
-        "X-Amzn-Trace-Id": "Root=1-63716e58-70c8f53f43c21d6c5a47fcd2"
+        "X-Amzn-Trace-Id": "Root=1-63e9c23b-53de88b02d5459393394de72"
     },
     "json": null,
-    "origin": "13.54.66.174",
+    "origin": "3.105.185.205",
     "url": "http://httpbin.org/post"
 }
 
-2022-11-14 09:23:21: -----------Request----------->
+2023-02-13 03:53:16: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
 User-Agent: python-requests/2.26.0
-Accept-Encoding: gzip, deflate
+Accept-Encoding: gzip, deflate, br
 Accept: */*
 Connection: keep-alive
 Authorization: Basic dXNlcjE6cGFzc3dvcmQx
 
 None
 
-2022-11-14 09:23:21: <-----------Response-----------
+2023-02-13 03:53:16: <-----------Response-----------
 Status code:200
 
-Date: Sun, 13 Nov 2022 22:23:21 GMT
+Date: Mon, 13 Feb 2023 04:53:16 GMT
 Content-Type: application/json
 Content-Length: 48
 Connection: keep-alive
@@ -118,34 +118,34 @@ Access-Control-Allow-Credentials: true
     "user": "user1"
 }
 
-2022-11-14 09:23:21: -----------Request----------->
+2023-02-13 03:53:16: -----------Request----------->
 GET http://127.0.0.1:5000/hello
 
 User-Agent: python-requests/2.26.0
-Accept-Encoding: gzip, deflate
+Accept-Encoding: gzip, deflate, br
 Accept: */*
 Connection: keep-alive
 
 None
 
-2022-11-14 09:23:21: <-----------Response-----------
+2023-02-13 03:53:16: <-----------Response-----------
 Status code:200
 
 Content-Type: text/html; charset=utf-8
 Content-Length: 40
 Server: Werkzeug/2.0.1 Python/3.7.10
-Date: Sun, 13 Nov 2022 22:23:21 GMT
+Date: Mon, 13 Feb 2023 04:53:16 GMT
 
 {
     "code": 1,
     "message": "Hello, World!"
 }
 
-2022-11-14 09:23:21: -----------Request----------->
+2023-02-13 03:53:16: -----------Request----------->
 GET http://127.0.0.1:5000/anyendpoint
 
 User-Agent: python-requests/2.26.0
-Accept-Encoding: gzip, deflate
+Accept-Encoding: gzip, deflate, br
 Accept: */*
 Connection: keep-alive
 response_code: 202
@@ -153,24 +153,24 @@ response_body: {"code": 0, "message": "all good"}
 
 None
 
-2022-11-14 09:23:21: <-----------Response-----------
+2023-02-13 03:53:16: <-----------Response-----------
 Status code:202
 
 Content-Type: text/html; charset=utf-8
 Content-Length: 34
 Server: Werkzeug/2.0.1 Python/3.7.10
-Date: Sun, 13 Nov 2022 22:23:21 GMT
+Date: Mon, 13 Feb 2023 04:53:16 GMT
 
 {
     "code": 0,
     "message": "all good"
 }
 
-2022-11-14 09:23:21: -----------Request----------->
+2023-02-13 03:53:17: -----------Request----------->
 GET http://httpbin.org/basic-auth/user1/password1
 
 User-Agent: python-requests/2.26.0
-Accept-Encoding: gzip, deflate
+Accept-Encoding: gzip, deflate, br
 Accept: */*
 Connection: keep-alive
 Authorization: Basic dXNlcjE6cGFzc3dvcmQx
@@ -178,10 +178,10 @@ Content-Type: application/json
 
 None
 
-2022-11-14 09:23:21: <-----------Response-----------
+2023-02-13 03:53:17: <-----------Response-----------
 Status code:200
 
-Date: Sun, 13 Nov 2022 22:23:21 GMT
+Date: Mon, 13 Feb 2023 04:53:17 GMT
 Content-Type: application/json
 Content-Length: 48
 Connection: keep-alive
@@ -194,11 +194,11 @@ Access-Control-Allow-Credentials: true
     "user": "user1"
 }
 
-2022-11-14 09:23:22: -----------Request----------->
+2023-02-13 03:53:17: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
-Accept-Encoding: gzip, deflate
+Accept-Encoding: gzip, deflate, br
 Accept: */*
 Connection: keep-alive
 Content-Type: application/json
@@ -209,12 +209,12 @@ Content-Length: 39
     "key2": "value2"
 }
 
-2022-11-14 09:23:22: <-----------Response-----------
+2023-02-13 03:53:17: <-----------Response-----------
 Status code:200
 
-Date: Sun, 13 Nov 2022 22:23:22 GMT
+Date: Mon, 13 Feb 2023 04:53:17 GMT
 Content-Type: application/json
-Content-Length: 518
+Content-Length: 523
 Connection: keep-alive
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
@@ -227,26 +227,26 @@ Access-Control-Allow-Credentials: true
     "form": {},
     "headers": {
         "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate",
+        "Accept-Encoding": "gzip, deflate, br",
         "Content-Length": "39",
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-63716e5a-64359608097ea5477ab34764"
+        "X-Amzn-Trace-Id": "Root=1-63e9c23d-7bbf8a7258919b5173a854dc"
     },
     "json": {
         "key1": 1,
         "key2": "value2"
     },
-    "origin": "13.54.66.174",
+    "origin": "3.105.185.205",
     "url": "http://httpbin.org/post"
 }
 
-2022-11-14 09:23:22: -----------Request----------->
+2023-02-13 03:53:18: -----------Request----------->
 POST http://httpbin.org/post
 
 User-Agent: Python Requests
-Accept-Encoding: gzip, deflate
+Accept-Encoding: gzip, deflate, br
 Accept: */*
 Connection: keep-alive
 Content-Type: application/json
@@ -256,12 +256,12 @@ Content-Length: 32
     "key1": "test request 2"
 }
 
-2022-11-14 09:23:22: <-----------Response-----------
+2023-02-13 03:53:18: <-----------Response-----------
 Status code:200
 
-Date: Sun, 13 Nov 2022 22:23:22 GMT
+Date: Mon, 13 Feb 2023 04:53:18 GMT
 Content-Type: application/json
-Content-Length: 500
+Content-Length: 505
 Connection: keep-alive
 Server: gunicorn/19.9.0
 Access-Control-Allow-Origin: *
@@ -274,17 +274,17 @@ Access-Control-Allow-Credentials: true
     "form": {},
     "headers": {
         "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate",
+        "Accept-Encoding": "gzip, deflate, br",
         "Content-Length": "32",
         "Content-Type": "application/json",
         "Host": "httpbin.org",
         "User-Agent": "Python Requests",
-        "X-Amzn-Trace-Id": "Root=1-63716e5a-2349381f4b549d9728d76da5"
+        "X-Amzn-Trace-Id": "Root=1-63e9c23e-0826ae0e472499d512a8935b"
     },
     "json": {
         "key1": "test request 2"
     },
-    "origin": "13.54.66.174",
+    "origin": "3.105.185.205",
     "url": "http://httpbin.org/post"
 }
 
