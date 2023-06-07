@@ -60,6 +60,7 @@ def setup_logger(log_file, level=logging.INFO, name="", formatter=common_formatt
 
 
 # default debug logger
+os.makedirs(path.join(root_path, "Logs"), exist_ok=True)
 debug_log_filename = path.join(root_path, "Logs", "debug.log")
 log = setup_logger(debug_log_filename, LOG_LEVEL, "log")
 
@@ -76,9 +77,10 @@ log_api = setup_logger(
 # get input test case lists for parametrized tests
 test_case_list = []
 input_root = path.join(root_path, "inputs")
-for tc in os.listdir(input_root):
-    if tc.startswith("test_case"):
-        test_case_list.append(tc)
+if path.isdir(input_root):
+    for tc in os.listdir(input_root):
+        if tc.startswith("test_case"):
+            test_case_list.append(tc)
 
 # clear up old diff and output files
 diff_root = path.join(root_path, "diff")
