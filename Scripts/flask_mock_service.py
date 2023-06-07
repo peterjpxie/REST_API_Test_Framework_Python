@@ -41,10 +41,10 @@ def mock_dynamic():
 
 # Run in HTTP
 # When debug = True, code is reloaded on the fly while saved
-app.run(host="127.0.0.1", port="5000", debug=True)
-# app.run(host='0.0.0.0', port='5000', debug=True)
+app.run(host="127.0.0.1", port=5000, debug=True)
+# app.run(host='0.0.0.0', port=5000, debug=True)
 
 # Run in HTTPS
 # https://werkzeug.palletsprojects.com/en/0.15.x/serving/#quickstart
-ssl_context_ = ("ssl_keys/key.crt", "ssl_keys/key.key")
+# ssl_context_ = ("ssl_keys/key.crt", "ssl_keys/key.key")
 # app.run(host='127.0.0.1', port='5000', ssl_context=ssl_context_)
