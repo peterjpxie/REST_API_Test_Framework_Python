@@ -5,8 +5,8 @@ headers.Content-Length = 39
 headers.Content-Type = application/json
 headers.Host = httpbin.org
 headers.User-Agent = Python Requests
-headers.X-Amzn-Trace-Id = Root=1-6370d30e-4957dd33656756a0242d3a88
+headers.X-Amzn-Trace-Id = Root=1-64912d4d-072ac7b378ba84be3ebee14b
 json.key1 = 1
 json.key2 = value2
-origin = 13.54.66.174
+origin = 52.65.141.228
 url = http://httpbin.org/post

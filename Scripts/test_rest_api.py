@@ -508,7 +508,7 @@ class TestAPI:
             expected = ini_to_dict(expect_file_path)
             ignore = parse_ignore_file(ignore_file_path)
             diff = diff_simple_dict(
-                actual, expected, ignore=ignore, output_file=diff_file_path
+                expected, actual, ignore=ignore, output_file=diff_file_path
             )
             assert diff == "", "response does not match expected output"
             log.info("Test %s[%s] passed." % (inspect.stack()[0].function, testcase_folder))

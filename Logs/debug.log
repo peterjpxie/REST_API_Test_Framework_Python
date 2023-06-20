@@ -1,14 +1,14 @@
-2023-02-13 03:53:15 [INFO   ][365]: Test test_post_headers_body_json passed.
-2023-02-13 03:53:16 [INFO   ][399]: Test test_post_normal_body passed.
-2023-02-13 03:53:16 [INFO   ][406]: Calling test_get_auth_httpbin.
-2023-02-13 03:53:16 [INFO   ][414]: Test test_get_auth_httpbin passed.
-2023-02-13 03:53:16 [INFO   ][427]: Calling test_mock_service.
-2023-02-13 03:53:16 [INFO   ][432]: Test test_mock_service passed.
-2023-02-13 03:53:16 [INFO   ][442]: Calling test_mock_service_dynamic.
-2023-02-13 03:53:16 [INFO   ][450]: Test test_mock_service_dynamic passed.
-2023-02-13 03:53:16 [INFO   ][481]: Test by input file /root/repo/REST_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
-2023-02-13 03:53:17 [INFO   ][512]: Test test_by_input_output_text[test_case_02] passed.
-2023-02-13 03:53:17 [INFO   ][481]: Test by input file /root/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
-2023-02-13 03:53:17 [INFO   ][512]: Test test_by_input_output_text[test_case_01] passed.
-2023-02-13 03:53:17 [INFO   ][481]: Test by input file /root/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
-2023-02-13 03:53:18 [INFO   ][512]: Test test_by_input_output_text[test_case_01] passed.
+2023-06-20 02:43:44 [INFO   ][367]: Test test_post_headers_body_json passed.
+2023-06-20 02:43:46 [INFO   ][401]: Test test_post_normal_body passed.
+2023-06-20 02:43:46 [INFO   ][408]: Calling test_get_auth_httpbin.
+2023-06-20 02:44:51 [INFO   ][416]: Test test_get_auth_httpbin passed.
+2023-06-20 02:44:51 [INFO   ][429]: Calling test_mock_service.
+2023-06-20 02:44:51 [INFO   ][434]: Test test_mock_service passed.
+2023-06-20 02:44:51 [INFO   ][444]: Calling test_mock_service_dynamic.
+2023-06-20 02:44:51 [INFO   ][452]: Test test_mock_service_dynamic passed.
+2023-06-20 02:44:51 [INFO   ][483]: Test by input file /root/repo/REST_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
+2023-06-20 02:44:55 [INFO   ][514]: Test test_by_input_output_text[test_case_02] passed.
+2023-06-20 02:44:55 [INFO   ][483]: Test by input file /root/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
+2023-06-20 02:44:59 [INFO   ][514]: Test test_by_input_output_text[test_case_01] passed.
+2023-06-20 02:44:59 [INFO   ][483]: Test by input file /root/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
+2023-06-20 02:45:02 [INFO   ][514]: Test test_by_input_output_text[test_case_01] passed.
