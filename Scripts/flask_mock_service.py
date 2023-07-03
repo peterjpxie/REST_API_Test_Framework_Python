@@ -31,8 +31,9 @@ def mock_json():
 def mock_dynamic():
     if not request.url.endswith("/hello"):
         headers = request.headers
-        response_code = headers.get("response_code", 200)  # default to 200
-        response_body = headers.get("response_body")
+        print("request.headers: ", headers)
+        response_code = headers.get("Response-Code", 200)  # default to 200
+        response_body = headers.get("Response-Body")
         if response_body is None:
             return '{"message": "response_body is not set." }'
         else:

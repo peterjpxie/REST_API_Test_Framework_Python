@@ -446,7 +446,7 @@ class TestAPI:
         url = "http://127.0.0.1:5000/anyendpoint"
         response_code = "202"
         response_body = '{"code": 0, "message": "all good"}'
-        headers = {"response_code": response_code, "response_body": response_body}
+        headers = {"Response-Code": response_code, "Response-Body": response_body}
         resp = self.get(url, headers=headers)
         assert resp != None
         assert resp["code"] == 0
