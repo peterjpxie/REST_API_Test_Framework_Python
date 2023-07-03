@@ -81,6 +81,7 @@ if path.isdir(input_root):
     for tc in os.listdir(input_root):
         if tc.startswith("test_case"):
             test_case_list.append(tc)
+test_case_list.sort()
 
 # clear up old diff and output files
 diff_root = path.join(root_path, "diff")
@@ -473,11 +474,15 @@ class TestAPI:
         expect_root = path.join(root_path, "expects")
         diff_root = path.join(root_path, "diff")
         testcase_full_dir = path.join(input_root, testcase_folder)
+        # get and sort all request files
+        request_files = []
         for request_file in os.listdir(testcase_full_dir):
-            if not request_file.endswith(".txt"):
+            if request_file.endswith(".txt"):
                 # ignore non-request text files, i.e. .ignore files
-                continue
+                request_files.append(request_file)
+        request_files.sort()
 
+        for request_file in request_files:
             # parse input files
             request_file_path = path.join(testcase_full_dir, request_file)
             log.info("Test by input file %s" % request_file_path)
