@@ -285,7 +285,6 @@ def diff_simple_dict(expected, actual, ignore=[], output_file=None):
             if key not in expected:
                 diff_list.append("+ %s = %s" % (key, actual[key]))
 
-    diff_list.sort()
     diff = "\n".join(diff_list)
     if output_file and diff != "":
         with open(output_file, "w") as f:
