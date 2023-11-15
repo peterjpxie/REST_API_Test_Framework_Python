@@ -46,6 +46,7 @@ common_formatter = logging.Formatter(
     datefmt="%Y-%m-%d %I:%M:%S",
 )
 
+
 # Note: To create multiple log files, must use different logger name.
 def setup_logger(log_file, level=logging.INFO, name="", formatter=common_formatter):
     """Function setup as many loggers as you want."""
@@ -352,11 +353,11 @@ class TestAPI:
         payload = {"key1": 1, "key2": "value2"}
         # No need to specify common headers as it is taken cared of by common self.post() function.
         # headers = {'Content-Type': 'application/json' }
-        headers = {'User-Agent': 'Python Requests'}
+        headers = {"User-Agent": "Python Requests"}
 
         # convert dict to json by json.dumps() for body data.
         url = "http://httpbin.org/post"
-        resp = self.post(url, headers=headers, data=json.dumps(payload, indent=4)) 
+        resp = self.post(url, headers=headers, data=json.dumps(payload, indent=4))
         assert resp != None
         # self.post converts the return to json if it is not None
         assert resp["url"] == url
@@ -503,7 +504,7 @@ class TestAPI:
             expect_file_dir = path.join(expect_root, testcase_folder)
             expect_file_path = path.join(expect_file_dir, output_filename)
             ignore_filename = request_file.replace(".txt", ".ignore")
-            ignore_file_path = path.join(testcase_full_dir, ignore_filename)            
+            ignore_file_path = path.join(testcase_full_dir, ignore_filename)
             diff_file_dir = path.join(diff_root, testcase_folder)
             os.makedirs(diff_file_dir, exist_ok=True)
             diff_file_path = path.join(diff_file_dir, output_filename)
@@ -515,7 +516,9 @@ class TestAPI:
                 expected, actual, ignore=ignore, output_file=diff_file_path
             )
             assert diff == "", "response does not match expected output"
-            log.info("Test %s[%s] passed." % (inspect.stack()[0].function, testcase_folder))
+            log.info(
+                "Test %s[%s] passed." % (inspect.stack()[0].function, testcase_folder)
+            )
 
     def post(self, url, data, headers={}, amend_headers=True, verify=False):
         """
@@ -588,14 +591,30 @@ class TestAPI:
             return None
         return resp.json()
 
+
+    def post_new(self, url, headers={}, data=None, verify=False, amend_headers=True, **kwargs):
+        """
+        Common request post function with below features, which you only need to take care of url and body data:
+            - append common headers (when amend_headers=True)
+            - print request and response in API log file
+            - Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
+            - arguments are the same as requests.post, except amend_headers.
+
+        verify: False - Disable SSL certificate verification
+
+        Return: response dict or None
+        """
+        pass
+        return self.request('POST', url, headers, data, amend_headers, verify)
+
     def request(
         self,
         method,
         url,
         headers={},
         data=None,
-        amend_headers=True,
         verify=False,
+        amend_headers=True,        
         **kwargs,
     ):
         """
