@@ -520,37 +520,6 @@ class TestAPI:
                 "Test %s[%s] passed." % (inspect.stack()[0].function, testcase_folder)
             )
 
-    def get_old(self, url, headers={}, auth=None, verify=False):
-        """
-        Common request get function with below features, which you only need to take care of url:
-            - print request and response in API log file
-            - Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
-            - arguments are the same as requests.get
-
-        verify: False - Disable SSL certificate verification
-
-        Return: response dict or None
-        """
-        try:
-            resp = requests.get(url, headers=headers, auth=auth, verify=verify)
-        except Exception as ex:
-            log.error("requests.get() failed with exception: %s" % str(ex))
-            return None
-
-        # pretty request and response into API log file
-        pretty_print_request(resp.request)
-        pretty_print_response_json(resp)
-
-        # This return caller's function name, not this function post.
-        caller_func_name = inspect.stack()[1].function
-        if resp.status_code not in VALID_HTTP_RESP:
-            log.error(
-                "%s failed with response code %s."
-                % (caller_func_name, resp.status_code)
-            )
-            return None
-        return resp.json()
-
     def post(
         self, url, headers={}, data=None, verify=False, amend_headers=True, **kwargs
     ):
