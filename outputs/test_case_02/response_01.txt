@@ -1,2 +1,0 @@
-authenticated = True
-user = user1
