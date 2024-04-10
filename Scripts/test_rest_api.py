@@ -393,8 +393,8 @@ class TestAPI:
         }
         """
 
-    def test_post_normal_body(self):
-        """post with headers, json body"""
+    def test_post_query_string_body(self):
+        """post with query string body"""
         payload = {"key1": 1, "key2": "value2"}
         url = "http://httpbin.org/post"
         resp = self.post(url, data=payload, amend_headers=False)
@@ -520,47 +520,7 @@ class TestAPI:
                 "Test %s[%s] passed." % (inspect.stack()[0].function, testcase_folder)
             )
 
-    def post(self, url, data, headers={}, amend_headers=True, verify=False):
-        """
-        Common request post function with below features, which you only need to take care of url and body data:
-            - append common headers (when amend_headers=True)
-            - print request and response in API log file
-            - Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
-            - arguments are the same as requests.post, except amend_headers.
-
-        verify: False - Disable SSL certificate verification
-
-        Return: response dict or None
-        """
-
-        # append common headers if none
-        headers_new = headers
-        if amend_headers is True:
-            headers_new["Content-Type"] = "application/json"
-
-        # send post request
-        try:
-            resp = requests.post(url, data=data, headers=headers_new, verify=verify)
-        except Exception as ex:
-            log.error("requests.post() failed with exception: %s" % str(ex))
-            return None
-
-        # pretty request and response into API log file
-        # Note: request print is common as it could be a JSON body or a normal text
-        pretty_print_request(resp.request)
-        pretty_print_response_json(resp)
-
-        # This returns caller's function name, not this function post.
-        caller_func_name = inspect.stack()[1].function
-        if resp.status_code not in VALID_HTTP_RESP:
-            log.error(
-                "%s failed with response code %s."
-                % (caller_func_name, resp.status_code)
-            )
-            return None
-        return resp.json()
-
-    def get(self, url, headers={}, auth=None, verify=False):
+    def get_old(self, url, headers={}, auth=None, verify=False):
         """
         Common request get function with below features, which you only need to take care of url:
             - print request and response in API log file
@@ -591,31 +551,30 @@ class TestAPI:
             return None
         return resp.json()
 
-
-    def post_new(self, url, headers={}, data=None, verify=False, amend_headers=True, **kwargs):
+    def post(
+        self, url, headers={}, data=None, verify=False, amend_headers=True, **kwargs
+    ):
         """
-        Common request post function with below features, which you only need to take care of url and body data:
-            - append common headers (when amend_headers=True)
-            - print request and response in API log file
-            - Take care of request exception and non-20x response codes and return None, so you only need to care normal json response.
-            - arguments are the same as requests.post, except amend_headers.
-
-        verify: False - Disable SSL certificate verification
-
-        Return: response dict or None
+        request shorthand for POST method
         """
-        pass
-        return self.request('POST', url, headers, data, amend_headers, verify)
+        return self.request("POST", url, headers, data, verify, amend_headers=amend_headers, **kwargs)
+
+    def get(self, url, headers={}, verify=False, auth=None, **kwargs):
+        """
+        request shorthand for GET method
+        """
+        return self.request("GET", url, headers, data=None, verify=verify, auth=auth, amend_headers=False, **kwargs)
 
     def request(
         self,
         method,
         url,
         headers={},
-        data=None,
+        data=None,  # NA for GET
         verify=False,
-        amend_headers=True,        
-        **kwargs,
+        auth=None,  # NA for POST
+        amend_headers=True,  # NA for GET
+        **kwargs
     ):
         """
         Common request function with below features, which can be used for any request methods such as post, get, delete, put etc.:
@@ -635,12 +594,19 @@ class TestAPI:
         # append common headers if none
         headers_new = headers
         if amend_headers is True:
-            headers_new["Content-Type"] = "application/json"
+            # check if body is json, then set content type to json
+            if data:
+                try:
+                    json.loads(data)
+                except json.JSONDecodeError:
+                    pass
+                else:
+                    headers_new["Content-Type"] = "application/json"
 
         # send request
         try:
             resp = requests.request(
-                method, url, headers=headers_new, data=data, verify=verify, **kwargs
+                method, url, headers=headers_new, data=data, verify=verify, auth=auth, **kwargs
             )
         except Exception as ex:
             log.error("requests.request() failed with exception: %s" % str(ex))
@@ -651,7 +617,7 @@ class TestAPI:
         pretty_print_request(resp.request)
         pretty_print_response_json(resp)
 
-        # This returns caller's function name, not this function post.
+        # This returns caller's function name, not this function request.
         caller_func_name = inspect.stack()[1].function
         if resp.status_code not in VALID_HTTP_RESP:
             log.error(
@@ -659,7 +625,12 @@ class TestAPI:
                 % (caller_func_name, resp.status_code)
             )
             return None
-        return resp.json()
+        
+        # return json if possible
+        try:
+            return resp.json()
+        except requests.exceptions.JSONDecodeError:
+            return resp.text
 
 
 if __name__ == "__main__":
