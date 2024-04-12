@@ -432,7 +432,7 @@ class TestAPI:
         """
         log.info("Calling %s." % inspect.stack()[0].function)
         url = "http://127.0.0.1:5000/hello"
-        url = "http://127.0.0.1:5000/hello/binary"
+        url = "http://127.0.0.1:5000/hello/textbytes"
         resp = self.get(url)
         assert resp != None
         # assert resp["code"] == 1
@@ -612,6 +612,7 @@ class TestAPI:
                 try:
                     return resp.text # it returns '\x11\x12' for b'\x11\x12'
                 except Exception:
+                    # most likely won't reach here
                     return resp.content
         else: # no content in response body, i.e. content = b''.
             return None
