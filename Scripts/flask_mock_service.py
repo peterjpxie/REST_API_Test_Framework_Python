@@ -22,6 +22,16 @@ def mock_json():
     return '{"code": 1, "message": "Hello, World!" }'
 
 
+# non-text binary data
+@app.route("/hello/binary", methods=["POST", "GET"])
+def mock_binary():
+    return b'\x11\x12'
+
+# text bytes
+@app.route("/hello/textbytes", methods=["POST", "GET"])
+def mock_test_bytes():
+    return b'hello'
+
 # Return dynamic status code and content based on request header data for any endpoints
 #
 # Sample request headers for expected return status code and body data:
@@ -29,7 +39,7 @@ def mock_json():
 #   response_body: '{"code": 0, "message": "Hello, World!" }'
 @app.before_request
 def mock_dynamic():
-    if not request.url.endswith("/hello"):
+    if "/hello" not in request.url:
         headers = request.headers
         print("request.headers: ", headers)
         response_code = headers.get("Response-Code", 200)  # default to 200
