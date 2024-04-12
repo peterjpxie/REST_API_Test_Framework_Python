@@ -611,7 +611,7 @@ class TestAPI:
             except requests.exceptions.JSONDecodeError:
                 try:
                     return resp.text # it returns '\x11\x12' for b'\x11\x12'
-                except requests.exceptions.ContentDecodingError:
+                except Exception:
                     return resp.content
         else: # no content in response body, i.e. content = b''.
             return None
