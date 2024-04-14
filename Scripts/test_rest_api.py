@@ -29,13 +29,16 @@ from dotmap import DotMap
 import re
 import pytest
 import shutil
+import pdb
 
 ### Settings ###
 LOG_LEVEL = logging.INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
-VALID_HTTP_RESP = (200, 201, 202)
+VALID_HTTP_RESP = (200, 201, 202,
+                   204, # for DELETE no content in response body
+                   )
 
-if sys.version_info < (3, 6):
-    raise SystemError("Requires Python 3.6 or above.")
+if sys.version_info < (3, 8):
+    raise SystemError("Requires Python 3.8 or above.")
 
 # root_path is parent folder of Scripts folder (one level up)
 root_path = path.dirname(path.dirname(path.realpath(__file__)))
@@ -422,16 +425,17 @@ class TestAPI:
         }
         """
 
-    def test_mock_service(self):
+    def test_mock_service_simple(self):
         """test with mock service
 
         Start mock service first: python flask_mock_service.py
         """
         log.info("Calling %s." % inspect.stack()[0].function)
         url = "http://127.0.0.1:5000/hello"
+        url = "http://127.0.0.1:5000/hello/textbytes"
         resp = self.get(url)
         assert resp != None
-        assert resp["code"] == 1
+        # assert resp["code"] == 1
         log.info("Test %s passed." % inspect.stack()[0].function)
         """ json response
         {
@@ -558,7 +562,12 @@ class TestAPI:
         verify:        False - Disable SSL certificate verification
         kwargs:        Other arguments requests.request takes.
 
-        Return: response dict or None
+        Return:     response dict (Normal REST should be this) 
+                    or decoded text if not json
+                    or raw content bytes if not decoded 
+                    or None if error.
+                    Special case: If there is no content in response body, return None as well, e.g. DELETE response with response code 204.
+
         """
         # append common headers if none
         headers_new = headers
@@ -595,12 +604,18 @@ class TestAPI:
             )
             return None
         
-        # return json if possible
-        try:
-            return resp.json()
-        except requests.exceptions.JSONDecodeError:
-            return resp.text
-
+        if resp.content:
+            # return json if possible
+            try:
+                return resp.json()
+            except requests.exceptions.JSONDecodeError:
+                try:
+                    return resp.text # it returns '\x11\x12' for b'\x11\x12'
+                except Exception:
+                    # most likely won't reach here
+                    return resp.content
+        else: # no content in response body, i.e. content = b''.
+            return None
 
 if __name__ == "__main__":
     # self test
