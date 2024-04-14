@@ -562,7 +562,8 @@ class TestAPI:
         verify:        False - Disable SSL certificate verification
         kwargs:        Other arguments requests.request takes.
 
-        Return:     response dict (Normal REST should be this) or decoded text if not json
+        Return:     response dict (Normal REST should be this) 
+                    or decoded text if not json
                     or raw content bytes if not decoded 
                     or None if error.
                     Special case: If there is no content in response body, return None as well, e.g. DELETE response with response code 204.
@@ -604,7 +605,6 @@ class TestAPI:
             return None
         
         if resp.content:
-            pdb.set_trace()
             # return json if possible
             try:
                 return resp.json()
