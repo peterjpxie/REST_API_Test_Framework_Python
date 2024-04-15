@@ -432,7 +432,7 @@ class TestAPI:
         """
         log.info("Calling %s." % inspect.stack()[0].function)
         url = "http://127.0.0.1:5000/hello"
-        url = "http://127.0.0.1:5000/hello/textbytes"
+        # url = "http://127.0.0.1:5000/hello/binary"
         resp = self.get(url)
         assert resp != None
         # assert resp["code"] == 1
@@ -610,7 +610,10 @@ class TestAPI:
                 return resp.json()
             except requests.exceptions.JSONDecodeError:
                 try:
-                    return resp.text # it returns '\x11\x12' for b'\x11\x12'
+                    # It returns string 'A\x11\x12B' for b'\x41\x11\x12\x42' - ascii binary data with unprintable characters (\x11\x12)
+                    #   NB: print('A\x11\x12B') prints 'AB' in terminal as \x11\x12 are unprintable characters, but will write A^Q^RB to file. 
+                    # It returns unreadable string '��' for b'\xf1\xf2' - non-decodable (>127) utf8 binary data
+                    return resp.text
                 except Exception:
                     # most likely won't reach here
                     return resp.content
