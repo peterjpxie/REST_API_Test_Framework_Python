@@ -25,7 +25,7 @@ def mock_json():
 # non-text binary data
 @app.route("/hello/binary", methods=["POST", "GET"])
 def mock_binary():
-    return b'\x11\x12'
+    return b'\xf1\xf2' # b'\x41\x11\x12\x42'
 
 # text bytes
 @app.route("/hello/textbytes", methods=["POST", "GET"])
