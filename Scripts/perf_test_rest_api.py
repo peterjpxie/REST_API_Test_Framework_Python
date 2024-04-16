@@ -273,7 +273,7 @@ class TestAPI:
             try:
                 result = self.queue_results.get_nowait()
                 loop += 1
-            except Empty:
+            except queue.Empty:
                 break
             # calc stats
             if result[1] == "exception":
