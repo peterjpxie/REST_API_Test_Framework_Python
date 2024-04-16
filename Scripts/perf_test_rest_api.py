@@ -240,7 +240,7 @@ class TestAPI:
 
         Parameters:
         loop_wait   wait time between two loops.
-        loop_times  number of loops, default indefinite
+        loop_times  number of loops, default infinite
         """
         looped_times = 0
 
