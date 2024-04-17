@@ -18,6 +18,7 @@ Project structure:
 ├── Logs
 └── Scripts
 """
+import copy
 import logging
 import requests
 import json
@@ -569,14 +570,15 @@ class TestAPI:
                     Special case: If there is no content in response body, return None as well, e.g. DELETE response with response code 204.
 
         """
-        # append common headers if none
-        headers_new = headers
+        # append common headers
+        # deep copy headers to avoid using the same headers object (default {}) in different requests
+        headers_new = copy.deepcopy(headers)
         if amend_headers is True:
             # check if body is json, then set content type to json
             if data:
                 try:
                     json.loads(data)
-                except json.JSONDecodeError:
+                except (json.JSONDecodeError, TypeError):
                     pass
                 else:
                     headers_new["Content-Type"] = "application/json"
