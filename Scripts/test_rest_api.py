@@ -566,9 +566,8 @@ class TestAPI:
         Return:     response dict (Normal REST should be this) 
                     or decoded text if not json
                     or raw content bytes if not decoded 
+                    or '' if no content in response body
                     or None if error.
-                    Special case: If there is no content in response body, return None as well, e.g. DELETE response with response code 204.
-
         """
         # append common headers
         # deep copy headers to avoid using the same headers object (default {}) in different requests
@@ -620,7 +619,7 @@ class TestAPI:
                     # most likely won't reach here
                     return resp.content
         else: # no content in response body, i.e. content = b''.
-            return None
+            return ''
 
 if __name__ == "__main__":
     # self test

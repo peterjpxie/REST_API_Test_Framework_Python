@@ -1,14 +1,14 @@
-2024-04-15 02:36:06 [INFO   ][371]: Test test_post_headers_body_json passed.
-2024-04-15 02:36:07 [INFO   ][405]: Test test_post_query_string_body passed.
-2024-04-15 02:36:07 [INFO   ][412]: Calling test_get_auth_httpbin.
-2024-04-15 02:36:08 [INFO   ][420]: Test test_get_auth_httpbin passed.
-2024-04-15 02:36:08 [INFO   ][433]: Calling test_mock_service_simple.
-2024-04-15 02:36:09 [INFO   ][439]: Test test_mock_service_simple passed.
-2024-04-15 02:36:09 [INFO   ][449]: Calling test_mock_service_dynamic.
-2024-04-15 02:36:09 [INFO   ][457]: Test test_mock_service_dynamic passed.
-2024-04-15 02:36:09 [INFO   ][492]: Test by input file /home/peter/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
-2024-04-15 02:36:09 [INFO   ][523]: Test test_by_input_output_text[test_case_01] passed.
-2024-04-15 02:36:09 [INFO   ][492]: Test by input file /home/peter/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
-2024-04-15 02:36:21 [INFO   ][523]: Test test_by_input_output_text[test_case_01] passed.
-2024-04-15 02:36:21 [INFO   ][492]: Test by input file /home/peter/repo/REST_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
-2024-04-15 02:36:21 [INFO   ][523]: Test test_by_input_output_text[test_case_02] passed.
+2024-04-18 01:29:10 [INFO   ][372]: Test test_post_headers_body_json passed.
+2024-04-18 01:29:12 [INFO   ][406]: Test test_post_query_string_body passed.
+2024-04-18 01:29:12 [INFO   ][413]: Calling test_get_auth_httpbin.
+2024-04-18 01:29:13 [INFO   ][421]: Test test_get_auth_httpbin passed.
+2024-04-18 01:29:13 [INFO   ][434]: Calling test_mock_service_simple.
+2024-04-18 01:29:13 [INFO   ][440]: Test test_mock_service_simple passed.
+2024-04-18 01:29:13 [INFO   ][450]: Calling test_mock_service_dynamic.
+2024-04-18 01:29:13 [INFO   ][458]: Test test_mock_service_dynamic passed.
+2024-04-18 01:29:13 [INFO   ][493]: Test by input file /home/peter/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
+2024-04-18 01:29:14 [INFO   ][524]: Test test_by_input_output_text[test_case_01] passed.
+2024-04-18 01:29:14 [INFO   ][493]: Test by input file /home/peter/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
+2024-04-18 01:29:14 [INFO   ][524]: Test test_by_input_output_text[test_case_01] passed.
+2024-04-18 01:29:14 [INFO   ][493]: Test by input file /home/peter/repo/REST_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
+2024-04-18 01:29:16 [INFO   ][524]: Test test_by_input_output_text[test_case_02] passed.
