@@ -34,4 +34,4 @@ Check out the [medium post](https://medium.com/@peter.jp.xie/rest-api-testing-us
 ## HTML Report
 For HTML report generation, we are using [pytest-html](https://pypi.org/project/pytest-html/) which is simple and effective.
 
-Other alternatives to generate **fancier** HTML reports are [Allure](https://github.com/allure-framework) and [reportportal](https://reportportal.io/installation). Note these report frameworks are heavy, espcially reportportal.
+Other alternatives to generate **fancier** HTML reports are [Allure](https://github.com/allure-framework) and [reportportal](https://reportportal.io/installation). Note these report frameworks are heavy, especially reportportal.
