@@ -34,9 +34,6 @@ import pdb
 
 ### Settings ###
 LOG_LEVEL = logging.INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
-VALID_HTTP_RESP = (200, 201, 202,
-                   204, # for DELETE no content in response body
-                   )
 
 if sys.version_info < (3, 8):
     raise SystemError("Requires Python 3.8 or above.")
@@ -598,7 +595,7 @@ class TestAPI:
 
         # This returns caller's function name, not this function request.
         caller_func_name = inspect.stack()[1].function
-        if resp.status_code not in VALID_HTTP_RESP:
+        if not (resp.status_code >= 200 and resp.status_code < 300):            
             log.error(
                 "%s failed with response code %s."
                 % (caller_func_name, resp.status_code)
