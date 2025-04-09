@@ -1,9 +1,10 @@
-# customised files
+# customized files
 report.html
 debug.log
 api_outputs.log
 test_tmp.py
 _test_tmp.py
+a.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
