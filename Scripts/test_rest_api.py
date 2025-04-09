@@ -318,7 +318,7 @@ def parse_test_input(filename):
 
     with open(filename, "r") as f:
         content = f.read()
-        # 3 parts split by empty line
+        # 3 parts split by empty line (\n\n) with possible whitespace in between.
         parts = re.split("\s*\n\s*\n", content)
         parts_len = len(parts)
 
