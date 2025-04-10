@@ -5,6 +5,7 @@ api_outputs.log
 test_tmp.py
 _test_tmp.py
 a.*
+b.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

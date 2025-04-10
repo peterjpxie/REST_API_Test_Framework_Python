@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Description:
 Restful API testing framework example
@@ -295,10 +296,10 @@ def diff_simple_dict(expected, actual, ignore=[], output_file=None):
     return diff
 
 
-def parse_test_input(filename):
+def parse_test_input(file: str):
     """Parse request test input
 
-    Args: filename in path
+    file: file path
     Return: method, url, headers, data
 
     Sample Input:
@@ -312,13 +313,18 @@ def parse_test_input(filename):
         "key2": "value2"
     }
     """
-    if not path.isfile(filename):
-        log.error("parse_test_input: Invalid filename: %s" % filename)
-        raise FileNotFoundError(filename)
+    if not path.isfile(file):
+        log.error("parse_test_input: Invalid file: %s" % file)
+        raise FileNotFoundError(file)
 
-    with open(filename, "r") as f:
+    # initialize default
+    headers = {}
+    body = None
+
+    with open(file, "r") as f:
         content = f.read()
-        # 3 parts split by empty line (\n\n) with possible whitespace in between.
+        # 3 parts split by empty line (\n\n) with possible whitespace in between \n\n.
+        # Note: With \n\n, re.split will support \r\n\r\n implicitly for windows files as well
         parts = re.split("\s*\n\s*\n", content)
         parts_len = len(parts)
 
@@ -327,19 +333,15 @@ def parse_test_input(filename):
         method, url = parts[0].split()
         method, url = method.strip(), url.strip()
 
-        # part 2: headers
+        # part 2: headers or body if no specific headers
         if parts_len > 1 and parts[1].strip() != "":
             header_lines = re.split("\s*\n", parts[1])
             header_lines = [line.strip() for line in header_lines]  # strip line spaces
             headers = dict([re.split(":\s*", line) for line in header_lines])
-        else:
-            headers = {}
 
         # part 3: body
-        if parts_len > 2 and parts[2].strip() != "":
-            body = parts[2].strip().strip("\n")
-        else:
-            body = None
+        if parts_len > 2 and parts[2].strip() != "" and body is None:
+            body = parts[2].strip()
 
     return method, url, headers, body
 
@@ -620,4 +622,8 @@ class TestAPI:
 
 if __name__ == "__main__":
     # self test
+    method, url, headers, body = parse_test_input('a.txt')
+    for v in method, url, headers, body:
+        print(v)
+        print('---')
     pass
