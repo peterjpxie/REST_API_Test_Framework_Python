@@ -2,7 +2,7 @@
 """
 Description:
 Restful API testing framework example
-    
+
 Install:
 pip install -r requirements.txt
 
@@ -338,7 +338,12 @@ def parse_test_input(file: str):
             header_lines = re.split("\s*\n", parts[1].strip())
             header_lines = [line.strip() for line in header_lines]  # strip line spaces
             # if it is headers
-            if len(re.split(":\s*", header_lines[0])) == 2:
+            #   condition: header_key: value
+            #   and avoid false json body condition: {"key": "value"}
+            #       there could be other false positive conditions but don't want to complicate things.
+            header_line_1_elements = re.split(":\s*", header_lines[0])
+            header_line_1_elements = [e.strip() for e in header_line_1_elements]
+            if len(header_line_1_elements) == 2 and not header_line_1_elements[0].startswith('{'):
                 headers = dict([re.split(":\s*", line) for line in header_lines])
             # no headers, part 2 is body
             else:
@@ -375,7 +380,7 @@ class TestAPI:
         this_function_name = inspect.stack()[0].function
         log.info("Test %s passed." % this_function_name)
         """ Request HTTP body:
-        {   "key1": 1, 
+        {   "key1": 1,
             "key2": "value2"
         }
 
@@ -425,7 +430,7 @@ class TestAPI:
         log.info("Test %s passed." % inspect.stack()[0].function)
         """ json response
         {
-        "authenticated": true, 
+        "authenticated": true,
         "user": "user1"
         }
         """
@@ -461,8 +466,8 @@ class TestAPI:
         assert resp["code"] == 0
         log.info("Test %s passed." % inspect.stack()[0].function)
         """ response
-        202 
-        
+        202
+
         {"code": 0, "message": "all good"}
         """
 
@@ -567,9 +572,9 @@ class TestAPI:
         verify:        False - Disable SSL certificate verification
         kwargs:        Other arguments requests.request takes.
 
-        Return:     response dict (Normal REST should be this) 
+        Return:     response dict (Normal REST should be this)
                     or decoded text if not json
-                    or raw content bytes if not decoded 
+                    or raw content bytes if not decoded
                     or '' if no content in response body
                     or None if error.
         """
@@ -602,13 +607,13 @@ class TestAPI:
 
         # This returns caller's function name, not this function request.
         caller_func_name = inspect.stack()[1].function
-        if not (resp.status_code >= 200 and resp.status_code < 300):            
+        if not (resp.status_code >= 200 and resp.status_code < 300):
             log.error(
                 "%s failed with response code %s."
                 % (caller_func_name, resp.status_code)
             )
             return None
-        
+
         if resp.content:
             # return json if possible
             try:
@@ -616,7 +621,7 @@ class TestAPI:
             except requests.exceptions.JSONDecodeError:
                 try:
                     # It returns string 'A\x11\x12B' for b'\x41\x11\x12\x42' - ascii binary data with unprintable characters (\x11\x12)
-                    #   NB: print('A\x11\x12B') prints 'AB' in terminal as \x11\x12 are unprintable characters, but will write A^Q^RB to file. 
+                    #   NB: print('A\x11\x12B') prints 'AB' in terminal as \x11\x12 are unprintable characters, but will write A^Q^RB to file.
                     # It returns unreadable string '��' for b'\xf1\xf2' - non-decodable (>127) utf8 binary data
                     return resp.text
                 except Exception:
