@@ -1,0 +1,291 @@
+2025-04-10 10:56:39: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate, br
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 39
+
+{
+    "key1": 1,
+    "key2": "value2"
+}
+
+2025-04-10 10:56:39: <-----------Response-----------
+Status code:200
+
+Date: Thu, 10 Apr 2025 00:56:39 GMT
+Content-Type: application/json
+Content-Length: 522
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "{\n    \"key1\": 1,\n    \"key2\": \"value2\"\n}",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Content-Length": "39",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-67f71747-3ebc85172c81dbb42a1f58cf"
+    },
+    "json": {
+        "key1": 1,
+        "key2": "value2"
+    },
+    "origin": "3.104.10.103",
+    "url": "http://httpbin.org/post"
+}
+
+2025-04-10 10:56:39: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: python-requests/2.32.3
+Accept-Encoding: gzip, deflate, br
+Accept: */*
+Connection: keep-alive
+Content-Length: 18
+Content-Type: application/x-www-form-urlencoded
+
+key1=1&key2=value2
+
+2025-04-10 10:56:39: <-----------Response-----------
+Status code:200
+
+Date: Thu, 10 Apr 2025 00:56:39 GMT
+Content-Type: application/json
+Content-Length: 502
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "",
+    "files": {},
+    "form": {
+        "key1": "1",
+        "key2": "value2"
+    },
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Content-Length": "18",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Host": "httpbin.org",
+        "User-Agent": "python-requests/2.32.3",
+        "X-Amzn-Trace-Id": "Root=1-67f71747-79d9fb1153374217001b66c0"
+    },
+    "json": null,
+    "origin": "3.104.10.103",
+    "url": "http://httpbin.org/post"
+}
+
+2025-04-10 10:56:40: -----------Request----------->
+GET http://httpbin.org/basic-auth/user1/password1
+
+User-Agent: python-requests/2.32.3
+Accept-Encoding: gzip, deflate, br
+Accept: */*
+Connection: keep-alive
+Authorization: Basic dXNlcjE6cGFzc3dvcmQx
+
+None
+
+2025-04-10 10:56:40: <-----------Response-----------
+Status code:200
+
+Date: Thu, 10 Apr 2025 00:56:40 GMT
+Content-Type: application/json
+Content-Length: 48
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "authenticated": true,
+    "user": "user1"
+}
+
+2025-04-10 10:56:40: -----------Request----------->
+GET http://127.0.0.1:5000/hello
+
+User-Agent: python-requests/2.32.3
+Accept-Encoding: gzip, deflate, br
+Accept: */*
+Connection: keep-alive
+
+None
+
+2025-04-10 10:56:40: <-----------Response-----------
+Status code:200
+
+Server: Werkzeug/2.3.6 Python/3.8.10
+Date: Thu, 10 Apr 2025 00:56:40 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 40
+Connection: close
+
+{
+    "code": 1,
+    "message": "Hello, World!"
+}
+
+2025-04-10 10:56:40: -----------Request----------->
+GET http://127.0.0.1:5000/anyendpoint
+
+User-Agent: python-requests/2.32.3
+Accept-Encoding: gzip, deflate, br
+Accept: */*
+Connection: keep-alive
+Response-Code: 202
+Response-Body: {"code": 0, "message": "all good"}
+
+None
+
+2025-04-10 10:56:40: <-----------Response-----------
+Status code:202
+
+Server: Werkzeug/2.3.6 Python/3.8.10
+Date: Thu, 10 Apr 2025 00:56:40 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 34
+Connection: close
+
+{
+    "code": 0,
+    "message": "all good"
+}
+
+2025-04-10 10:56:40: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate, br
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 39
+
+{
+    "key1": 1,
+    "key2": "value2"
+}
+
+2025-04-10 10:56:40: <-----------Response-----------
+Status code:200
+
+Date: Thu, 10 Apr 2025 00:56:40 GMT
+Content-Type: application/json
+Content-Length: 522
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "{\n    \"key1\": 1,\n    \"key2\": \"value2\"\n}",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Content-Length": "39",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-67f71748-3fbe1f1b0ccca4a9052f4570"
+    },
+    "json": {
+        "key1": 1,
+        "key2": "value2"
+    },
+    "origin": "3.104.10.103",
+    "url": "http://httpbin.org/post"
+}
+
+2025-04-10 10:56:41: -----------Request----------->
+POST http://httpbin.org/post
+
+User-Agent: Python Requests
+Accept-Encoding: gzip, deflate, br
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 32
+
+{
+    "key1": "test request 2"
+}
+
+2025-04-10 10:56:41: <-----------Response-----------
+Status code:200
+
+Date: Thu, 10 Apr 2025 00:56:41 GMT
+Content-Type: application/json
+Content-Length: 504
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "args": {},
+    "data": "{\n    \"key1\": \"test request 2\"\n}",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Content-Length": "32",
+        "Content-Type": "application/json",
+        "Host": "httpbin.org",
+        "User-Agent": "Python Requests",
+        "X-Amzn-Trace-Id": "Root=1-67f71749-5dd63ade2654282a0d29b51f"
+    },
+    "json": {
+        "key1": "test request 2"
+    },
+    "origin": "3.104.10.103",
+    "url": "http://httpbin.org/post"
+}
+
+2025-04-10 10:56:41: -----------Request----------->
+GET http://httpbin.org/basic-auth/user1/password1
+
+User-Agent: python-requests/2.32.3
+Accept-Encoding: gzip, deflate, br
+Accept: */*
+Connection: keep-alive
+Authorization: Basic dXNlcjE6cGFzc3dvcmQx
+
+None
+
+2025-04-10 10:56:41: <-----------Response-----------
+Status code:200
+
+Date: Thu, 10 Apr 2025 00:56:41 GMT
+Content-Type: application/json
+Content-Length: 48
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+    "authenticated": true,
+    "user": "user1"
+}
+

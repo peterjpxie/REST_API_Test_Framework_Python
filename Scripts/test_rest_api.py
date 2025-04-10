@@ -337,7 +337,12 @@ def parse_test_input(file: str):
         if parts_len > 1 and parts[1].strip() != "":
             header_lines = re.split("\s*\n", parts[1])
             header_lines = [line.strip() for line in header_lines]  # strip line spaces
-            headers = dict([re.split(":\s*", line) for line in header_lines])
+            # if it is headers
+            if len(re.split(":\s*", header_lines[0])) == 2:
+                headers = dict([re.split(":\s*", line) for line in header_lines])
+            # no headers, part 2 is body
+            else:
+                body = parts[1].strip()
 
         # part 3: body
         if parts_len > 2 and parts[2].strip() != "" and body is None:
@@ -622,8 +627,9 @@ class TestAPI:
 
 if __name__ == "__main__":
     # self test
-    method, url, headers, body = parse_test_input('a.txt')
-    for v in method, url, headers, body:
-        print(v)
-        print('---')
+    # for f in ('a.txt', 'b.txt'):
+    #     method, url, headers, body = parse_test_input(f)
+    #     for v in method, url, headers, body:
+    #         print(v)
+    #         print('---')
     pass

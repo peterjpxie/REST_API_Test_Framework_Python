@@ -1,0 +1,14 @@
+2025-04-10 10:56:39 [INFO   ][376]: Test test_post_headers_body_json passed.
+2025-04-10 10:56:39 [INFO   ][410]: Test test_post_query_string_body passed.
+2025-04-10 10:56:39 [INFO   ][417]: Calling test_get_auth_httpbin.
+2025-04-10 10:56:40 [INFO   ][425]: Test test_get_auth_httpbin passed.
+2025-04-10 10:56:40 [INFO   ][438]: Calling test_mock_service_simple.
+2025-04-10 10:56:40 [INFO   ][444]: Test test_mock_service_simple passed.
+2025-04-10 10:56:40 [INFO   ][454]: Calling test_mock_service_dynamic.
+2025-04-10 10:56:40 [INFO   ][462]: Test test_mock_service_dynamic passed.
+2025-04-10 10:56:40 [INFO   ][497]: Test by input file /root/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_01.txt
+2025-04-10 10:56:40 [INFO   ][528]: Test test_by_input_output_text[test_case_01] passed.
+2025-04-10 10:56:40 [INFO   ][497]: Test by input file /root/repo/REST_API_Test_Framework_Python/inputs/test_case_01/request_02.txt
+2025-04-10 10:56:41 [INFO   ][528]: Test test_by_input_output_text[test_case_01] passed.
+2025-04-10 10:56:41 [INFO   ][497]: Test by input file /root/repo/REST_API_Test_Framework_Python/inputs/test_case_02/request_01.txt
+2025-04-10 10:56:41 [INFO   ][528]: Test test_by_input_output_text[test_case_02] passed.
