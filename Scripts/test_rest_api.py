@@ -335,11 +335,11 @@ def parse_test_input(file: str):
 
         # part 2: headers or body if no specific headers
         if parts_len > 1 and parts[1].strip() != "":
-            header_lines = re.split("\s*\n", parts[1])
+            header_lines = re.split("\s*\n", parts[1].strip())
             header_lines = [line.strip() for line in header_lines]  # strip line spaces
             # if it is headers
             if len(re.split(":\s*", header_lines[0])) == 2:
-                headers = dict([re.split(":\s*", line) for line in header_lines if line != ""])
+                headers = dict([re.split(":\s*", line) for line in header_lines])
             # no headers, part 2 is body
             else:
                 body = parts[1].strip()
