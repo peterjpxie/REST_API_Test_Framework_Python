@@ -300,7 +300,7 @@ def parse_test_input(file: str):
     """Parse request test input
 
     file: file path
-    Return: method, url, headers, data
+    Return: method, url, headers, body
 
     Sample Input:
     POST http://httpbin.org/post
