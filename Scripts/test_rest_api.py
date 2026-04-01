@@ -325,7 +325,7 @@ def parse_test_input(file: str):
         content = f.read()
         # 3 parts split by empty line (\n\n) with possible whitespace in between \n\n.
         # Note: With \n\n, re.split will support \r\n\r\n implicitly for windows files as well
-        parts = re.split("\s*\n\s*\n", content)
+        parts = re.split(r"\s*\n\s*\n", content)
         parts_len = len(parts)
 
         # part 1: Method and url
@@ -335,16 +335,16 @@ def parse_test_input(file: str):
 
         # part 2: headers or body if no specific headers
         if parts_len > 1 and parts[1].strip() != "":
-            header_lines = re.split("\s*\n", parts[1].strip())
+            header_lines = re.split(r"\s*\n", parts[1].strip())
             header_lines = [line.strip() for line in header_lines]  # strip line spaces
             # if it is headers
             #   condition: header_key: value
             #   and avoid false json body condition: {"key": "value"}
             #       there could be other false positive conditions but don't want to complicate things.
-            header_line_1_elements = re.split(":\s*", header_lines[0])
+            header_line_1_elements = re.split(r":\s*", header_lines[0])
             header_line_1_elements = [e.strip() for e in header_line_1_elements]
             if len(header_line_1_elements) == 2 and not header_line_1_elements[0].startswith('{'):
-                headers = dict([re.split(":\s*", line) for line in header_lines])
+                headers = dict([re.split(r":\s*", line) for line in header_lines])
             # no headers, part 2 is body
             else:
                 body = parts[1].strip()
@@ -630,11 +630,13 @@ class TestAPI:
         else: # no content in response body, i.e. content = b''.
             return ''
 
-if __name__ == "__main__":
+def main():
     # self test
-    # for f in ('a.txt', 'b.txt'):
-    #     method, url, headers, body = parse_test_input(f)
-    #     for v in method, url, headers, body:
-    #         print(v)
-    #         print('---')
-    pass
+    for f in ('a.txt', 'b.txt'):
+        method, url, headers, body = parse_test_input(f)
+        for v in method, url, headers, body:
+            print(v)
+            print('---')
+
+if __name__ == "__main__":
+    main()

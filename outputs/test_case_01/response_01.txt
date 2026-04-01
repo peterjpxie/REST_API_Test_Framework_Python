@@ -1,12 +1,12 @@
 data = '{\n    "key1": 1,\n    "key2": "value2"\n}'
 headers.Accept = */*
-headers.Accept-Encoding = gzip, deflate, br
+headers.Accept-Encoding = gzip, deflate, zstd
 headers.Content-Length = 39
 headers.Content-Type = application/json
 headers.Host = httpbin.org
 headers.User-Agent = Python Requests
-headers.X-Amzn-Trace-Id = Root=1-67f71748-3fbe1f1b0ccca4a9052f4570
+headers.X-Amzn-Trace-Id = Root=1-69cc8d5d-65c66deb5ceb12734122be3e
 json.key1 = 1
 json.key2 = value2
-origin = 3.104.10.103
+origin = 3.24.93.82
 url = http://httpbin.org/post
