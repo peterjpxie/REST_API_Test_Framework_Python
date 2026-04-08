@@ -471,6 +471,7 @@ class TestAPI:
         {"code": 0, "message": "all good"}
         """
 
+    # parametrize means for testcase_folder in test_case_list run this test function.
     @pytest.mark.parametrize("testcase_folder", test_case_list)
     def test_by_input_output_text(self, testcase_folder):
         """test by input and expected output text files
